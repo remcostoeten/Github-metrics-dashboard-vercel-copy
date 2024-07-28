@@ -3,12 +3,8 @@
 import React, { useEffect, useState } from "react";
 import Image from 'next/image';
 import { fetchGitHubActivities } from "@/server/actions/getGithubActivity";
+import { Activity } from "@/types";
 
-interface Activity {
-  imageUrl: string;
-  content: string;
-  time: string;
-}
 
 const ActivityItem: React.FC<Activity> = ({ imageUrl, content, time }) => (
   <div className="flex items-center py-2 border-b border-gray-700">

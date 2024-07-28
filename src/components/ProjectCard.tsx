@@ -2,25 +2,15 @@
 
 import React, { useEffect, useState } from "react";
 import { Flex } from "./atoms/Flexer";
-
-interface ProjectData {
-  name: string;
-  html_url: string;
-  pushed_at: string;
-  updated_at: string;
-  full_name: string;
-  productionUrl: string;
-  latestUrl: string;
-  lastDeployedAt: string;
-}
-
-interface ProjectCardProps {
-  repoName: string;
-}
+import { getTimeSince } from "@/lib/utils";
+import { ProjectCardProps, ProjectData, UrlInfoProps, CardBodyProps } from "@/types";
+import { LoadingSkeleton } from "./effects/skeleton";
+import { Button } from "./ui/button";
 
 const ProjectCard: React.FC<ProjectCardProps> = ({ repoName }) => {
   const [projectData, setProjectData] = useState<ProjectData | null>(null);
-
+  const [isLoading, setIsLoading] = useState(true);
+  
   useEffect(() => {
     const fetchProjectData = async () => {
       try {
@@ -30,17 +20,18 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ repoName }) => {
         }
         const data: ProjectData[] = await response.json();
         const thisProject = data.find(project => project.full_name === repoName);
-        if (thisProject) {
-          setProjectData(thisProject);
-        }
+        setProjectData(thisProject || null);
       } catch (error) {
         console.error('Error fetching project data:', error);
+      } finally {
+        setIsLoading(false);
       }
     };
 
     fetchProjectData();
   }, [repoName]);
 
+  if (isLoading) return <LoadingSkeleton />;
   if (!projectData) return null;
 
   const timeSinceLastDeployment = getTimeSince(new Date(projectData.lastDeployedAt));
@@ -62,42 +53,28 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ repoName }) => {
 const CardHeader: React.FC<{ title: string }> = ({ title }) => (
   <div className="flex justify-between items-center px-4 py-4">
     <h2 className="text-2xl font-semibold tracking-tight text-white">{title}</h2>
-    <button type="button" className="box-border text-[rgb(206,206,206)] text-[14px] leading-[32px] bg-black cursor-pointer block font-normal h-[32px] justify-center min-w-min overflow-hidden pointer-events-auto relative text-center capitalize whitespace-nowrap select-none w-[66.925px] px-[18.4px] py-0 rounded-[5px] border-[0.8px] border-solid border-zinc-800">visit</button>
+    <Button variant='gooeyLeft' type="button" className="text-[#cecece] text-sm leading-8 bg-black cursor-pointer font-normal h-8 min-w-min overflow-hidden text-center capitalize whitespace-nowrap w-[66.925px] px-[18.4px] rounded border-[0.8px] border-solid border-zinc-800">
+      visit
+    </Button>
   </div>
 );
-
-interface UrlInfoProps {
-  url: string;
-  label: string;
-  time: string;
-}
 
 const UrlInfo: React.FC<UrlInfoProps> = ({ url, label, time }) => (
   <Flex justify="between">
     <div className="flex gap-2 items-center text-sm font-medium text-white">
       <div className="w-2.5 h-2.5 bg-red-300 rounded-full" />
-      <a
-        href={url}
-        className="box-border items-baseline text-white cursor-pointer text-[14px] block h-[16px] leading-[16px] transition-[color] duration-[0.2s] ease-[ease] delay-0 w-[237.637px] bg-[rgba(0,0,0,0)] font-medium overflow-hidden text-ellipsis whitespace-nowrap rounded-none"
-      >
+      <a href={url} className="text-white cursor-pointer text-sm h-4 leading-4 transition-colors duration-200 w-[237.637px] overflow-hidden text-ellipsis whitespace-nowrap">
         {label}
       </a>
     </div>
     <Flex items="center" gap='4'>
-      <span className="box-border text-white text-[12px] font-medium block h-[17.6px] leading-[12px] w-[76.175px] ml-[10.6667px] mr-0 my-0 px-[6px] py-[2px] rounded-[16px] border-[0.8px] border-solid border-[rgb(51,51,51)]">
+      <span className="text-white text-xs font-medium h-[17.6px] leading-3 w-[76.175px] mx-0 my-0 px-1.5 py-0.5 rounded-full border-[0.8px] border-solid border-[#333]">
         Production
       </span>
-      <time className="text-stone-500">{time}</time>
+      <time className="text-xs text-stone-500">{time}</time>
     </Flex>
   </Flex>
 );
-
-interface CardBodyProps {
-  productionUrl: string;
-  latestUrl: string;
-  productionTime: string;
-  latestTime: string;
-}
 
 const CardBody: React.FC<CardBodyProps> = ({
   productionUrl,
@@ -121,20 +98,5 @@ const CardFooter: React.FC<{ repoName: string }> = ({ repoName }) => (
     <div>{repoName}</div>
   </div>
 );
-
-const getTimeSince = (date: Date): string => {
-  const seconds = Math.floor((new Date().getTime() - date.getTime()) / 1000);
-  let interval = seconds / 31536000;
-  if (interval > 1) return Math.floor(interval) + "y ago";
-  interval = seconds / 2592000;
-  if (interval > 1) return Math.floor(interval) + "mo ago";
-  interval = seconds / 86400;
-  if (interval > 1) return Math.floor(interval) + "d ago";
-  interval = seconds / 3600;
-  if (interval > 1) return Math.floor(interval) + "h ago";
-  interval = seconds / 60;
-  if (interval > 1) return Math.floor(interval) + "m ago";
-  return Math.floor(seconds) + "s ago";
-};
 
 export default ProjectCard;

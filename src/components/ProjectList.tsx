@@ -1,25 +1,16 @@
-'use client'
-
-import React from "react";
 import ProjectCard from "./ProjectCard";
+import Link from "next/link";
+import { projects } from "core/config/siteConfig";
 
-const projects = [
-  { repoName: "remcostoeten/password-manager" },
-  { repoName: "remcostoeten/remcostoeten-all-in-one-dashboard" },
-
-];
-
-const ProjectList: React.FC = () => {
-  return (
+export default function ProjectList() {
+return (
     <div className="flex flex-col grow pb-9 -mt-5 bg-blend-normal max-md:mt-10 max-md:max-w-full space-y-2">
       {projects.map((project, index) => (
         <ProjectCard key={index} repoName={project.repoName} />
       ))}
-      <div className="mt-9 text-sm font-bold text-blue-500 max-md:max-w-full">
-        View All Projects
-      </div>
+      <Link className="mt-9 text-sm  text-blue-500 max-md:max-w-full" target='_blank' href='https://github.com/remcostoeten?tab=repositories'>
+        View All Projects On Github
+      </Link>
     </div>
   );
 };
-
-export default ProjectList;

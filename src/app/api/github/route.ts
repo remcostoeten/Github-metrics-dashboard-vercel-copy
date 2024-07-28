@@ -1,14 +1,10 @@
 // app/api/github/route.ts
+import { repos } from 'core/config/siteConfig';
 import { NextResponse } from 'next/server';
 
 export async function GET() {
   const githubToken = process.env.GITHUB_TOKEN;
   const vercelToken = process.env.VERCEL_TOKEN;
-  const repos = [
-    'remcostoeten/password-manager',
-  "remcostoeten/remcostoeten-all-in-one-dashboard" 
-
-  ];
 
   try {
     console.log('Vercel Token:', vercelToken?.substring(0, 5) + '...');
@@ -26,7 +22,6 @@ export async function GET() {
       }
       const githubData = await githubResponse.json();
 
-      // For now, let's skip Vercel API call to isolate the issue
       return {
         ...githubData,
         productionUrl: `https://${githubData.name}.vercel.app`,

@@ -1,24 +1,11 @@
 'use server'
 
+import { RepoData } from '@/types';
+import { repos } from 'core/config/siteConfig';
 import { revalidatePath } from 'next/cache';
-
-interface RepoData {
-  name: string;
-  full_name: string;
-  description: string;
-  html_url: string;
-  pushed_at: string;
-  productionUrl: string;
-  latestUrl: string;
-  lastDeployedAt: string;
-}
 
 export async function fetchGitHubActivities(): Promise<RepoData[]> {
   const githubToken = process.env.GITHUB_TOKEN;
-  const repos = [
-    'remcostoeten/password-manager',
-    'remcostoeten/remcostoeten-all-in-one-dashboard'
-  ];
 
   try {
     const projectData = await Promise.all(repos.map(async (repo) => {

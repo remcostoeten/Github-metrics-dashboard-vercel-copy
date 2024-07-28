@@ -3,10 +3,8 @@ import Footer from "@/components/Footer";
 import { GeistMono, GeistSans } from "geist/font";
 import './globals.css';
 import Header from "@/components/Header";
+import { LayoutProps } from ".next/types/app/layout";
 
-interface LayoutProps {
-  children: React.ReactNode;
-}
 
 const Layout: React.FC<LayoutProps> = ({ children }) => {
   return (

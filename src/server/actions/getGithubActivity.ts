@@ -2,37 +2,31 @@
 
 import { revalidatePath } from 'next/cache'
 import { siteConfig } from '../../../core/config/siteConfig';
+import { formatTime } from '@/lib/utils';
+import { Activity, GitHubEvent } from '@/types';
+import { cache } from 'react';
 
-interface GitHubEvent {
-  type: string;
-  actor: {
-    avatar_url: string;
-    login: string;
-  };
-  repo: {
-    name: string;
-  };
-  created_at: string;
-  payload?: any;
-}
+const CACHE_TIME = 60000; // 1 minute
 
-interface Activity {
-  imageUrl: string;
-  content: string;
-  time: string;
-}
+let cachedActivities: Activity[] | null = null;
+let lastFetchTime = 0;
 
-export async function fetchGitHubActivities(): Promise<Activity[]> {
+const fetchGitHubActivitiesWithCache = cache(async (): Promise<Activity[]> => {
+  const currentTime = Date.now();
+  if (cachedActivities && (currentTime - lastFetchTime < CACHE_TIME)) {
+    return cachedActivities;
+  }
+
   const username = siteConfig.githubUsername;
   const githubToken = process.env.GITHUB_TOKEN;
 
   try {
-    const response = await fetch(`https://api.github.com/users/${username}/events`, {
+    const response = await fetch(`https://api.github.com/users/${username}/events?per_page=5`, {
       headers: {
         'Authorization': `token ${githubToken}`,
         'Accept': 'application/vnd.github.v3+json'
       },
-      next: { revalidate: 60 } // Revalidate every 60 seconds
+      next: { revalidate: 60 }
     });
 
     if (!response.ok) {
@@ -46,40 +40,32 @@ export async function fetchGitHubActivities(): Promise<Activity[]> {
       time: formatTime(new Date(event.created_at))
     }));
 
-    revalidatePath('/'); // Revalidate the page that uses this data
+    cachedActivities = activities;
+    lastFetchTime = currentTime;
+
+    revalidatePath('/');
     return activities;
   } catch (error) {
     console.error('Error fetching GitHub events:', error);
     throw new Error('Failed to fetch recent activity');
   }
-}
+});
+
+export const fetchGitHubActivities = fetchGitHubActivitiesWithCache;
 
 function formatEventContent(event: GitHubEvent): string {
-    switch (event.type) {
-      case 'PushEvent':
-        return `You pushed to ${event.repo.name}`;
-      case 'CreateEvent':
-        return `You created ${event.payload?.ref_type} ${event.payload?.ref || ''} in ${event.repo.name}`;
-      case 'DeleteEvent':
-        return `You deleted ${event.payload?.ref_type} ${event.payload?.ref} from ${event.repo.name}`;
-      case 'IssuesEvent':
-        return `You ${event.payload?.action} an issue in ${event.repo.name}`;
-      case 'PullRequestEvent':
-        return `You ${event.payload?.action} a pull request in ${event.repo.name}`;
-      default:
-        return `You performed an action in ${event.repo.name}`;
-    }
+  switch (event.type) {
+    case 'PushEvent':
+      return `Pushed to ${event.repo.name}`;
+    case 'CreateEvent':
+      return `Created ${event.payload?.ref_type} ${event.payload?.ref || ''} in ${event.repo.name}`;
+    case 'DeleteEvent':
+      return `Deleted ${event.payload?.ref_type} ${event.payload?.ref} from ${event.repo.name}`;
+    case 'IssuesEvent':
+      return `${event.payload?.action} an issue in ${event.repo.name}`;
+    case 'PullRequestEvent':
+      return `${event.payload?.action} a pull request in ${event.repo.name}`;
+    default:
+      return `Performed an action in ${event.repo.name}`;
   }
-  
-  function formatTime(date: Date): string {
-    const now = new Date();
-    const diffInSeconds = Math.floor((now.getTime() - date.getTime()) / 1000);
-    const diffInMinutes = Math.floor(diffInSeconds / 60);
-    const diffInHours = Math.floor(diffInMinutes / 60);
-    const diffInDays = Math.floor(diffInHours / 24);
-  
-    if (diffInDays > 0) return `${diffInDays}d`;
-    if (diffInHours > 0) return `${diffInHours}h`;
-    if (diffInMinutes > 0) return `${diffInMinutes}m`;
-    return `${diffInSeconds}s`;
-  }
+}

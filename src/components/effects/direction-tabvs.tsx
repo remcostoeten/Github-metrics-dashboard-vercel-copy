@@ -5,19 +5,7 @@ import { AnimatePresence, MotionConfig, motion } from "framer-motion"
 import useMeasure from "react-use-measure"
 import { cn } from "@/lib/utils"
 import { usePathname, useRouter } from 'next/navigation';
-
-type Tab = {
-  id: number
-  label: string
-  path: string
-  isActive: boolean
-  content: ReactNode
-}
-
-interface NavigationProps {
-  className?: string
-  rounded?: string
-}
+import { NavigationProps, Tab } from "@/types"
 
 const navigationItems = [
   { id: 1, label: 'Home', path: '/' },
@@ -89,7 +77,7 @@ const Navigation = ({ className, rounded }: NavigationProps) => {
   }
 
   return (
-    <nav aria-label="Main Navigation" className="flex flex-col items-center w-full px-16 text-sm whitespace-nowrap bg-blend-normal bg-white bg-opacity-0 text-zinc-500 max-md:px-5 max-md:max-w-full">
+    <nav aria-label="Main Navigation" className="flex flex-col items-center w-full px-16 text-sm whitespace-nowrap bg-blend-normal bg-white bg-opacity-0 text-zinc-500 max-md:px-5 max-md:max-w-full border-0 border-b border-stone-700">
       <div className={cn(
         "flex space-x-1 border border-none rounded-full cursor-pointer bg-neutral-600 px-[3px] py-[3.2px] shadow-inner-shadow",
         className,
@@ -111,7 +99,7 @@ const Navigation = ({ className, rounded }: NavigationProps) => {
             {tab.isActive && (
               <motion.span
                 layoutId="bubble"
-                className="absolute inset-0 z-10 bg-neutral-700 mix-blend-difference shadow-inner-shadow border border-white/10"
+                className="absolute inset-0 !bottom-0 z-10 bg-neutral-700 mix-blend-difference shadow-inner-shadow border border-white/10"
                 style={rounded ? { borderRadius: 9 } : { borderRadius: 9999 }}
                 transition={{ type: "spring", bounce: 0.19, duration: 0.4 }}
               />
