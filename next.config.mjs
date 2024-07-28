@@ -5,7 +5,7 @@ const nextConfig = {
     },
     images: {
       loader: "custom",
-      loaderFile: "./components/effects/full-size-skeleton-loader.tsx",
+      loaderFile: "./src/components/effects/full-size-skeleton-loader.tsx",
     },
   };
   
