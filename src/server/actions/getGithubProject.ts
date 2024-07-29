@@ -52,7 +52,14 @@ export async function fetchGitHubActivities(): Promise<RepoData[]> {
       id: "",
       imageUrl: "",
       content: "",
-      timestamp: Number(data.timestamp),
+      full_name: data.full_name,
+      description: data.description,  
+      html_url: data.html_url,
+      pushed_at: data.pushed_at,
+      productionUrl: data.productionUrl,
+      latestUrl: data.latestUrl,
+      lastDeployedAt: data.lastDeployedAt,
+      timestamp: new Date(data.pushed_at).getTime(),
     }));
   } catch (error) {
     console.error("Error fetching GitHub data:", error);
