@@ -4,21 +4,23 @@ import { GeistMono, GeistSans } from "geist/font";
 import "./globals.css";
 import Header from "@/components/Header";
 import { LayoutProps } from "@/types";
-
+import Providers from "@/core/providers";
 
 const Layout: React.FC<LayoutProps> = ({ children }) => {
   return (
-    <html className={`${GeistSans.variable} ${GeistMono.variable}`} lang="en">
-      <body>
-        <div className="flex flex-col bg-[#111] bg-blend-normal h-screen">
-          <Header />
-          <main className="flex flex-col items-center px-16 pt-px pb-9 -translate-y-9 w-full bg-blend-normal max-md:px-5 max-md:max-w-full">
-            {children}
-          </main>
-          <Footer />
-        </div>
-      </body>
-    </html>
+      <html className={`${GeistSans.variable} ${GeistMono.variable}`} lang="en">
+        <body>
+    <Providers>
+    <div className="flex flex-col bg-[#111] bg-blend-normal h-screen">
+            <Header />
+            <main className="flex flex-col items-center px-16 pt-px pb-9 -translate-y-9 w-full bg-blend-normal max-md:px-5 max-md:max-w-full">
+              {children}
+            </main>
+            <Footer />
+          </div>
+          </Providers>
+          </body>
+      </html>
   );
 };
 

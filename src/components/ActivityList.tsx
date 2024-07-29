@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import React, { useEffect, useState, useCallback } from "react";
 import { RepoData } from "@/types";
@@ -30,7 +30,7 @@ const ActivityList: React.FC = () => {
 
   useEffect(() => {
     loadActivities();
-    const intervalId = setInterval(loadActivities, 10000); 
+    const intervalId = setInterval(loadActivities, 10000);
 
     return () => clearInterval(intervalId);
   }, [loadActivities]);

@@ -1,11 +1,24 @@
 "use server";
-
 import { RepoData } from "@/types";
+import fs from 'fs';
+import path from 'path';
+
+// Function to write logs to a JSON file
+function writeLogsToJson(data: any, filename: string) {
+  const logDir = path.join(process.cwd(), 'logs');
+  if (!fs.existsSync(logDir)) {
+    fs.mkdirSync(logDir);
+  }
+  const filePath = path.join(logDir, filename);
+  fs.writeFileSync(filePath, JSON.stringify(data, null, 2));
+  console.log(`Logs written to ${filePath}`);
+}
 
 export async function fetchGitHubActivities(): Promise<RepoData[]> {
   const githubToken = process.env.GITHUB_TOKEN;
   const username = 'remcostoeten'; // Your GitHub username
-
+  console.log("Fetching GitHub activities...");
+  
   try {
     const response = await fetch(
       `https://api.github.com/users/${username}/events`,
@@ -17,23 +30,32 @@ export async function fetchGitHubActivities(): Promise<RepoData[]> {
         next: { revalidate: 10 }, // Revalidate every 10 seconds
       }
     );
-
+    
     if (!response.ok) {
       throw new Error(`GitHub API error: ${response.statusText}`);
     }
-
+    
     const events = await response.json();
-
+    console.log("GitHub events data:", events);
+    writeLogsToJson(events, 'github_events.json');
+    
     const activities: RepoData[] = events.slice(0, 5).map((event: any) => ({
       id: event.id,
       imageUrl: event.actor.avatar_url,
+      type: event.type,
+      repoName: event.repo.name,
       content: getEventContent(event),
-      timestamp: new Date(event.created_at).getTime(),
+      timestamp: new Date(event.created_at).toTimeString(),
+      payload: event.payload,
     }));
-
+    
+    console.log("Parsed activities:", activities);
+    writeLogsToJson(activities, 'parsed_activities.json');
+    
     return activities;
   } catch (error) {
     console.error("Error fetching GitHub activities:", error);
+    writeLogsToJson({ error: error.message }, 'error_log.json');
     throw new Error("Failed to fetch GitHub activities");
   }
 }
@@ -73,6 +95,6 @@ function getEventContent(event: any): string {
     case 'SponsorshipEvent':
       return `${event.payload.action} sponsorship for ${event.repo.name}`;
     default:
-      return `Acted on ${event.repo.name}`;
+      return `Performed an action on ${event.repo.name}`;
   }
 }

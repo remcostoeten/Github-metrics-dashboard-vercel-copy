@@ -1,4 +1,4 @@
-'use client'
+'use client';
 
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
@@ -7,7 +7,6 @@ import { RepoData } from "@/types";
 const ActivityItem: React.FC<RepoData> = ({
   imageUrl,
   content,
-  commitMessage,
   timestamp,
 }) => {
   const getRelativeTime = (timestamp: number) => {
@@ -41,7 +40,7 @@ const ActivityItem: React.FC<RepoData> = ({
         alt="Activity Image"
         className="shrink-0 self-stretch my-auto w-8 border border-solid bg-blend-normal aspect-square border-zinc-800 rounded-[50px]"
       />
-      <p className="flex-auto self-stretch my-auto text-white">{commitMessage}</p>
+      <p className="flex-auto self-stretch my-auto text-white">{content}</p>
       <time className="self-stretch my-auto text-xs text-stone-500">{relativeTime}</time>
     </div>
   );

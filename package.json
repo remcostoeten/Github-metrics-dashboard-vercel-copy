@@ -9,7 +9,10 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@geist-ui/core": "^2.3.8",
+    "@geist-ui/icons": "^1.0.2",
     "@radix-ui/react-avatar": "^1.1.0",
+    "@radix-ui/react-dialog": "^1.1.1",
     "@radix-ui/react-slot": "^1.1.0",
     "babel-plugin-react-compiler": "^0.0.0-experimental-334f00b-20240725",
     "class-variance-authority": "^0.7.0",
@@ -21,7 +24,9 @@
     "react": "^19.0.0-rc-14a4699f-20240725",
     "react-dom": "^19.0.0-rc-14a4699f-20240725",
     "react-error-boundary": "^4.0.13",
+    "react-syntax-highlighter": "^15.5.0",
     "react-use-measure": "^2.1.1",
+    "sonner": "^1.5.0",
     "tailwind-merge": "^2.4.0",
     "tailwindcss-animate": "^1.0.7"
   },
