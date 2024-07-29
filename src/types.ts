@@ -42,6 +42,7 @@ export interface RepoData {
   id: string;
   imageUrl: string;
   content: string;
+  commitMessage?: string;
   timestamp: number;
 }
 

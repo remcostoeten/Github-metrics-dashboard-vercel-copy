@@ -30,13 +30,12 @@ const ActivityList: React.FC = () => {
 
   useEffect(() => {
     loadActivities();
-    const intervalId = setInterval(loadActivities, 10000); // Poll every 10 seconds
+    const intervalId = setInterval(loadActivities, 10000); 
 
     return () => clearInterval(intervalId);
   }, [loadActivities]);
 
   useEffect(() => {
-    // Update time display every second
     const timer = setInterval(() => {
       setActivities(prevActivities => [...prevActivities]);
     }, 1000);
