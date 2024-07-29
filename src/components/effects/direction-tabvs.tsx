@@ -1,53 +1,53 @@
-"use client"
+"use client";
 
-import { ReactNode, useMemo, useState } from "react"
-import { AnimatePresence, MotionConfig, motion } from "framer-motion"
-import useMeasure from "react-use-measure"
-import { cn } from "@/lib/utils"
-import { usePathname, useRouter } from 'next/navigation';
-import { NavigationProps, Tab } from "@/types"
-import { navigationItems } from "core/config/siteConfig"
+import { ReactNode, useMemo, useState } from "react";
+import { AnimatePresence, MotionConfig, motion } from "framer-motion";
+import useMeasure from "react-use-measure";
+import { cn } from "@/lib/utils";
+import { usePathname, useRouter } from "next/navigation";
+import { NavigationProps, Tab } from "@/types";
+import { navigationItems } from "core/config/siteConfig";
 
 const Navigation = ({ className, rounded }: NavigationProps) => {
   const pathname = usePathname();
   const router = useRouter();
 
-  console.log('Current pathname:', pathname); // Debug log
+  console.log("Current pathname:", pathname); // Debug log
 
   const isActive = (path) => {
-    if (path === '/') {
-      return pathname === '/' || pathname === '';
+    if (path === "/") {
+      return pathname === "/" || pathname === "";
     }
     return pathname === path;
   };
 
-  const tabs: Tab[] = navigationItems.map(item => ({
+  const tabs: Tab[] = navigationItems.map((item) => ({
     ...item,
     isActive: isActive(item.path),
-    'aria-current': isActive(item.path) ? 'page' : undefined,
-    content: null
+    "aria-current": isActive(item.path) ? "page" : undefined,
+    content: null,
   }));
 
   const [activeTabId, setActiveTabId] = useState(() => {
-    const activeTab = tabs.find(tab => tab.isActive);
+    const activeTab = tabs.find((tab) => tab.isActive);
     return activeTab ? activeTab.id : tabs[0].id;
   });
 
-  const [direction, setDirection] = useState(0)
-  const [isAnimating, setIsAnimating] = useState(false)
-  const [ref, bounds] = useMeasure()
+  const [direction, setDirection] = useState(0);
+  const [isAnimating, setIsAnimating] = useState(false);
+  const [ref, bounds] = useMeasure();
 
   const handleTabClick = (newTabId: number) => {
     if (newTabId !== activeTabId && !isAnimating) {
-      const newTab = tabs.find(tab => tab.id === newTabId);
+      const newTab = tabs.find((tab) => tab.id === newTabId);
       if (newTab) {
-        const newDirection = newTabId > activeTabId ? 1 : -1
-        setDirection(newDirection)
-        setActiveTabId(newTabId)
+        const newDirection = newTabId > activeTabId ? 1 : -1;
+        setDirection(newDirection);
+        setActiveTabId(newTabId);
         router.push(newTab.path);
       }
     }
-  }
+  };
 
   const variants = {
     initial: (direction: number) => ({
@@ -65,15 +65,20 @@ const Navigation = ({ className, rounded }: NavigationProps) => {
       opacity: 0,
       filter: "blur(4px)",
     }),
-  }
+  };
 
   return (
-    <nav aria-label="Main Navigation" className="flex flex-col items-center mt-4 w-full px-16 text-sm whitespace-nowrap bg-blend-normal bg-white bg-opacity-0 text-zinc-500 max-md:px-5 max-md:max-w-full border-0 border-b border-stone-700">
-      <div className={cn(
-        "flex space-x-1 border border-none rounded-full cursor-pointer  px-[3px] py-[3.2px] shadow-inner-shadow",
-        className,
-        rounded
-      )}>
+    <nav
+      aria-label="Main Navigation"
+      className="flex flex-col items-center mt-4 w-full px-16 text-sm whitespace-nowrap bg-blend-normal bg-white bg-opacity-0 text-zinc-500 max-md:px-5 max-md:max-w-full border-0 border-b border-stone-700"
+    >
+      <div
+        className={cn(
+          "flex space-x-1 border border-none rounded-full cursor-pointer  px-[3px] py-[3.2px] shadow-inner-shadow",
+          className,
+          rounded,
+        )}
+      >
         {tabs.map((tab) => (
           <button
             key={tab.id}
@@ -83,7 +88,7 @@ const Navigation = ({ className, rounded }: NavigationProps) => {
               tab.isActive
                 ? "text-white"
                 : "hover:text-neutral-300/60 text-neutral-200/80",
-              rounded
+              rounded,
             )}
             style={{ WebkitTapHighlightColor: "transparent" }}
           >

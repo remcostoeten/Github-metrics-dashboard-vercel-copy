@@ -17,9 +17,11 @@ async function ProfileSection() {
 
   return (
     <div className="flex gap-5 justify-between items-center pr-6 pb-20 pl-5 bg-blend-normal max-md:flex-wrap max-md:px-5">
-      <Flex gap='4' justify="center" items='center'>
-        <Avatar className="w-24 h-24 bg-sky-700 grid place-items-center" >
-            <AvatarFallback className="text-3xl">{userData.name.charAt(0)}</AvatarFallback>
+      <Flex gap="4" justify="center" items="center">
+        <Avatar className="w-24 h-24 bg-sky-700 grid place-items-center">
+          <AvatarFallback className="text-3xl">
+            {userData.name.charAt(0)}
+          </AvatarFallback>
         </Avatar>
 
         <div className="flex flex-col items-start py-0.5 bg-blend-normal max-md:max-w-full">
@@ -33,8 +35,11 @@ async function ProfileSection() {
           <div className="text-xs font-medium tracking-normal uppercase text-zinc-500">
             {userData.bio || "Git Integrations"}
           </div>
-          <Link href={siteConfig.githubUrl} className="flex gap-1.5 py-1 text-base text-white whitespace-nowrap bg-blend-normal">
-           <GithubIcon width={14}/>
+          <Link
+            href={siteConfig.githubUrl}
+            className="flex gap-1.5 py-1 text-base text-white whitespace-nowrap bg-blend-normal"
+          >
+            <GithubIcon width={14} />
             <div>{userData.login}</div>
           </Link>
           <div className="flex gap-4 mt-2 items-center justify-center ">
@@ -50,8 +55,15 @@ async function ProfileSection() {
           </div>
         </div>
       </Flex>
-      <Button className="bg-white hover:bg-white/90 text-black rounded-lg" variant="expandIcon" Icon={ArrowRightIcon} iconPlacement="right">
-        <Link href={userData.html_url} target='_blank'>Go to profile</Link>
+      <Button
+        className="bg-white hover:bg-white/90 text-black rounded-lg"
+        variant="expandIcon"
+        Icon={ArrowRightIcon}
+        iconPlacement="right"
+      >
+        <Link href={userData.html_url} target="_blank">
+          Go to profile
+        </Link>
       </Button>
     </div>
   );

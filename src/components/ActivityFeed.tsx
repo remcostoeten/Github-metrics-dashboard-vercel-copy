@@ -1,14 +1,19 @@
-'use client'
+"use client";
 
 import React, { useEffect, useState } from "react";
-import Image from 'next/image';
+import Image from "next/image";
 import { fetchGitHubActivities } from "@/server/actions/getGithubActivity";
 import { Activity } from "@/types";
 
-
 const ActivityItem: React.FC<Activity> = ({ imageUrl, content, time }) => (
   <div className="flex items-center py-2 border-b border-gray-700">
-    <Image src={imageUrl} alt="Avatar" width={32} height={32} className="rounded-full mr-3" />
+    <Image
+      src={imageUrl}
+      alt="Avatar"
+      width={32}
+      height={32}
+      className="rounded-full mr-3"
+    />
     <div className="flex-grow">
       <p className="text-white">{content}</p>
     </div>
@@ -28,8 +33,8 @@ const ActivityList: React.FC = () => {
         const data = await fetchGitHubActivities();
         setActivities(data);
       } catch (error) {
-        console.error('Error loading activities:', error);
-        setError('Failed to load recent activity');
+        console.error("Error loading activities:", error);
+        setError("Failed to load recent activity");
       } finally {
         setIsLoading(false);
       }
@@ -47,7 +52,9 @@ const ActivityList: React.FC = () => {
       {activities.map((activity, index) => (
         <ActivityItem key={index} {...activity} />
       ))}
-      <button className="mt-4 text-blue-400 font-bold">View All Activity</button>
+      <button className="mt-4 text-blue-400 font-bold">
+        View All Activity
+      </button>
     </div>
   );
 };

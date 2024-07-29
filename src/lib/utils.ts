@@ -1,8 +1,8 @@
-import { type ClassValue, clsx } from "clsx"
-import { twMerge } from "tailwind-merge"
+import { type ClassValue, clsx } from "clsx";
+import { twMerge } from "tailwind-merge";
 
 export function cn(...inputs: ClassValue[]) {
-  return twMerge(clsx(inputs))
+  return twMerge(clsx(inputs));
 }
 
 export function formatTime(date: Date): string {
@@ -31,4 +31,4 @@ export function getTimeSince(date: Date): string {
   interval = seconds / 60;
   if (interval > 1) return Math.floor(interval) + "m ";
   return Math.floor(seconds) + "s ";
-};
+}

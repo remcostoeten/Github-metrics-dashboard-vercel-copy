@@ -71,9 +71,9 @@ export interface ProjectCardProps {
   url: string;
 }
 export type Tab = {
-  id: number
-  label: string
-  path: string
-  isActive: boolean
-  content: ReactNode
-}
+  id: number;
+  label: string;
+  path: string;
+  isActive: boolean;
+  content: ReactNode;
+};

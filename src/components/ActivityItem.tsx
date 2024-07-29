@@ -2,7 +2,6 @@ import { ActivityItemProps } from "@/types";
 import React from "react";
 import Image from "next/image";
 
-
 const ActivityItem: React.FC<ActivityItemProps> = ({
   imageUrl,
   content,

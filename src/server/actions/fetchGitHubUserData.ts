@@ -1,6 +1,6 @@
-'use server'
+"use server";
 
-import { revalidatePath } from 'next/cache';
+import { revalidatePath } from "next/cache";
 
 export interface GitHubUserData {
   login: string;
@@ -14,31 +14,36 @@ export interface GitHubUserData {
   type: string;
 }
 
-export async function fetchGitHubUserData(username: string): Promise<GitHubUserData | null> {
+export async function fetchGitHubUserData(
+  username: string,
+): Promise<GitHubUserData | null> {
   const githubToken = process.env.GITHUB_TOKEN;
 
   try {
     console.log(`Fetching data for user ${username}`);
     const response = await fetch(`https://api.github.com/users/${username}`, {
       headers: {
-        'Authorization': `token ${githubToken}`,
-        'Accept': 'application/vnd.github.v3+json'
+        Authorization: `token ${githubToken}`,
+        Accept: "application/vnd.github.v3+json",
       },
-      next: { revalidate: 3600 } // Revalidate every hour
+      next: { revalidate: 3600 }, // Revalidate every hour
     });
 
     if (!response.ok) {
-      console.error(`GitHub API error for user ${username}:`, await response.text());
+      console.error(
+        `GitHub API error for user ${username}:`,
+        await response.text(),
+      );
       throw new Error(`Failed to fetch GitHub data for user ${username}`);
     }
 
     const data: GitHubUserData = await response.json();
 
-    revalidatePath('/'); // Adjust this path as needed
+    revalidatePath("/"); // Adjust this path as needed
 
     return data;
   } catch (error) {
-    console.error('Error fetching GitHub user data:', error);
+    console.error("Error fetching GitHub user data:", error);
     return null;
   }
 }

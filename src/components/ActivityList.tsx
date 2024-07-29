@@ -1,11 +1,11 @@
-'use client'
+"use client";
 
 import React, { useState, useEffect, useMemo } from "react";
 import { Avatar, AvatarImage } from "./ui/avatar";
 import { AvatarFallback } from "@radix-ui/react-avatar";
 import { ErrorBoundary } from "react-error-boundary";
 import { Activity } from "@/types";
-import { debounce } from 'lodash';
+import { debounce } from "lodash";
 import { fetchGitHubActivities } from "@/server/actions/getGithubActivity";
 import { ActivitySkeleton } from "./effects/skeleton";
 
@@ -39,8 +39,8 @@ const ActivityList: React.FC = () => {
         setActivities(data);
         setError(null);
       } catch (error) {
-        console.error('Error loading activities:', error);
-        setError('Failed to load repository data');
+        console.error("Error loading activities:", error);
+        setError("Failed to load repository data");
       } finally {
         setIsLoading(false);
       }
@@ -49,22 +49,22 @@ const ActivityList: React.FC = () => {
 
   const debouncedLoadActivities = useMemo(
     () => debounce(loadActivities, 1000),
-    []
+    [],
   );
 
   useEffect(() => {
-    if (typeof window !== 'undefined') {
-      const blob = new Blob([workerCode], { type: 'application/javascript' });
+    if (typeof window !== "undefined") {
+      const blob = new Blob([workerCode], { type: "application/javascript" });
       const newWorker = new Worker(URL.createObjectURL(blob));
       setWorker(newWorker);
 
       newWorker.onmessage = (e) => {
-        if (e.data === 'poll') {
+        if (e.data === "poll") {
           debouncedLoadActivities();
         }
       };
 
-      newWorker.postMessage('start');
+      newWorker.postMessage("start");
 
       loadActivities();
     }
@@ -77,16 +77,16 @@ const ActivityList: React.FC = () => {
   useEffect(() => {
     const handleVisibilityChange = () => {
       if (!document.hidden && worker) {
-        worker.postMessage({ type: 'setInterval', interval: 60000 });
+        worker.postMessage({ type: "setInterval", interval: 60000 });
       } else if (worker) {
-        worker.postMessage({ type: 'setInterval', interval: 300000 }); // 5 minutes when tab is not visible
+        worker.postMessage({ type: "setInterval", interval: 300000 }); // 5 minutes when tab is not visible
       }
     };
 
-    document.addEventListener('visibilitychange', handleVisibilityChange);
+    document.addEventListener("visibilitychange", handleVisibilityChange);
 
     return () => {
-      document.removeEventListener('visibilitychange', handleVisibilityChange);
+      document.removeEventListener("visibilitychange", handleVisibilityChange);
     };
   }, [worker]);
 
@@ -103,7 +103,10 @@ const ActivityList: React.FC = () => {
       <h2 className="font-semibold">Recent Activity</h2>
       <ul className="mt-4 space-y-4">
         {memoizedActivities.map((activity, index) => (
-          <li key={index} className="flex flex-col grow !mt-0 text-sm bg-blend-normal border-zinc-800 border-b">
+          <li
+            key={index}
+            className="flex flex-col grow !mt-0 text-sm bg-blend-normal border-zinc-800 border-b"
+          >
             <div className="flex gap-3 items-center py-3 tracking-normal bg-blend-normal">
               <Avatar>
                 <AvatarImage src={activity.imageUrl} />
@@ -120,17 +123,29 @@ const ActivityList: React.FC = () => {
 };
 
 const ErrorDisplay = ({ message }: { message: string }) => (
-  <div role="alert" className="p-4 bg-red-100 border-l-4 border-red-500 text-red-700">
+  <div
+    role="alert"
+    className="p-4 bg-red-100 border-l-4 border-red-500 text-red-700"
+  >
     <p className="font-bold">Error</p>
     <p>{message}</p>
   </div>
 );
 
-const ErrorFallback = ({ error, resetErrorBoundary }: { error: Error; resetErrorBoundary: () => void }) => (
-  <div role="alert" className="p-4 bg-red-100 border-l-4 border-red-500 text-red-700">
+const ErrorFallback = ({
+  error,
+  resetErrorBoundary,
+}: {
+  error: Error;
+  resetErrorBoundary: () => void;
+}) => (
+  <div
+    role="alert"
+    className="p-4 bg-red-100 border-l-4 border-red-500 text-red-700"
+  >
     <p className="font-bold">Something went wrong:</p>
     <pre className="mt-2 text-sm">{error.message}</pre>
-    <button 
+    <button
       onClick={resetErrorBoundary}
       className="mt-4 px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600 transition-colors"
     >
