@@ -9,6 +9,7 @@ import { ActivitySkeleton } from "./effects/skeleton";
 import { formatTimeAgo } from "@/core/helpers/time-date-helpers";
 import { AnimatedList } from "@/components/effects/animated-list";
 import { cn } from "@/core/helpers/utils";
+import { useGitHubStore } from '@/core/store/useGithubStore';
 
 const workerCode = `
   let pollInterval = 60000; // 60 seconds
@@ -31,11 +32,12 @@ const ActivityList: React.FC = () => {
   const [activities, setActivities] = useState<Activity[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [worker, setWorker] = useState<Worker | null>(null);
+  const fetchAmount = useGitHubStore((state) => state.fetchAmount);
 
   const loadActivities = async () => {
     if (!document.hidden) {
       try {
-        const data = await fetchGitHubActivities();
+        const data = await fetchGitHubActivities(fetchAmount);
         const activities = data.map((activity) => ({
           ...activity,
           timestamp: activity.timestamp.toString(),
@@ -72,6 +74,10 @@ const ActivityList: React.FC = () => {
   }, []);
 
   useEffect(() => {
+    loadActivities();
+  }, [fetchAmount]);
+
+  useEffect(() => {
     const handleVisibilityChange = () => {
       if (!document.hidden && worker) {
         worker.postMessage({ type: "setInterval", interval: 60000 });
@@ -92,8 +98,8 @@ const ActivityList: React.FC = () => {
   }
 
   return (
-    <section aria-label="Recent GitHub Activity" className="relative flex h-[500px] w-full flex-col p-6 overflow-hidden rounded-lg border bg-background md:shadow-xl">
-      <h2 className="font-medium text-sm">Recent Activity</h2>
+    <section aria-label="Recent GitHub Activity" className="relative pb-4 flex w-full flex-col overflow-hidden ">
+      <h2 className="font-medium text-sm mb-6">Recent Activity</h2>
       <AnimatedList>
         {activities.map((activity, index) => (
           <ActivityItem key={index} activity={activity} />
@@ -105,12 +111,13 @@ const ActivityList: React.FC = () => {
 
 const ActivityItem: React.FC<{ activity: Activity }> = ({ activity }) => {
   return (
-    <figure className={cn(
-      "relative mx-auto min-h-fit w-full max-w-[400px] cursor-pointer overflow-hidden rounded-2xl p-4",
-      "transition-all duration-200 ease-in-out hover:scale-[103%]",
-      "bg-white [box-shadow:0_0_0_1px_rgba(0,0,0,.03),0_2px_4px_rgba(0,0,0,.05),0_12px_24px_rgba(0,0,0,.05)]",
-      "transform-gpu dark:bg-transparent dark:backdrop-blur-md dark:[border:1px_solid_rgba(255,255,255,.1)] dark:[box-shadow:0_-20px_80px_-20px_#ffffff1f_inset]",
-    )}>
+    <figure
+      className={cn(
+        "relative mx-auto min-h-fit w-full cursor-pointer overflow-hidden",
+        "transition-all duration-200 ease-in-out hover:scale-[103%] transform-gpu t",
+        "d:",
+      )}
+    >
       <div className="flex gap-3 items-center py-3 tracking-normal bg-blend-normal">
         <Avatar>
           <AvatarImage src={activity.imageUrl} />

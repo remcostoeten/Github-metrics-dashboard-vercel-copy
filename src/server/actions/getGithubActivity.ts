@@ -1,8 +1,10 @@
 "use server";
 
+
 import { RepoData } from "@/types";
 import fs from "fs";
 import path from "path";
+import { siteConfig } from "@/core/config/site-config";
 
 // Function to write logs to a JSON file
 function writeLogsToJson(data: any, filename: string) {
@@ -15,9 +17,9 @@ function writeLogsToJson(data: any, filename: string) {
   console.log(`Logs written to ${filePath}`);
 }
 
-export async function fetchGitHubActivities(): Promise<RepoData[]> {
+export async function fetchGitHubActivities(fetchAmount: number): Promise<RepoData[]> {
   const githubToken = process.env.GITHUB_TOKEN;
-  const username = "remcostoeten"; // Your GitHub username
+  const username = siteConfig.githubUsername
   console.log("Fetching GitHub activities...");
 
   try {
@@ -40,19 +42,18 @@ export async function fetchGitHubActivities(): Promise<RepoData[]> {
     console.log("GitHub events data:", events);
     writeLogsToJson(events, "github_events.json");
 
-    const activities: RepoData[] = events.slice(0, 5).map((event: any) => ({
+    const activities: RepoData[] = events.slice(0, fetchAmount).map((event: any) => ({
       id: event.id,
       imageUrl: event.actor.avatar_url,
       type: event.type,
       repoName: event.repo.name,
       content: getEventContent(event),
-      timestamp: event.created_at, // Return the ISO timestamp
+      timestamp: event.created_at,
       payload: event.payload,
     }));
 
     console.log("Parsed activities:", activities);
     writeLogsToJson(activities, "parsed_activities.json");
-
     return activities;
   } catch (error) {
     console.error("Error fetching GitHub activities:", error);

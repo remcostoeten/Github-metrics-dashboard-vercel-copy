@@ -4,6 +4,7 @@ import FontSwitcher from "@/components/FontToggle";
 import { ReactNode, useState, useEffect } from "react";
 import { Toaster } from "sonner";
 import { Noto_Sans_JP } from "next/font/google";
+import { FetchAmountSlider } from "@/components/settings/FetchAmountSlider";
 
 const noto = Noto_Sans_JP({ subsets: ["latin"] });
 
@@ -24,6 +25,8 @@ export default function Providers({ children }: ProviderProps) {
         <body>
           {children}
           <Toaster />
+
+          <FetchAmountSlider/>
           <FontSwitcher onFontChange={handleFontChange} />{" "}
           {/* Pass the callback */}
         </body>
