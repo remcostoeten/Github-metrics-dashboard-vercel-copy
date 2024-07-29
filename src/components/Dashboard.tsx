@@ -1,5 +1,6 @@
 import ProjectList from "./ProjectList";
 import ActivityList from "./ActivityList";
+import { AnimatedListDemo } from "./effects/AnimatedList";
 
 export default async function Dashboard() {
   return (
@@ -9,10 +10,9 @@ export default async function Dashboard() {
           <ProjectList />
         </div>
         <div className="flex flex-col ml-5 w-[41%] max-md:ml-0 max-md:w-full -mt-1.5">
-        <ActivityList />
+          <ActivityList />
         </div>
       </div>
     </div>
   );
-};
-
+}

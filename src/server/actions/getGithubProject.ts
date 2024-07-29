@@ -53,7 +53,7 @@ export async function fetchGitHubActivities(): Promise<RepoData[]> {
       imageUrl: "",
       content: "",
       full_name: data.full_name,
-      description: data.description,  
+      description: data.description,
       html_url: data.html_url,
       pushed_at: data.pushed_at,
       productionUrl: data.productionUrl,

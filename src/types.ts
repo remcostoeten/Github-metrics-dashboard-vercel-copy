@@ -3,7 +3,7 @@ import { ReactNode } from "react";
 export interface Activity {
   imageUrl: string;
   content: string;
-  time: string;
+  timestamp: string;
 }
 
 export interface ActivityItemProps {
@@ -76,16 +76,15 @@ export type Tab = {
 };
 
 export type LayoutProps = {
-  children:ReactNode;
+  children: ReactNode;
 };
 
 export interface RepoData {
-  name: string;
-  full_name: string;
-  description: string;
-  html_url: string;
-  pushed_at: string;
-  productionUrl: string;
-  latestUrl: string;
-  lastDeployedAt: string;
+  id: string;
+  imageUrl: string;
+  type: string;
+  repoName: string;
+  content: string;
+  timestamp: string;
+  payload: any;
 }

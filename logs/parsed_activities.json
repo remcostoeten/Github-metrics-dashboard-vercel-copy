@@ -5,7 +5,7 @@
     "type": "CreateEvent",
     "repoName": "remcostoeten/Test-api",
     "content": "Created branch main in remcostoeten/Test-api",
-    "timestamp": "16:00:37 GMT+0200 (Central European Summer Time)",
+    "timestamp": "2024-07-29T14:00:37Z",
     "payload": {
       "ref": "main",
       "ref_type": "branch",
@@ -20,7 +20,7 @@
     "type": "CreateEvent",
     "repoName": "remcostoeten/Test-api",
     "content": "Created repository master in remcostoeten/Test-api",
-    "timestamp": "16:00:34 GMT+0200 (Central European Summer Time)",
+    "timestamp": "2024-07-29T14:00:34Z",
     "payload": {
       "ref": null,
       "ref_type": "repository",
@@ -35,7 +35,7 @@
     "type": "PushEvent",
     "repoName": "remcostoeten/nextjs-github-metrics-vercel-style",
     "content": "Pushed to remcostoeten/nextjs-github-metrics-vercel-style",
-    "timestamp": "14:30:09 GMT+0200 (Central European Summer Time)",
+    "timestamp": "2024-07-29T12:30:09Z",
     "payload": {
       "repository_id": 834993883,
       "push_id": 19526541728,
@@ -64,7 +64,7 @@
     "type": "PushEvent",
     "repoName": "remcostoeten/nextjs-github-metrics-vercel-style",
     "content": "Pushed to remcostoeten/nextjs-github-metrics-vercel-style",
-    "timestamp": "14:03:34 GMT+0200 (Central European Summer Time)",
+    "timestamp": "2024-07-29T12:03:34Z",
     "payload": {
       "repository_id": 834993883,
       "push_id": 19526095239,
@@ -93,7 +93,7 @@
     "type": "PushEvent",
     "repoName": "remcostoeten/nextjs-github-metrics-vercel-style",
     "content": "Pushed to remcostoeten/nextjs-github-metrics-vercel-style",
-    "timestamp": "13:59:37 GMT+0200 (Central European Summer Time)",
+    "timestamp": "2024-07-29T11:59:37Z",
     "payload": {
       "repository_id": 834993883,
       "push_id": 19526031789,

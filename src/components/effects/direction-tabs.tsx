@@ -13,7 +13,9 @@ const Navigation = ({ className, rounded }: NavigationProps) => {
   const router = useRouter();
 
   const isActive = (path: string) => {
-    return path === "/" ? pathname === "/" || pathname === "" : pathname === path;
+    return path === "/"
+      ? pathname === "/" || pathname === ""
+      : pathname === path;
   };
 
   const tabs: Tab[] = navigationItems.map((item) => ({
@@ -80,7 +82,9 @@ const Navigation = ({ className, rounded }: NavigationProps) => {
             onClick={() => handleTabClick(tab.id)}
             className={cn(
               "relative h-[5px] bottom-0 px-3.5 py-1.5 text-xs sm:text-sm font-medium text-neutral-200 transition focus-visible:outline-1 focus-visible:ring-1 focus-visible:outline-none flex gap-2 items-center",
-              tab.isActive ? "text-white" : "hover:text-neutral-300/60 text-neutral-200/80",
+              tab.isActive
+                ? "text-white"
+                : "hover:text-neutral-300/60 text-neutral-200/80",
               rounded,
             )}
             style={{ WebkitTapHighlightColor: "transparent" }}

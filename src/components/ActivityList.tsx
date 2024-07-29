@@ -1,58 +1,130 @@
-'use client';
+"use client";
 
-import React, { useEffect, useState, useCallback } from "react";
-import { RepoData } from "@/types";
-import ActivityItem from "./ActivityItem";
+import React, { useState, useEffect } from "react";
+import { Avatar, AvatarImage } from "./ui/avatar";
+import { AvatarFallback } from "@radix-ui/react-avatar";
+import { Activity } from "@/types";
 import { fetchGitHubActivities } from "@/server/actions/getGithubActivity";
+import { ActivitySkeleton } from "./effects/skeleton";
+import { formatTimeAgo } from "@/core/helpers/time-date-helpers";
+import { AnimatedList } from "@/components/effects/animated-list";
+import { cn } from "@/core/helpers/utils";
+
+const workerCode = `
+  let pollInterval = 60000; // 60 seconds
+
+  self.onmessage = function(e) {
+    if (e.data === 'start') {
+      poll();
+    } else if (e.data.type === 'setInterval') {
+      pollInterval = e.data.interval;
+    }
+  };
+
+  function poll() {
+    self.postMessage('poll');
+    setTimeout(poll, pollInterval);
+  }
+`;
 
 const ActivityList: React.FC = () => {
-  const [activities, setActivities] = useState<RepoData[]>([]);
+  const [activities, setActivities] = useState<Activity[]>([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+  const [worker, setWorker] = useState<Worker | null>(null);
 
-  const loadActivities = useCallback(async () => {
-    try {
-      const data = await fetchGitHubActivities();
-      setActivities(prevActivities => {
-        const newActivities = data.filter(newActivity => 
-          !prevActivities.some(prevActivity => prevActivity.id === newActivity.id)
-        );
-        return [...newActivities, ...prevActivities].slice(0, 5);
-      });
-      setError(null);
-    } catch (error) {
-      console.error("Error loading activities:", error);
-      setError("Failed to load recent activity");
-    } finally {
-      setIsLoading(false);
+  const loadActivities = async () => {
+    if (!document.hidden) {
+      try {
+        const data = await fetchGitHubActivities();
+        const activities = data.map((activity) => ({
+          ...activity,
+          timestamp: activity.timestamp.toString(),
+        }));
+        setActivities(activities);
+      } catch (error) {
+        console.error("Error loading activities:", error);
+      } finally {
+        setIsLoading(false);
+      }
     }
+  };
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const blob = new Blob([workerCode], { type: "application/javascript" });
+      const newWorker = new Worker(URL.createObjectURL(blob));
+      setWorker(newWorker);
+
+      newWorker.onmessage = (e) => {
+        if (e.data === "poll") {
+          loadActivities();
+        }
+      };
+
+      newWorker.postMessage("start");
+
+      loadActivities();
+    }
+
+    return () => {
+      worker?.terminate();
+    };
   }, []);
 
   useEffect(() => {
-    loadActivities();
-    const intervalId = setInterval(loadActivities, 10000);
+    const handleVisibilityChange = () => {
+      if (!document.hidden && worker) {
+        worker.postMessage({ type: "setInterval", interval: 60000 });
+      } else if (worker) {
+        worker.postMessage({ type: "setInterval", interval: 300000 }); // 5 minutes when tab is not visible
+      }
+    };
 
-    return () => clearInterval(intervalId);
-  }, [loadActivities]);
+    document.addEventListener("visibilitychange", handleVisibilityChange);
 
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setActivities(prevActivities => [...prevActivities]);
-    }, 1000);
+    return () => {
+      document.removeEventListener("visibilitychange", handleVisibilityChange);
+    };
+  }, [worker]);
 
-    return () => clearInterval(timer);
-  }, []);
-
-  if (isLoading) return <div className="text-white">Loading...</div>;
-  if (error) return <div className="text-red-500">{error}</div>;
+  if (isLoading) {
+    return <ActivitySkeleton />;
+  }
 
   return (
-    <div className="bg-black text-white p-4 rounded-lg">
-      <h2 className="text-xl font-bold mb-4">Recent Activity</h2>
-      {activities.map((activity) => (
-        <ActivityItem key={activity.id} {...activity} />
-      ))}
-    </div>
+    <section
+      aria-label="Recent GitHub Activity"
+      className="relative flex w-full flex-col p-6 overflow-hidden bg-background md:shadow-xl"
+    >
+      <h2 className="mb-8 -mt-4 font-medium text-sm">Recent Activity</h2>
+      <AnimatedList>
+        {activities.map((activity, index) => (
+          <ActivityItem key={index} activity={activity} />
+        ))}
+      </AnimatedList>
+    </section>
+  );
+};
+
+const ActivityItem: React.FC<{ activity: Activity }> = ({ activity }) => {
+  return (
+    <figure
+      className={cn(
+        "relative mx-auto min-h-fit w-full cursor-pointer overflow-hidden",
+        "transition-all duration-200 ease-in-out hover:scale-[103%] transform-gpu"
+      )}
+    >
+      <div className="flex gap-3 items-center  tracking-normal bg-blend-normal">
+        <Avatar>
+          <AvatarImage src={activity.imageUrl} />
+          <AvatarFallback>RS</AvatarFallback>
+        </Avatar>
+        <p className="flex-grow">{activity.content}</p>
+        <time className="font-semibold text-[#666]">
+          {formatTimeAgo(activity.timestamp)}
+        </time>
+      </div>
+    </figure>
   );
 };
 

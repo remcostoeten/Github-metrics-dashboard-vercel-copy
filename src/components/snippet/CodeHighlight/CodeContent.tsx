@@ -1,23 +1,36 @@
-'use client'
+"use client";
 
 import React, { useState } from "react";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import * as prismThemes from "react-syntax-highlighter/dist/esm/styles/prism";
 import { toast } from "sonner";
-import { Dialog, DialogTrigger, DialogContent, DialogHeader, DialogTitle, DialogDescription, Button, Input } from "@/components/ui";
+import {
+  Dialog,
+  DialogTrigger,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogDescription,
+  Button,
+  Input,
+} from "@/components/ui";
 
 interface CodeContentProps {
   children: React.ReactNode;
 }
 
 // Extract all themes from the imported prismThemes
-const themes = Object.keys(prismThemes).reduce((acc, themeName) => {
-  acc[themeName] = prismThemes[themeName];
-  return acc;
-}, {} as Record<string, any>);
+const themes = Object.keys(prismThemes).reduce(
+  (acc, themeName) => {
+    acc[themeName] = prismThemes[themeName];
+    return acc;
+  },
+  {} as Record<string, any>,
+);
 
 const CodeContent: React.FC<CodeContentProps> = ({ children }) => {
-  const [currentTheme, setCurrentTheme] = useState<keyof typeof themes>("vscDarkPlus");
+  const [currentTheme, setCurrentTheme] =
+    useState<keyof typeof themes>("vscDarkPlus");
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [inputText, setInputText] = useState("");
   const codeString = React.Children.toArray(children).join("\n");
@@ -41,7 +54,10 @@ const CodeContent: React.FC<CodeContentProps> = ({ children }) => {
 
   return (
     <>
-      <button onClick={toggleTheme} className="mb-4 p-2 bg-gray-200 rounded fixed top-4 left-4">
+      <button
+        onClick={toggleTheme}
+        className="mb-4 p-2 bg-gray-200 rounded fixed top-4 left-4"
+      >
         Toggle Theme
       </button>
       <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
@@ -53,11 +69,14 @@ const CodeContent: React.FC<CodeContentProps> = ({ children }) => {
         <DialogContent>
           <DialogHeader>
             <DialogTitle>Input Text</DialogTitle>
-            <DialogDescription>
-              Please enter your text below.
-            </DialogDescription>
+            <DialogDescription>Please enter your text below.</DialogDescription>
           </DialogHeader>
-          <Input type="text" value={inputText} onChange={handleInputChange} className="mb-4" />
+          <Input
+            type="text"
+            value={inputText}
+            onChange={handleInputChange}
+            className="mb-4"
+          />
           <Button onClick={handleDialogClose}>Submit</Button>
         </DialogContent>
       </Dialog>

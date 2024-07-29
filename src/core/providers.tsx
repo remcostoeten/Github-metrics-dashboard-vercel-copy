@@ -1,20 +1,33 @@
+"use client";
 
-'use client'
-
-import { GeistProvider, CssBaseline } from "@geist-ui/core";
-import { ReactNode } from "react";
+import FontSwitcher from "@/components/FontToggle";
+import { ReactNode, useState, useEffect } from "react";
 import { Toaster } from "sonner";
+import { Noto_Sans_JP } from "next/font/google";
+
+const noto = Noto_Sans_JP({ subsets: ["latin"] });
 
 type ProviderProps = {
-    children: ReactNode
-}
+  children: ReactNode;
+};
 
 export default function Providers({ children }: ProviderProps) {
+  const [fontClass, setFontClass] = useState(noto.className);
+
+  const handleFontChange = (newFontClass: string) => {
+    setFontClass(newFontClass);
+  };
+
   return (
-    <GeistProvider>
-      <CssBaseline />
-      {children}
-      <Toaster />
-    </GeistProvider>
+    <>
+      <html className={fontClass} lang="en">
+        <body>
+          {children}
+          <Toaster />
+          <FontSwitcher onFontChange={handleFontChange} />{" "}
+          {/* Pass the callback */}
+        </body>
+      </html>
+    </>
   );
 }

@@ -3,7 +3,6 @@ import ProjectCard from "./ProjectCard";
 import Link from "next/link";
 
 export default function ProjectList() {
-
   return (
     <div className="flex flex-col grow pb-9 -mt-5 bg-blend-normal max-md:mt-10 max-md:max-w-full space-y-2">
       {projects.map((project, index) => (
@@ -16,7 +15,6 @@ export default function ProjectList() {
       >
         View All Projects On Github
       </Link>
-
     </div>
   );
 }
