@@ -8,7 +8,7 @@ export const siteConfig = {
 
 export const repos = [
   "remcostoeten/remcostoeten-all-in-one-dashboard",
-  "remcostoeten/Github-metrics-dashboard-vercel-copy",
+  "remcostoeten/nextjs-github-metrics-vercel-style",
 ];
 
 export const projects = [{ repoName: repos[0] }, { repoName: repos[1] }];
