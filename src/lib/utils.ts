@@ -12,23 +12,23 @@ export function formatTime(date: Date): string {
   const diffInHours = Math.floor(diffInMinutes / 60);
   const diffInDays = Math.floor(diffInHours / 24);
 
-  if (diffInDays > 0) return `${diffInDays}d ago`;
-  if (diffInHours > 0) return `${diffInHours}h ago`;
-  if (diffInMinutes > 0) return `${diffInMinutes}m ago`;
-  return `${diffInSeconds}s ago`;
+  if (diffInDays > 0) return `${diffInDays}d `;
+  if (diffInHours > 0) return `${diffInHours}h `;
+  if (diffInMinutes > 0) return `${diffInMinutes}m `;
+  return `${diffInSeconds}s `;
 }
 
 export function getTimeSince(date: Date): string {
   const seconds = Math.floor((new Date().getTime() - date.getTime()) / 1000);
   let interval = seconds / 31536000;
-  if (interval > 1) return Math.floor(interval) + "y ago";
+  if (interval > 1) return Math.floor(interval) + "y ";
   interval = seconds / 2592000;
-  if (interval > 1) return Math.floor(interval) + "mo ago";
+  if (interval > 1) return Math.floor(interval) + "mo ";
   interval = seconds / 86400;
-  if (interval > 1) return Math.floor(interval) + "d ago";
+  if (interval > 1) return Math.floor(interval) + "d ";
   interval = seconds / 3600;
-  if (interval > 1) return Math.floor(interval) + "h ago";
+  if (interval > 1) return Math.floor(interval) + "h ";
   interval = seconds / 60;
-  if (interval > 1) return Math.floor(interval) + "m ago";
-  return Math.floor(seconds) + "s ago";
+  if (interval > 1) return Math.floor(interval) + "m ";
+  return Math.floor(seconds) + "s ";
 };

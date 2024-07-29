@@ -33,10 +33,10 @@ async function ProfileSection() {
           <div className="text-xs font-medium tracking-normal uppercase text-zinc-500">
             {userData.bio || "Git Integrations"}
           </div>
-          <div className="flex gap-1.5 py-1 text-base text-white whitespace-nowrap bg-blend-normal">
+          <Link href={siteConfig.githubUrl} className="flex gap-1.5 py-1 text-base text-white whitespace-nowrap bg-blend-normal">
            <GithubIcon width={14}/>
             <div>{userData.login}</div>
-          </div>
+          </Link>
           <div className="flex gap-4 mt-2 items-center justify-center ">
             <div className="text-white">
               <span className="font-bold">{userData.public_repos}</span> repos

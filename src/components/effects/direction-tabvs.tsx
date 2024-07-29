@@ -6,16 +6,7 @@ import useMeasure from "react-use-measure"
 import { cn } from "@/lib/utils"
 import { usePathname, useRouter } from 'next/navigation';
 import { NavigationProps, Tab } from "@/types"
-
-const navigationItems = [
-  { id: 1, label: 'Home', path: '/' },
-  { id: 2, label: 'Projects', path: '/projects' },
-  { id: 3, label: 'Integrations', path: '#' },
-  { id: 4, label: 'Activity', path: '/acti' },
-  { id: 5, label: 'Domains', path: '/domain' },
-  { id: 6, label: 'Usage', path: '/usage' },
-  { id: 7, label: 'Settings', path: '/settings' },
-];
+import { navigationItems } from "core/config/siteConfig"
 
 const Navigation = ({ className, rounded }: NavigationProps) => {
   const pathname = usePathname();
@@ -77,9 +68,9 @@ const Navigation = ({ className, rounded }: NavigationProps) => {
   }
 
   return (
-    <nav aria-label="Main Navigation" className="flex flex-col items-center w-full px-16 text-sm whitespace-nowrap bg-blend-normal bg-white bg-opacity-0 text-zinc-500 max-md:px-5 max-md:max-w-full border-0 border-b border-stone-700">
+    <nav aria-label="Main Navigation" className="flex flex-col items-center mt-4 w-full px-16 text-sm whitespace-nowrap bg-blend-normal bg-white bg-opacity-0 text-zinc-500 max-md:px-5 max-md:max-w-full border-0 border-b border-stone-700">
       <div className={cn(
-        "flex space-x-1 border border-none rounded-full cursor-pointer bg-neutral-600 px-[3px] py-[3.2px] shadow-inner-shadow",
+        "flex space-x-1 border border-none rounded-full cursor-pointer  px-[3px] py-[3.2px] shadow-inner-shadow",
         className,
         rounded
       )}>
@@ -88,7 +79,7 @@ const Navigation = ({ className, rounded }: NavigationProps) => {
             key={tab.id}
             onClick={() => handleTabClick(tab.id)}
             className={cn(
-              "relative rounded-full px-3.5 py-1.5 text-xs sm:text-sm font-medium text-neutral-200 transition focus-visible:outline-1 focus-visible:ring-1 focus-visible:outline-none flex gap-2 items-center ",
+              "relative h-[5px] botom-0  px-3.5 py-1.5 text-xs sm:text-sm font-medium text-neutral-200 transition focus-visible:outline-1 focus-visible:ring-1 focus-visible:outline-none flex gap-2 items-center ",
               tab.isActive
                 ? "text-white"
                 : "hover:text-neutral-300/60 text-neutral-200/80",
@@ -99,7 +90,7 @@ const Navigation = ({ className, rounded }: NavigationProps) => {
             {tab.isActive && (
               <motion.span
                 layoutId="bubble"
-                className="absolute inset-0 !bottom-0 z-10 bg-neutral-700 mix-blend-difference shadow-inner-shadow border border-white/10"
+                className="absolute inset-0 !bottom-0 top-6 z-10 bg-neutral-700 mix-blend-difference shadow-inner-shadow border border-white/10"
                 style={rounded ? { borderRadius: 9 } : { borderRadius: 9999 }}
                 transition={{ type: "spring", bounce: 0.19, duration: 0.4 }}
               />

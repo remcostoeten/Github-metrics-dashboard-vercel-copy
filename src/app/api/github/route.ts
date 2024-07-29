@@ -1,4 +1,3 @@
-// app/api/github/route.ts
 import { repos } from 'core/config/siteConfig';
 import { NextResponse } from 'next/server';
 
@@ -24,8 +23,10 @@ export async function GET() {
 
       return {
         ...githubData,
-        productionUrl: `https://${githubData.name}.vercel.app`,
-        latestUrl: `https://${githubData.name}-latest.vercel.app`,
+        url: {
+          dashboard: `https://panel.remcostoeten.com/`,
+          metrics: 'https://metrics.remcostoeten.com/',
+        },
         lastDeployedAt: new Date().toISOString(), // placeholder
       };
     }));

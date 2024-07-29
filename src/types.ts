@@ -62,11 +62,13 @@ export interface ProjectData {
   full_name: string;
   productionUrl: string;
   latestUrl: string;
+  url: string;
   lastDeployedAt: string;
 }
 
 export interface ProjectCardProps {
   repoName: string;
+  url: string;
 }
 export type Tab = {
   id: number

@@ -6,11 +6,12 @@ import { getTimeSince } from "@/lib/utils";
 import { ProjectCardProps, ProjectData, UrlInfoProps, CardBodyProps } from "@/types";
 import { LoadingSkeleton } from "./effects/skeleton";
 import { Button } from "./ui/button";
+import Link from "next/link";
 
-const ProjectCard: React.FC<ProjectCardProps> = ({ repoName }) => {
+const ProjectCard: React.FC<ProjectCardProps> = ({ repoName, url }) => {
   const [projectData, setProjectData] = useState<ProjectData | null>(null);
   const [isLoading, setIsLoading] = useState(true);
-  
+
   useEffect(() => {
     const fetchProjectData = async () => {
       try {
@@ -38,7 +39,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ repoName }) => {
 
   return (
     <div className="flex flex-col bg-black rounded-md shadow-lg border border-zinc-800">
-      <CardHeader title={projectData.name} />
+      <CardHeader href={projectData.url} title={projectData.name} />
       <CardBody
         productionUrl={projectData.productionUrl}
         latestUrl={projectData.latestUrl}
@@ -50,19 +51,19 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ repoName }) => {
   );
 };
 
-const CardHeader: React.FC<{ title: string }> = ({ title }) => (
-  <div className="flex justify-between items-center px-4 py-4">
+const CardHeader: React.FC<{ title: string, href: string }> = ({ href, title }) => (
+  <Link href={href} target='_blank' className="flex justify-between items-center px-4 py-4">
     <h2 className="text-2xl font-semibold tracking-tight text-white">{title}</h2>
     <Button variant='gooeyLeft' type="button" className="text-[#cecece] text-sm leading-8 bg-black cursor-pointer font-normal h-8 min-w-min overflow-hidden text-center capitalize whitespace-nowrap w-[66.925px] px-[18.4px] rounded border-[0.8px] border-solid border-zinc-800">
       visit
     </Button>
-  </div>
+  </Link>
 );
 
 const UrlInfo: React.FC<UrlInfoProps> = ({ url, label, time }) => (
   <Flex justify="between">
     <div className="flex gap-2 items-center text-sm font-medium text-white">
-      <div className="w-2.5 h-2.5 bg-red-300 rounded-full" />
+      <div className="w-2.5 h-2.5 bg-green-300 rounded-full" />
       <a href={url} className="text-white cursor-pointer text-sm h-4 leading-4 transition-colors duration-200 w-[237.637px] overflow-hidden text-ellipsis whitespace-nowrap">
         {label}
       </a>
