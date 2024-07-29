@@ -1,6 +1,5 @@
 "use server";
 
-
 import { RepoData } from "@/types";
 import fs from "fs";
 import path from "path";
@@ -17,9 +16,11 @@ function writeLogsToJson(data: any, filename: string) {
   console.log(`Logs written to ${filePath}`);
 }
 
-export async function fetchGitHubActivities(fetchAmount: number): Promise<RepoData[]> {
+export async function fetchGitHubActivities(
+  fetchAmount: number,
+): Promise<RepoData[]> {
   const githubToken = process.env.GITHUB_TOKEN;
-  const username = siteConfig.githubUsername
+  const username = siteConfig.githubUsername;
   console.log("Fetching GitHub activities...");
 
   try {
@@ -42,15 +43,17 @@ export async function fetchGitHubActivities(fetchAmount: number): Promise<RepoDa
     console.log("GitHub events data:", events);
     writeLogsToJson(events, "github_events.json");
 
-    const activities: RepoData[] = events.slice(0, fetchAmount).map((event: any) => ({
-      id: event.id,
-      imageUrl: event.actor.avatar_url,
-      type: event.type,
-      repoName: event.repo.name,
-      content: getEventContent(event),
-      timestamp: event.created_at,
-      payload: event.payload,
-    }));
+    const activities: RepoData[] = events
+      .slice(0, fetchAmount)
+      .map((event: any) => ({
+        id: event.id,
+        imageUrl: event.actor.avatar_url,
+        type: event.type,
+        repoName: event.repo.name,
+        content: getEventContent(event),
+        timestamp: event.created_at,
+        payload: event.payload,
+      }));
 
     console.log("Parsed activities:", activities);
     writeLogsToJson(activities, "parsed_activities.json");

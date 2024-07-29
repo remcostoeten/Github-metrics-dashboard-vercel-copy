@@ -1,5 +1,117 @@
 [
   {
+    "id": "40562650249",
+    "imageUrl": "https://avatars.githubusercontent.com/u/57683378?",
+    "type": "PushEvent",
+    "repoName": "remcostoeten/nextjs-github-metrics-vercel-style",
+    "content": "Pushed to remcostoeten/nextjs-github-metrics-vercel-style",
+    "timestamp": "2024-07-29T19:20:47Z",
+    "payload": {
+      "repository_id": 834993883,
+      "push_id": 19532902103,
+      "size": 1,
+      "distinct_size": 1,
+      "ref": "refs/heads/feature/state",
+      "head": "14bfee57eb1afbd270bddc52c5ad082bcf8e04fc",
+      "before": "5e084e94f9eb728e1f90f91004f0c6d544d28e1e",
+      "commits": [
+        {
+          "sha": "14bfee57eb1afbd270bddc52c5ad082bcf8e04fc",
+          "author": {
+            "email": "remcostoeten@hotmail.com",
+            "name": "Remco Stoeten"
+          },
+          "message": "feat: zustand store for items amount",
+          "distinct": true,
+          "url": "https://api.github.com/repos/remcostoeten/nextjs-github-metrics-vercel-style/commits/14bfee57eb1afbd270bddc52c5ad082bcf8e04fc"
+        }
+      ]
+    }
+  },
+  {
+    "id": "40561895412",
+    "imageUrl": "https://avatars.githubusercontent.com/u/57683378?",
+    "type": "PushEvent",
+    "repoName": "remcostoeten/nextjs-github-metrics-vercel-style",
+    "content": "Pushed to remcostoeten/nextjs-github-metrics-vercel-style",
+    "timestamp": "2024-07-29T18:52:23Z",
+    "payload": {
+      "repository_id": 834993883,
+      "push_id": 19532536185,
+      "size": 1,
+      "distinct_size": 1,
+      "ref": "refs/heads/feature/state",
+      "head": "5e084e94f9eb728e1f90f91004f0c6d544d28e1e",
+      "before": "bc0fe1de0bf2d73015be23397b91399ef640869d",
+      "commits": [
+        {
+          "sha": "5e084e94f9eb728e1f90f91004f0c6d544d28e1e",
+          "author": {
+            "email": "remcostoeten@hotmail.com",
+            "name": "Remco Stoeten"
+          },
+          "message": "add slider and zustand",
+          "distinct": true,
+          "url": "https://api.github.com/repos/remcostoeten/nextjs-github-metrics-vercel-style/commits/5e084e94f9eb728e1f90f91004f0c6d544d28e1e"
+        }
+      ]
+    }
+  },
+  {
+    "id": "40561890661",
+    "imageUrl": "https://avatars.githubusercontent.com/u/57683378?",
+    "type": "CreateEvent",
+    "repoName": "remcostoeten/nextjs-github-metrics-vercel-style",
+    "content": "Created branch feature/state in remcostoeten/nextjs-github-metrics-vercel-style",
+    "timestamp": "2024-07-29T18:52:12Z",
+    "payload": {
+      "ref": "feature/state",
+      "ref_type": "branch",
+      "master_branch": "master",
+      "description": "A dashboard which loads my github activity and some metrics, in a Vercel ui.",
+      "pusher_type": "user"
+    }
+  },
+  {
+    "id": "40561823191",
+    "imageUrl": "https://avatars.githubusercontent.com/u/57683378?",
+    "type": "PushEvent",
+    "repoName": "remcostoeten/nextjs-github-metrics-vercel-style",
+    "content": "Pushed to remcostoeten/nextjs-github-metrics-vercel-style",
+    "timestamp": "2024-07-29T18:49:43Z",
+    "payload": {
+      "repository_id": 834993883,
+      "push_id": 19532502173,
+      "size": 2,
+      "distinct_size": 2,
+      "ref": "refs/heads/master",
+      "head": "bc0fe1de0bf2d73015be23397b91399ef640869d",
+      "before": "025f23d425a75e40d1ba0ec5aa65c5d5db5311e6",
+      "commits": [
+        {
+          "sha": "95698f6a57ee43342e42016f0923b4c557e626ca",
+          "author": {
+            "email": "remcostoeten@hotmail.com",
+            "name": "Remco Stoeten"
+          },
+          "message": "Work on syntax highlight component",
+          "distinct": true,
+          "url": "https://api.github.com/repos/remcostoeten/nextjs-github-metrics-vercel-style/commits/95698f6a57ee43342e42016f0923b4c557e626ca"
+        },
+        {
+          "sha": "bc0fe1de0bf2d73015be23397b91399ef640869d",
+          "author": {
+            "email": "remcostoeten@hotmail.com",
+            "name": "Remco Stoeten"
+          },
+          "message": "feat: Format and add proper data + animations",
+          "distinct": true,
+          "url": "https://api.github.com/repos/remcostoeten/nextjs-github-metrics-vercel-style/commits/bc0fe1de0bf2d73015be23397b91399ef640869d"
+        }
+      ]
+    }
+  },
+  {
     "id": "40552684647",
     "imageUrl": "https://avatars.githubusercontent.com/u/57683378?",
     "type": "CreateEvent",
@@ -112,6 +224,171 @@
           "message": "fix:",
           "distinct": true,
           "url": "https://api.github.com/repos/remcostoeten/nextjs-github-metrics-vercel-style/commits/382cab1056e8e4b4d3171ad07551af7acb820838"
+        }
+      ]
+    }
+  },
+  {
+    "id": "40548073151",
+    "imageUrl": "https://avatars.githubusercontent.com/u/57683378?",
+    "type": "PushEvent",
+    "repoName": "remcostoeten/nextjs-github-metrics-vercel-style",
+    "content": "Pushed to remcostoeten/nextjs-github-metrics-vercel-style",
+    "timestamp": "2024-07-29T11:51:47Z",
+    "payload": {
+      "repository_id": 834993883,
+      "push_id": 19525916588,
+      "size": 2,
+      "distinct_size": 2,
+      "ref": "refs/heads/master",
+      "head": "188860b64b6e2b764a71c410a31fc5ea4842585c",
+      "before": "9934fc4a2cbc168af8cad504822e0bd31317b2ff",
+      "commits": [
+        {
+          "sha": "682fcd63708c97e42f469039749c08cd1a82324b",
+          "author": {
+            "email": "remcostoeten@hotmail.com",
+            "name": "Remco Stoeten"
+          },
+          "message": "chore: refactored filenames. feat: polling for data retrieval",
+          "distinct": true,
+          "url": "https://api.github.com/repos/remcostoeten/nextjs-github-metrics-vercel-style/commits/682fcd63708c97e42f469039749c08cd1a82324b"
+        },
+        {
+          "sha": "188860b64b6e2b764a71c410a31fc5ea4842585c",
+          "author": {
+            "email": "remcostoeten@hotmail.com",
+            "name": "Remco Stoeten"
+          },
+          "message": "Merge remote-tracking branch 'refs/remotes/origin/master'",
+          "distinct": true,
+          "url": "https://api.github.com/repos/remcostoeten/nextjs-github-metrics-vercel-style/commits/188860b64b6e2b764a71c410a31fc5ea4842585c"
+        }
+      ]
+    }
+  },
+  {
+    "id": "40532780958",
+    "imageUrl": "https://avatars.githubusercontent.com/u/57683378?",
+    "type": "PushEvent",
+    "repoName": "remcostoeten/nextjs-github-metrics-vercel-style",
+    "content": "Pushed to remcostoeten/nextjs-github-metrics-vercel-style",
+    "timestamp": "2024-07-29T00:47:06Z",
+    "payload": {
+      "repository_id": 834993883,
+      "push_id": 19518390048,
+      "size": 1,
+      "distinct_size": 1,
+      "ref": "refs/heads/master",
+      "head": "9934fc4a2cbc168af8cad504822e0bd31317b2ff",
+      "before": "5e63a6ff2b42e8e354d0ac1c84affb3ee0733e92",
+      "commits": [
+        {
+          "sha": "9934fc4a2cbc168af8cad504822e0bd31317b2ff",
+          "author": {
+            "email": "57683378+remcostoeten@users.noreply.github.com",
+            "name": "Remco"
+          },
+          "message": "Update README.md",
+          "distinct": true,
+          "url": "https://api.github.com/repos/remcostoeten/nextjs-github-metrics-vercel-style/commits/9934fc4a2cbc168af8cad504822e0bd31317b2ff"
+        }
+      ]
+    }
+  },
+  {
+    "id": "40532423000",
+    "imageUrl": "https://avatars.githubusercontent.com/u/57683378?",
+    "type": "PushEvent",
+    "repoName": "remcostoeten/Github-metrics-dashboard-vercel-copy",
+    "content": "Pushed to remcostoeten/Github-metrics-dashboard-vercel-copy",
+    "timestamp": "2024-07-29T00:15:55Z",
+    "payload": {
+      "repository_id": 834993883,
+      "push_id": 19518194083,
+      "size": 1,
+      "distinct_size": 1,
+      "ref": "refs/heads/master",
+      "head": "5e63a6ff2b42e8e354d0ac1c84affb3ee0733e92",
+      "before": "5c7691cbf0be52f794bca74ca448c907457cd004",
+      "commits": [
+        {
+          "sha": "5e63a6ff2b42e8e354d0ac1c84affb3ee0733e92",
+          "author": {
+            "email": "remcostoeten@hotmail.com",
+            "name": "Remco Stoeten"
+          },
+          "message": "Fix bugs for build",
+          "distinct": true,
+          "url": "https://api.github.com/repos/remcostoeten/Github-metrics-dashboard-vercel-copy/commits/5e63a6ff2b42e8e354d0ac1c84affb3ee0733e92"
+        }
+      ]
+    }
+  },
+  {
+    "id": "40532353696",
+    "imageUrl": "https://avatars.githubusercontent.com/u/57683378?",
+    "type": "PushEvent",
+    "repoName": "remcostoeten/Github-metrics-dashboard-vercel-copy",
+    "content": "Pushed to remcostoeten/Github-metrics-dashboard-vercel-copy",
+    "timestamp": "2024-07-29T00:09:24Z",
+    "payload": {
+      "repository_id": 834993883,
+      "push_id": 19518156292,
+      "size": 2,
+      "distinct_size": 2,
+      "ref": "refs/heads/master",
+      "head": "5c7691cbf0be52f794bca74ca448c907457cd004",
+      "before": "522251fbb51fdef7a2829e45f255a1eff3b4f5cd",
+      "commits": [
+        {
+          "sha": "d3c302f7023b14879c8bfd73cf644a674b77924a",
+          "author": {
+            "email": "remcostoeten@hotmail.com",
+            "name": "Remco Stoeten"
+          },
+          "message": "WiP: logic.",
+          "distinct": true,
+          "url": "https://api.github.com/repos/remcostoeten/Github-metrics-dashboard-vercel-copy/commits/d3c302f7023b14879c8bfd73cf644a674b77924a"
+        },
+        {
+          "sha": "5c7691cbf0be52f794bca74ca448c907457cd004",
+          "author": {
+            "email": "remcostoeten@hotmail.com",
+            "name": "Remco Stoeten"
+          },
+          "message": "Prettier.",
+          "distinct": true,
+          "url": "https://api.github.com/repos/remcostoeten/Github-metrics-dashboard-vercel-copy/commits/5c7691cbf0be52f794bca74ca448c907457cd004"
+        }
+      ]
+    }
+  },
+  {
+    "id": "40532154242",
+    "imageUrl": "https://avatars.githubusercontent.com/u/57683378?",
+    "type": "PushEvent",
+    "repoName": "remcostoeten/Github-metrics-dashboard-vercel-copy",
+    "content": "Pushed to remcostoeten/Github-metrics-dashboard-vercel-copy",
+    "timestamp": "2024-07-28T23:46:41Z",
+    "payload": {
+      "repository_id": 834993883,
+      "push_id": 19518043979,
+      "size": 1,
+      "distinct_size": 1,
+      "ref": "refs/heads/master",
+      "head": "522251fbb51fdef7a2829e45f255a1eff3b4f5cd",
+      "before": "4c32e18d67a2ac39eaab03e6df10095d732f831b",
+      "commits": [
+        {
+          "sha": "522251fbb51fdef7a2829e45f255a1eff3b4f5cd",
+          "author": {
+            "email": "remcostoeten@hotmail.com",
+            "name": "Remco Stoeten"
+          },
+          "message": "Imrpove ui and api",
+          "distinct": true,
+          "url": "https://api.github.com/repos/remcostoeten/Github-metrics-dashboard-vercel-copy/commits/522251fbb51fdef7a2829e45f255a1eff3b4f5cd"
         }
       ]
     }

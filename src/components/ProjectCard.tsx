@@ -1,7 +1,7 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
-import { Flex } from "./atoms/Flexer";
+import React, { useEffect, useState, useCallback } from "react";
+import { motion, useMotionTemplate, useMotionValue } from "framer-motion";
 import {
   ProjectCardProps,
   ProjectData,
@@ -16,6 +16,36 @@ import { getTimeSince } from "@/core/helpers/time-date-helpers";
 const ProjectCard: React.FC<ProjectCardProps> = ({ repoName, url }) => {
   const [projectData, setProjectData] = useState<ProjectData | null>(null);
   const [isLoading, setIsLoading] = useState(true);
+
+  const gradientSize = 200;
+  const gradientColor = "#262626";
+  const gradientOpacity = 0.8;
+
+  const mouseX = useMotionValue(-gradientSize);
+  const mouseY = useMotionValue(-gradientSize);
+
+  const background = useMotionTemplate`
+    radial-gradient(${gradientSize}px circle at ${mouseX}px ${mouseY}px, ${gradientColor}, transparent 100%)
+  `;
+
+  const handleMouseMove = useCallback(
+    (e: React.MouseEvent<HTMLDivElement>) => {
+      const { left, top } = e.currentTarget.getBoundingClientRect();
+      mouseX.set(e.clientX - left);
+      mouseY.set(e.clientY - top);
+    },
+    [mouseX, mouseY],
+  );
+
+  const handleMouseLeave = useCallback(() => {
+    mouseX.set(-gradientSize);
+    mouseY.set(-gradientSize);
+  }, [mouseX, mouseY, gradientSize]);
+
+  useEffect(() => {
+    mouseX.set(-gradientSize);
+    mouseY.set(-gradientSize);
+  }, [mouseX, mouseY, gradientSize]);
 
   useEffect(() => {
     const fetchProjectData = async () => {
@@ -47,15 +77,28 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ repoName, url }) => {
   );
 
   return (
-    <div className="flex flex-col bg-black rounded-md shadow-lg border border-zinc-800">
-      <CardHeader href={projectData.url} title={projectData.name} />
-      <CardBody
-        productionUrl={projectData.productionUrl}
-        latestUrl={projectData.latestUrl}
-        productionTime={new Date(projectData.pushed_at).toLocaleString()}
-        latestTime={timeSinceLastDeployment}
+    <div
+      className="relative flex flex-col bg-black rounded-md shadow-lg border border-zinc-800 overflow-hidden group"
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+    >
+      <div className="relative z-10">
+        <CardHeader href={projectData.url} title={projectData.name} />
+        <CardBody
+          productionUrl={projectData.productionUrl}
+          latestUrl={projectData.latestUrl}
+          productionTime={new Date(projectData.pushed_at).toLocaleString()}
+          latestTime={timeSinceLastDeployment}
+        />
+        <CardFooter repoName={projectData.full_name} />
+      </div>
+      <motion.div
+        className="pointer-events-none absolute -inset-px rounded-md opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+        style={{
+          background,
+          opacity: gradientOpacity,
+        }}
       />
-      <CardFooter repoName={projectData.full_name} />
     </div>
   );
 };
@@ -83,7 +126,7 @@ const CardHeader: React.FC<{ title: string; href: string }> = ({
 );
 
 const UrlInfo: React.FC<UrlInfoProps> = ({ url, label, time }) => (
-  <Flex justify="between">
+  <div className="flex justify-between items-center">
     <div className="flex gap-2 items-center text-sm font-medium text-white">
       <div className="w-2.5 h-2.5 bg-green-300 rounded-full" />
       <a
@@ -93,15 +136,14 @@ const UrlInfo: React.FC<UrlInfoProps> = ({ url, label, time }) => (
         {label}
       </a>
     </div>
-    <Flex items="center" gap="4">
+    <div className="flex items-center gap-4">
       <span className="text-white text-xs font-medium h-[17.6px] leading-3 w-[76.175px] mx-0 my-0 px-1.5 py-0.5 rounded-full border-[0.8px] border-solid border-[#333]">
         Production
       </span>
       <time className="text-xs text-stone-500">{time}</time>
-    </Flex>
-  </Flex>
+    </div>
+  </div>
 );
-
 const CardBody: React.FC<CardBodyProps> = ({
   productionUrl,
   latestUrl,
