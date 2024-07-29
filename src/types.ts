@@ -77,3 +77,7 @@ export type Tab = {
   isActive: boolean;
   content: ReactNode;
 };
+
+export type LayoutProps = {
+  children:ReactNode;
+};

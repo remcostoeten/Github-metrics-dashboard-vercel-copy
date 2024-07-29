@@ -14,8 +14,8 @@ const ActivityItem: React.FC<ActivityItemProps> = ({
         src={imageUrl}
         width={32}
         height={32}
+        alt="Activity Image"
         className="shrink-0 self-stretch my-auto w-8 border border-solid bg-blend-normal aspect-square border-zinc-800 rounded-[50px]"
-        alt={content}
       />
       <div className="flex-auto self-stretch my-auto text-white">{content}</div>
       <div className="self-stretch my-auto text-stone-500">{time}</div>
