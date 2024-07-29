@@ -1,7 +1,7 @@
 "use server";
 
+import { repos } from "@/core/config/site-config";
 import { RepoData } from "@/types";
-import { repos } from "core/config/siteConfig";
 import { revalidatePath } from "next/cache";
 
 export async function fetchGitHubActivities(): Promise<RepoData[]> {
@@ -47,7 +47,13 @@ export async function fetchGitHubActivities(): Promise<RepoData[]> {
     );
 
     revalidatePath("/");
-    return projectData;
+    return projectData.map((data) => ({
+      ...data,
+      id: "",
+      imageUrl: "",
+      content: "",
+      timestamp: Number(data.timestamp),
+    }));
   } catch (error) {
     console.error("Error fetching GitHub data:", error);
     throw new Error("Failed to fetch repository data");

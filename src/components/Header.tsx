@@ -1,6 +1,6 @@
 import React from "react";
 import ProfileSection from "./ProfileSection";
-import Navigation from "./effects/direction-tabvs";
+import Navigation from "./effects/direction-tabs";
 
 const Header: React.FC = () => {
   return (

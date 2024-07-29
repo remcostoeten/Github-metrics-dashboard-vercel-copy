@@ -1,12 +1,12 @@
 "use client";
 
-import { ReactNode, useMemo, useState } from "react";
+import { useState } from "react";
 import { AnimatePresence, MotionConfig, motion } from "framer-motion";
 import useMeasure from "react-use-measure";
-import { cn } from "@/lib/utils";
 import { usePathname, useRouter } from "next/navigation";
 import { NavigationProps, Tab } from "@/types";
-import { navigationItems } from "core/config/siteConfig";
+import { navigationItems } from "@/core/config/site-config";
+import { cn } from "@/core/helpers/utils";
 
 const Navigation = ({ className, rounded }: NavigationProps) => {
   const pathname = usePathname();

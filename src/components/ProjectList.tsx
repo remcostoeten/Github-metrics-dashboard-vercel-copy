@@ -1,6 +1,6 @@
+import { projects } from "@/core/config/site-config";
 import ProjectCard from "./ProjectCard";
 import Link from "next/link";
-import { projects } from "core/config/siteConfig";
 
 export default function ProjectList() {
   return (

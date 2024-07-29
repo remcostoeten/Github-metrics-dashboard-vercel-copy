@@ -1,4 +1,4 @@
-import { repos } from "core/config/siteConfig";
+import { repos } from "@/core/config/site-config";
 import { NextResponse } from "next/server";
 
 export async function GET() {

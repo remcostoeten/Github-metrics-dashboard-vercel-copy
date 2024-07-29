@@ -39,14 +39,10 @@ export interface UrlInfoProps {
 }
 
 export interface RepoData {
-  name: string;
-  full_name: string;
-  description: string;
-  html_url: string;
-  pushed_at: string;
-  productionUrl: string;
-  latestUrl: string;
-  lastDeployedAt: string;
+  id: string;
+  imageUrl: string;
+  content: string;
+  timestamp: number;
 }
 
 export interface NavigationProps {
@@ -81,3 +77,14 @@ export type Tab = {
 export type LayoutProps = {
   children:ReactNode;
 };
+
+export interface RepoData {
+  name: string;
+  full_name: string;
+  description: string;
+  html_url: string;
+  pushed_at: string;
+  productionUrl: string;
+  latestUrl: string;
+  lastDeployedAt: string;
+}

@@ -2,7 +2,6 @@
 
 import React, { useEffect, useState } from "react";
 import { Flex } from "./atoms/Flexer";
-import { getTimeSince } from "@/lib/utils";
 import {
   ProjectCardProps,
   ProjectData,
@@ -12,6 +11,7 @@ import {
 import { LoadingSkeleton } from "./effects/skeleton";
 import { Button } from "./ui/button";
 import Link from "next/link";
+import { getTimeSince } from "@/core/helpers/time-date-helpers";
 
 const ProjectCard: React.FC<ProjectCardProps> = ({ repoName, url }) => {
   const [projectData, setProjectData] = useState<ProjectData | null>(null);

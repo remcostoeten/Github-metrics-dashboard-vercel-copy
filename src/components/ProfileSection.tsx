@@ -3,9 +3,10 @@ import { Flex } from "./atoms/Flexer";
 import { ArrowRightIcon, GithubIcon } from "lucide-react";
 import Link from "next/link";
 import { fetchGitHubUserData } from "@/server/actions/fetchGitHubUserData";
-import { siteConfig } from "core/config/siteConfig";
+
 import { GitHubUserData } from "@/server/actions/fetchGitHubUserData";
 import { Avatar, AvatarFallback } from "./ui/avatar";
+import { siteConfig } from "@/core/config/site-config";
 
 async function ProfileSection() {
   const username = siteConfig.githubUsername;
