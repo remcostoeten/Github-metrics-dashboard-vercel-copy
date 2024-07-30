@@ -1,4 +1,4 @@
-import { useRepoStore } from '@/core/store/useRepoStore';
+import { useRepoStore } from '@/core/stores/useRepoStore';
 import { NextResponse } from 'next/server';
 
 export async function GET() {

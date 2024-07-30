@@ -79,9 +79,6 @@ const config = {
         "accordion-up": "accordion-up 0.2s ease-out",
         shine: "shine 8s ease-in-out infinite",
       },
-      fontFamily: {
-        sans: ["var(--font-geist-sans)"],
-      },
     },
   },
   plugins: [require("tailwindcss-animate")],

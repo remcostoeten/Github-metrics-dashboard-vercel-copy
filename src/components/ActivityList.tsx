@@ -9,7 +9,7 @@ import { ActivitySkeleton } from "./effects/skeleton";
 import { formatTimeAgo } from "@/core/helpers/time-date-helpers";
 import { AnimatedList } from "@/components/effects/animated-list";
 import { cn } from "@/core/helpers/utils";
-import { useAmountGithubActivityStore } from "@/core/store/useAmountGithubActivityStore";
+import { useAmountGithubActivityStore } from "@/core/stores/useAmountGithubActivityStore";
 
 const workerCode = `
   let pollInterval = 60000; // 60 seconds

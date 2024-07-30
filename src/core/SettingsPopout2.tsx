@@ -15,12 +15,12 @@ import { Switch } from "@/components/ui/switch";
 import { Slider } from "@/components/ui/slider";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { useAmountGithubActivityStore } from './store/useAmountGithubActivityStore';
-import { useAnimationControlStore } from './store/useAnimationControlStore';
-import { useAnimationSpeedStore } from './store/useAnimationSpeedStore';
-import { useCodeThemeStore, CodeThemeStore } from './store/useCodeThemeStore';
-import { useFontStore } from './store/useToggleSiteFontStore';
-import {useRepoStore} from './store/useRepoStore';
+import { useAmountGithubActivityStore } from './stores/useAmountGithubActivityStore';
+import { useAnimationControlStore } from './stores/useAnimationControlStore';
+import { useAnimationSpeedStore } from './stores/useAnimationSpeedStore';
+import { useCodeThemeStore, CodeThemeStore } from './stores/useCodeThemeStore';
+import { useFontStore } from './stores/useToggleSiteFontStore';
+import {useRepoStore} from './stores/useRepoStore';
 
 const
  inter = Inter({ subsets: ["latin"] });

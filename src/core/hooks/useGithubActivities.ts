@@ -3,7 +3,7 @@
 import { fetchGitHubActivities } from "@/server/actions/getGithubActivity";
 import { RepoData } from "@/types";
 import { useState, useEffect } from "react";
-import { useAmountGithubActivityStore } from "@/core/store/useAmountGithubActivityStore";
+import { useAmountGithubActivityStore } from "@/core/stores/useAmountGithubActivityStore";
 
 export function useGitHubActivities() {
   const [activities, setActivities] = useState<RepoData[]>([]);

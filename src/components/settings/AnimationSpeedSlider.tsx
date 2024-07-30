@@ -2,7 +2,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { useAnimationSpeedStore } from "@/core/store/useAnimationSpeedStore";
+import { useAnimationSpeedStore } from "@/core/stores/useAnimationSpeedStore";
 
 export function AnimationSpeedSlider() {
   const animationSpeed = useAnimationSpeedStore(

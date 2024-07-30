@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { useAnimationControlStore } from "@/core/store/useAnimationControlStore";
+import { useAnimationControlStore } from "@/core/stores/useAnimationControlStore";
 
 export function AnimationControlButton() {
   const isAnimationPaused = useAnimationControlStore(

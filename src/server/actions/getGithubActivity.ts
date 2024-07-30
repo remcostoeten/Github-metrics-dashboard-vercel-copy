@@ -5,7 +5,6 @@ import fs from "fs";
 import path from "path";
 import { siteConfig } from "@/core/config/site-config";
 
-// Function to write logs to a JSON file
 function writeLogsToJson(data: any, filename: string) {
   const logDir = path.join(process.cwd(), "logs");
   if (!fs.existsSync(logDir)) {

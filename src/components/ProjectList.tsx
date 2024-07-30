@@ -3,7 +3,7 @@
 import Link from "next/link";
 import ProjectCard from "./ProjectCard";
 import HoverCard from "./effects/hover-card";
-import { useRepoStore } from "@/core/store/useRepoStore";
+import { useRepoStore } from "@/core/stores/useRepoStore";
 
 export default function ProjectList() {
   const repos = useRepoStore((state) => state.repos);

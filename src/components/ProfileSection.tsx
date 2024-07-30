@@ -22,7 +22,7 @@ async function ProfileSection() {
       <Flex gap="4" justify="center" items="center">
         <Avatar className="w-24 h-24 bg-sky-700 grid place-items-center">
           <AvatarFallback className="text-3xl">
-            {userData.name.charAt(0)}
+            {userData.name.charAt(0).toUpperCase()}
           </AvatarFallback>
         </Avatar>
 
@@ -39,22 +39,20 @@ async function ProfileSection() {
           </div>
           <Link
             href={siteConfig.githubUrl}
-            className="flex gap-1.5 py-1 text-base text-white whitespace-nowrap bg-blend-normal"
+            target="_blank"
+            className="flex gap-1.5 py-1 text-base text-white items-center justify-center
+            "
           >
-            <GithubIcon width={14} />
-            <div>{userData.login}</div>
+            <span className='translate-y-[1px
+            ]'>
+              <GithubIcon width={14} />
+            </span>
+            <p>{userData.login}</p>
           </Link>
-          <div className="flex gap-4 mt-2 items-center justify-center ">
-            <div className="text-white">
-              <span className="font-semibold">{userData.public_repos}</span>{" "}
-              <span className="font-regular">repos</span>
-            </div>
-            <div className="text-white">
-              <span className="font-bold">{userData.followers}</span> followers
-            </div>
-            <div className="text-white">
-              <span className="font-bold">{userData.following}</span> following
-            </div>
+          <div className="flex gap-4 mt-2 items-center justify-center">
+            <ProfileStatistic title="repos" value={userData.public_repos} />
+            <ProfileStatistic title="followers" value={userData.followers} />
+            <ProfileStatistic title="following" value={userData.following} />
           </div>
         </div>
       </Flex>
@@ -73,3 +71,11 @@ async function ProfileSection() {
 }
 
 export default ProfileSection;
+
+function ProfileStatistic({ title, value }: { title: string, value: number }) {
+  return (
+    <div className="text-white">
+      <span className="font-bold">{value}</span> <span className="font-normal">{title}</span>
+    </div>
+  );
+}
