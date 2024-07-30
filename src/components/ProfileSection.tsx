@@ -1,15 +1,46 @@
-import { Button } from "./ui/button";
-import { Flex } from "./atoms/Flexer";
-import { ArrowRightIcon, GithubIcon } from "lucide-react";
-import Link from "next/link";
-import { Avatar, AvatarFallback } from "./ui/avatar";
-import { siteConfig } from "@/core/config/site-config";
-import {
-  fetchGitHubUserData,
-  GitHubUserData,
-} from "@/server/actions/fetchGitHubUserData";
+import { Suspense } from 'react';
+import Link from 'next/link';
+import { ArrowRightIcon, GithubIcon } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { Flex } from '@/components/atoms/Flexer';
+import { Avatar, AvatarFallback } from '@/components/ui/avatar';
+import { siteConfig } from '@/core/config/site-config';
+import { fetchGitHubUserData } from '@/server/actions/fetchGitHubUserData';
 
-async function ProfileSection() {
+interface GitHubUserData {
+  name: string;
+  login: string;
+  bio: string;
+  public_repos: number;
+  followers: number;
+  following: number;
+  html_url: string;
+}
+
+interface UserStatsProps {
+  repos: number;
+  followers: number;
+  following: number;
+}
+
+function UserStats({ repos, followers, following }: UserStatsProps) {
+  return (
+    <div className="flex gap-4 mt-2 items-center justify-center">
+      <div className="text-white">
+        <span className="font-semibold">{repos}</span>{" "}
+        <span className="font-regular">repos</span>
+      </div>
+      <div className="text-white">
+        <span className="font-bold">{followers}</span> followers
+      </div>
+      <div className="text-white">
+        <span className="font-bold">{following}</span> following
+      </div>
+    </div>
+  );
+}
+
+async function ProfileData() {
   const username = siteConfig.githubUsername;
   const userData: GitHubUserData | null = await fetchGitHubUserData(username);
 
@@ -18,7 +49,7 @@ async function ProfileSection() {
   }
 
   return (
-    <div className="flex gap-5 justify-between items-center pr-6 pb-20 pl-5 bg-blend-normal max-md:flex-wrap max-md:px-5">
+    <>
       <Flex gap="4" justify="center" items="center">
         <Avatar className="w-24 h-24 bg-sky-700 grid place-items-center">
           <AvatarFallback className="text-3xl">
@@ -28,34 +59,25 @@ async function ProfileSection() {
 
         <div className="flex flex-col items-start py-0.5 bg-blend-normal max-md:max-w-full">
           <div className="flex gap-5 justify-between self-stretch py-2 w-full bg-blend-normal max-md:flex-wrap max-md:max-w-full">
-            <div className="flex gap-2 items-center text-white">
-              <div className="grow text-4xl font-semibold tracking-tighter">
-                {userData.name}
-              </div>
-            </div>
+            <h1 className="flex gap-2 items-center text-4xl font-semibold tracking-tighter text-white">
+              {userData.name}
+            </h1>
           </div>
-          <div className="text-xs font-medium tracking-normal uppercase text-zinc-500">
+          <p className="text-xs font-medium tracking-normal uppercase text-zinc-500">
             {userData.bio || "Git Integrations"}
-          </div>
+          </p>
           <Link
             href={siteConfig.githubUrl}
             className="flex gap-1.5 py-1 text-base text-white whitespace-nowrap bg-blend-normal"
           >
             <GithubIcon width={14} />
-            <div>{userData.login}</div>
+            <span>{userData.login}</span>
           </Link>
-          <div className="flex gap-4 mt-2 items-center justify-center ">
-            <div className="text-white">
-              <span className="font-semibold">{userData.public_repos}</span>{" "}
-              <span className="font-regular">repos</span>
-            </div>
-            <div className="text-white">
-              <span className="font-bold">{userData.followers}</span> followers
-            </div>
-            <div className="text-white">
-              <span className="font-bold">{userData.following}</span> following
-            </div>
-          </div>
+          <UserStats 
+            repos={userData.public_repos}
+            followers={userData.followers}
+            following={userData.following}
+          />
         </div>
       </Flex>
       <Button
@@ -64,12 +86,20 @@ async function ProfileSection() {
         Icon={ArrowRightIcon}
         iconPlacement="right"
       >
-        <Link href={userData.html_url} target="_blank">
+        <Link href={userData.html_url} target="_blank" rel="noopener noreferrer">
           Go to profile
         </Link>
       </Button>
-    </div>
+    </>
   );
 }
 
-export default ProfileSection;
+export default function ProfileSection() {
+  return (
+    <section className="flex gap-5 justify-between items-center pr-6 pb-20 pl-5 bg-blend-normal max-md:flex-wrap max-md:px-5">
+      <Suspense fallback={<div>Loading profile data...</div>}>
+        <ProfileData />
+      </Suspense>
+    </section>
+  );
+}

@@ -5,15 +5,28 @@ import fs from "fs";
 import path from "path";
 import { siteConfig } from "@/core/config/site-config";
 
-// Function to write logs to a JSON file
+let logBuffer: any[] = [];
+const logInterval = 30 * 60 * 1000; // 30 minutes in milliseconds
+
 function writeLogsToJson(data: any, filename: string) {
+  logBuffer.push(data);
+
   const logDir = path.join(process.cwd(), "logs");
   if (!fs.existsSync(logDir)) {
     fs.mkdirSync(logDir);
   }
-  const filePath = path.join(logDir, filename);
-  fs.writeFileSync(filePath, JSON.stringify(data, null, 2));
-  console.log(`Logs written to ${filePath}`);
+
+  const writeLogs = () => {
+    if (logBuffer.length > 0) {
+      const filePath = path.join(logDir, filename);
+      fs.writeFileSync(filePath, JSON.stringify(logBuffer, null, 2));
+      console.log(`Logs written to ${filePath}`);
+      logBuffer = []; // Clear the buffer after writing
+    }
+  };
+
+  // Set up the interval to write logs every 30 minutes
+  setInterval(writeLogs, logInterval);
 }
 
 export async function fetchGitHubActivities(
