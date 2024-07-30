@@ -1,7 +1,7 @@
 "use client";
 
-import React, { useEffect, useState, useCallback } from "react";
-import { motion, useMotionTemplate, useMotionValue } from "framer-motion";
+import React, { useEffect, useState } from "react";
+import { motion } from "framer-motion";
 import {
   ProjectCardProps,
   ProjectData,
@@ -17,35 +17,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ repoName, url }) => {
   const [projectData, setProjectData] = useState<ProjectData | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 
-  const gradientSize = 200;
-  const gradientColor = "#262626";
-  const gradientOpacity = 0.8;
 
-  const mouseX = useMotionValue(-gradientSize);
-  const mouseY = useMotionValue(-gradientSize);
-
-  const background = useMotionTemplate`
-    radial-gradient(${gradientSize}px circle at ${mouseX}px ${mouseY}px, ${gradientColor}, transparent 100%)
-  `;
-
-  const handleMouseMove = useCallback(
-    (e: React.MouseEvent<HTMLDivElement>) => {
-      const { left, top } = e.currentTarget.getBoundingClientRect();
-      mouseX.set(e.clientX - left);
-      mouseY.set(e.clientY - top);
-    },
-    [mouseX, mouseY],
-  );
-
-  const handleMouseLeave = useCallback(() => {
-    mouseX.set(-gradientSize);
-    mouseY.set(-gradientSize);
-  }, [mouseX, mouseY, gradientSize]);
-
-  useEffect(() => {
-    mouseX.set(-gradientSize);
-    mouseY.set(-gradientSize);
-  }, [mouseX, mouseY, gradientSize]);
 
   useEffect(() => {
     const fetchProjectData = async () => {
@@ -78,9 +50,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ repoName, url }) => {
 
   return (
     <div
-      className="relative flex flex-col bg-black rounded-md shadow-lg border border-zinc-800 overflow-hidden group"
-      onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
+      className="relative flex flex-col bg-dark rounded-md shadow-lg border border-zinc-800 overflow-hidden"
     >
       <div className="relative z-10">
         <CardHeader href={projectData.url} title={projectData.name} />
@@ -94,10 +64,6 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ repoName, url }) => {
       </div>
       <motion.div
         className="pointer-events-none absolute -inset-px rounded-md opacity-0 transition-opacity duration-300 group-hover:opacity-100"
-        style={{
-          background,
-          opacity: gradientOpacity,
-        }}
       />
     </div>
   );
@@ -118,7 +84,7 @@ const CardHeader: React.FC<{ title: string; href: string }> = ({
     <Button
       variant="gooeyLeft"
       type="button"
-      className="text-[#cecece] text-sm leading-8 bg-black cursor-pointer font-normal h-8 min-w-min overflow-hidden text-center capitalize whitespace-nowrap w-[66.925px] px-[18.4px] rounded border-[0.8px] border-solid border-zinc-800"
+      className="text-[#cecece] text-sm leading-8 bg-dark cursor-pointer font-normal h-8 min-w-min overflow-hidden text-center capitalize whitespace-nowrap w-[66.925px] px-[18.4px] rounded border-[0.8px] border-solid border-zinc-800"
     >
       visit
     </Button>

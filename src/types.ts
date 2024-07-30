@@ -1,5 +1,13 @@
 import { ReactNode } from "react";
 
+export interface HoverCardProps {
+  children: React.ReactNode;
+  width?: string | number;
+  height?: string | number;
+  padding?: string | number;
+  className?: string;
+}
+
 export interface Activity {
   imageUrl: string;
   content: string;

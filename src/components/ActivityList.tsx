@@ -1,4 +1,5 @@
 "use client";
+
 import React, { useState, useEffect } from "react";
 import { Avatar, AvatarImage } from "./ui/avatar";
 import { AvatarFallback } from "@radix-ui/react-avatar";
@@ -8,7 +9,7 @@ import { ActivitySkeleton } from "./effects/skeleton";
 import { formatTimeAgo } from "@/core/helpers/time-date-helpers";
 import { AnimatedList } from "@/components/effects/animated-list";
 import { cn } from "@/core/helpers/utils";
-import { useGitHubStore } from "@/core/store/useGithubStore";
+import { useAmountGithubActivityStore } from "@/core/store/useAmountGithubActivityStore";
 
 const workerCode = `
   let pollInterval = 60000; // 60 seconds
@@ -29,7 +30,9 @@ const ActivityList: React.FC = () => {
   const [activities, setActivities] = useState<Activity[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [worker, setWorker] = useState<Worker | null>(null);
-  const fetchAmount = useGitHubStore((state) => state.fetchAmount);
+  const fetchAmount = useAmountGithubActivityStore(
+    (state) => state.fetchAmount,
+  );
 
   const loadActivities = async () => {
     if (!document.hidden) {

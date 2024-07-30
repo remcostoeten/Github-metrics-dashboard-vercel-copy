@@ -29,12 +29,12 @@ import { Switch } from "@/components/ui/switch";
 import { Label } from "@/components/ui/label";
 import { useAnimationSpeedStore } from "@/core/store/useAnimationSpeedStore";
 import { useAnimationControlStore } from "@/core/store/useAnimationControlStore";
-import { useGitHubStore } from "@/core/store/useGithubStore";
+import { useAmountGithubActivityStore } from "@/core/store/useAmountGithubActivityStore";
 
 export default function Component() {
   const { animationSpeed, setAnimationSpeed } = useAnimationSpeedStore();
   const { isAnimationPaused, toggleAnimation } = useAnimationControlStore();
-  const { fetchAmount, setFetchAmount } = useGitHubStore();
+  const { fetchAmount, setFetchAmount } = useAmountGithubActivityStore();
 
   const [activityListAmount, setActivityListAmount] = useState(5);
   const [font, setFont] = useState("Geist Sans");

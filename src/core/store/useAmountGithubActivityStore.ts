@@ -6,7 +6,7 @@ interface GitHubStore {
   setFetchAmount: (amount: number) => void;
 }
 
-export const useGitHubStore = create(
+export const useAmountGithubActivityStore = create(
   persist<GitHubStore>(
     (set) => ({
       fetchAmount: 5,

@@ -15,7 +15,7 @@ const FileHeader: React.FC<FileHeaderProps> = ({
   avatarSrc,
 }) => {
   return (
-    <header className="flex gap-5 justify-between px-4 py-2 w-full whitespace-nowrap bg-black rounded-md bg-blend-normal text-neutral-400 max-md:flex-wrap max-md:max-w-full min-w-[400px]">
+    <header className="flex gap-5 justify-between px-4 py-2 w-full whitespace-nowrap bg-dark rounded-md bg-blend-normal text-neutral-400 max-md:flex-wrap max-md:max-w-full min-w-[400px]">
       <div className="flex gap-2 my-auto">
         <ReactIcon />
         <div className="my-auto">{title}</div>

@@ -17,9 +17,7 @@ const Navigation: React.FC = () => {
         {navItems.map((item, index) => (
           <div
             key={index}
-            className={`px-1 py-4 bg-blend-normal ${
-              item.active ? "text-white" : ""
-            }`}
+            className={`px-1 py-4 bg-blend-normal ${item.active ? "text-white" : ""}`}
           >
             {item.label}
             {item.active && (
