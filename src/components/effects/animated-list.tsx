@@ -3,8 +3,8 @@
 
 import React, { ReactElement, useEffect, useMemo, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { useAnimationSpeedStore } from "@/core/store/useAnimationSpeedStore";
-import { useAnimationControlStore } from "@/core/store/useAnimationControlStore";
+import { useAnimationSpeedStore } from "@/core/stores/useAnimationSpeedStore";
+import { useAnimationControlStore } from "@/core/stores/useAnimationControlStore";
 
 export interface AnimatedListProps {
   className?: string;
