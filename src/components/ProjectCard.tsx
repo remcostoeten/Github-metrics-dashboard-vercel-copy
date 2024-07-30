@@ -17,8 +17,6 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ repoName, url }) => {
   const [projectData, setProjectData] = useState<ProjectData | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 
-
-
   useEffect(() => {
     const fetchProjectData = async () => {
       try {

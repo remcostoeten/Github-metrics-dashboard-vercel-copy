@@ -1,4 +1,6 @@
 "use client";
+
+
 import React, { ReactElement, useEffect, useMemo, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { useAnimationSpeedStore } from "@/core/store/useAnimationSpeedStore";
@@ -15,13 +17,13 @@ export const AnimatedList = React.memo(
     const [isAnimationComplete, setIsAnimationComplete] = useState(false);
     const childrenArray = React.Children.toArray(children);
     const animationSpeed = useAnimationSpeedStore(
-      (state) => state.animationSpeed,
+      (state) => state.animationSpeed
     );
     const isAnimationPaused = useAnimationControlStore(
-      (state) => state.isAnimationPaused,
+      (state) => state.isAnimationPaused
     );
     const setIsAnimationPaused = useAnimationControlStore(
-      (state) => state.setIsAnimationPaused,
+      (state) => state.setIsAnimationPaused
     );
 
     useEffect(() => {
@@ -54,7 +56,7 @@ export const AnimatedList = React.memo(
 
     const itemsToShow = useMemo(
       () => childrenArray.slice(0, index + 1).reverse(),
-      [index, childrenArray],
+      [index, childrenArray]
     );
 
     const resetAnimation = () => {
@@ -77,14 +79,14 @@ export const AnimatedList = React.memo(
         )}
       </div>
     );
-  },
+  }
 );
 
 AnimatedList.displayName = "AnimatedList";
 
 export function AnimatedListItem({ children }: { children: React.ReactNode }) {
   const animationSpeed = useAnimationSpeedStore(
-    (state) => state.animationSpeed,
+    (state) => state.animationSpeed
   );
   const animations = {
     initial: { scale: 0, opacity: 0 },
@@ -97,6 +99,7 @@ export function AnimatedListItem({ children }: { children: React.ReactNode }) {
       duration: animationSpeed / 1000,
     },
   };
+
   return (
     <motion.div {...animations} layout className="mx-auto w-full">
       {children}

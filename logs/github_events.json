@@ -1,5 +1,85 @@
 [
   {
+    "id": "40570080783",
+    "type": "PushEvent",
+    "actor": {
+      "id": 57683378,
+      "login": "remcostoeten",
+      "display_login": "remcostoeten",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/remcostoeten",
+      "avatar_url": "https://avatars.githubusercontent.com/u/57683378?"
+    },
+    "repo": {
+      "id": 834993883,
+      "name": "remcostoeten/nextjs-github-metrics-vercel-style",
+      "url": "https://api.github.com/repos/remcostoeten/nextjs-github-metrics-vercel-style"
+    },
+    "payload": {
+      "repository_id": 834993883,
+      "push_id": 19536635228,
+      "size": 1,
+      "distinct_size": 1,
+      "ref": "refs/heads/feature/state",
+      "head": "95bdd972f576af18d49ede60cf764854ced900f2",
+      "before": "7160017f049ecc8e10117ea173be326ca0c7548f",
+      "commits": [
+        {
+          "sha": "95bdd972f576af18d49ede60cf764854ced900f2",
+          "author": {
+            "email": "remcostoeten@hotmail.com",
+            "name": "Remco Stoeten"
+          },
+          "message": "A lotof ui work and start of sidepanel",
+          "distinct": true,
+          "url": "https://api.github.com/repos/remcostoeten/nextjs-github-metrics-vercel-style/commits/95bdd972f576af18d49ede60cf764854ced900f2"
+        }
+      ]
+    },
+    "public": true,
+    "created_at": "2024-07-30T01:41:44Z"
+  },
+  {
+    "id": "40566152758",
+    "type": "PushEvent",
+    "actor": {
+      "id": 57683378,
+      "login": "remcostoeten",
+      "display_login": "remcostoeten",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/remcostoeten",
+      "avatar_url": "https://avatars.githubusercontent.com/u/57683378?"
+    },
+    "repo": {
+      "id": 834993883,
+      "name": "remcostoeten/nextjs-github-metrics-vercel-style",
+      "url": "https://api.github.com/repos/remcostoeten/nextjs-github-metrics-vercel-style"
+    },
+    "payload": {
+      "repository_id": 834993883,
+      "push_id": 19534601902,
+      "size": 1,
+      "distinct_size": 1,
+      "ref": "refs/heads/feature/state",
+      "head": "7160017f049ecc8e10117ea173be326ca0c7548f",
+      "before": "14bfee57eb1afbd270bddc52c5ad082bcf8e04fc",
+      "commits": [
+        {
+          "sha": "7160017f049ecc8e10117ea173be326ca0c7548f",
+          "author": {
+            "email": "remcostoeten@hotmail.com",
+            "name": "Remco Stoeten"
+          },
+          "message": "logic: stop animation after cyclus and add card hover effect",
+          "distinct": true,
+          "url": "https://api.github.com/repos/remcostoeten/nextjs-github-metrics-vercel-style/commits/7160017f049ecc8e10117ea173be326ca0c7548f"
+        }
+      ]
+    },
+    "public": true,
+    "created_at": "2024-07-29T21:41:17Z"
+  },
+  {
     "id": "40562650249",
     "type": "PushEvent",
     "actor": {
@@ -2552,81 +2632,5 @@
     },
     "public": true,
     "created_at": "2024-07-28T01:20:15Z"
-  },
-  {
-    "id": "40519438489",
-    "type": "PushEvent",
-    "actor": {
-      "id": 57683378,
-      "login": "remcostoeten",
-      "display_login": "remcostoeten",
-      "gravatar_id": "",
-      "url": "https://api.github.com/users/remcostoeten",
-      "avatar_url": "https://avatars.githubusercontent.com/u/57683378?"
-    },
-    "repo": {
-      "id": 808278880,
-      "name": "remcostoeten/remcostoeten-all-in-one-dashboard",
-      "url": "https://api.github.com/repos/remcostoeten/remcostoeten-all-in-one-dashboard"
-    },
-    "payload": {
-      "repository_id": 808278880,
-      "push_id": 19509500034,
-      "size": 2,
-      "distinct_size": 2,
-      "ref": "refs/heads/feature/quick-tasks",
-      "head": "300ffa3294fd61745aabbf5128ad8be160ff49c2",
-      "before": "b8237b04506961a99bf8623c24d2603c5d048d86",
-      "commits": [
-        {
-          "sha": "b06c9fd1cacfa5ebfe6fddcc2f3551844681aeca",
-          "author": {
-            "email": "remcostoeten@hotmail.com",
-            "name": "Remco Stoeten"
-          },
-          "message": "Add basic task",
-          "distinct": true,
-          "url": "https://api.github.com/repos/remcostoeten/remcostoeten-all-in-one-dashboard/commits/b06c9fd1cacfa5ebfe6fddcc2f3551844681aeca"
-        },
-        {
-          "sha": "300ffa3294fd61745aabbf5128ad8be160ff49c2",
-          "author": {
-            "email": "remcostoeten@hotmail.com",
-            "name": "Remco Stoeten"
-          },
-          "message": "Add alot of task stuff",
-          "distinct": true,
-          "url": "https://api.github.com/repos/remcostoeten/remcostoeten-all-in-one-dashboard/commits/300ffa3294fd61745aabbf5128ad8be160ff49c2"
-        }
-      ]
-    },
-    "public": true,
-    "created_at": "2024-07-27T19:56:06Z"
-  },
-  {
-    "id": "40516720637",
-    "type": "CreateEvent",
-    "actor": {
-      "id": 57683378,
-      "login": "remcostoeten",
-      "display_login": "remcostoeten",
-      "gravatar_id": "",
-      "url": "https://api.github.com/users/remcostoeten",
-      "avatar_url": "https://avatars.githubusercontent.com/u/57683378?"
-    },
-    "repo": {
-      "id": 808278880,
-      "name": "remcostoeten/remcostoeten-all-in-one-dashboard",
-      "url": "https://api.github.com/repos/remcostoeten/remcostoeten-all-in-one-dashboard"
-    },
-    "payload": {
-      "ref": "feature/quick-tasks",
-      "ref_type": "branch",
-      "master_branch": "main",
-      "description": "A comprehensive personal dashboard built with NextJS 15, TypeScript, Drizzle, Turso (SQLite), TailwindCSS, Clerk, Uploadthing, ShadCN-UI, and more. This all-in-one solution offers tools for file storage, URL extractors, notes, finances, kanban, HTML to TSX, SVG to CSS, reverse geolocation, and more. Currently migrating features from a previous ",
-      "pusher_type": "user"
-    },
-    "public": true,
-    "created_at": "2024-07-27T14:21:02Z"
   }
 ]

@@ -7,10 +7,10 @@ interface RepoStore {
   removeRepo: (repo: string) => void;
 }
 
-export const useRepoStore = create<RepoStore>()(
-  persist(
+export const useRepoStore = create(
+  persist<RepoStore>(
     (set) => ({
-      repos: [],
+      repos: ["remcostoeten/all-in-one-dashboard", "remcostoeten/remcostoeten.com"], 
       addRepo: (repo) => set((state) => ({ repos: [...state.repos, repo] })),
       removeRepo: (repo) => set((state) => ({ repos: state.repos.filter(r => r !== repo) })),
     }),

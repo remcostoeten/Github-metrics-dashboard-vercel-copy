@@ -15,14 +15,15 @@ import { Switch } from "@/components/ui/switch";
 import { Slider } from "@/components/ui/slider";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { useAnimationSpeedStore } from '@/core/store/animationSpeedStore';
-import { useAnimationControlStore } from '@/core/store/animationControlStore';
-import { useAmountGithubActivityStore } from '@/core/store/amountGithubActivityStore';
-import { useCodeThemeStore, CodeThemeStore } from '@/core/store/codeThemeStore';
-import { useFontStore } from '@/core/store/fontStore';
-import { useRepoStore } from '@/core/store/repoStore';
+import { useAmountGithubActivityStore } from './store/useAmountGithubActivityStore';
+import { useAnimationControlStore } from './store/useAnimationControlStore';
+import { useAnimationSpeedStore } from './store/useAnimationSpeedStore';
+import { useCodeThemeStore, CodeThemeStore } from './store/useCodeThemeStore';
+import { useFontStore } from './store/useToggleSiteFontStore';
+import {useRepoStore} from './store/useRepoStore';
 
-const inter = Inter({ subsets: ["latin"] });
+const
+ inter = Inter({ subsets: ["latin"] });
 const noto = Noto_Sans_JP({ subsets: ["latin"] });
 
 const themes = {
