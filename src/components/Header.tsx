@@ -1,6 +1,6 @@
-import React from "react";
-import ProfileSection from "./ProfileSection";
-import Navigation from "./effects/direction-tabs";
+import React from 'react';
+import ProfileSection from './ProfileSection';
+import Navigation from './effects/direction-tabs';
 
 const Header: React.FC = () => {
   return (
@@ -8,7 +8,7 @@ const Header: React.FC = () => {
       <Navigation />
 
       <div className="self-center px-6 py-5 max-w-full text-base font-medium  w-[1043px] max-md:px-5">
-        <ProfileSection />{" "}
+        <ProfileSection />{' '}
       </div>
     </div>
   );

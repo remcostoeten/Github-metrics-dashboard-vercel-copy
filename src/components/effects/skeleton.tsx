@@ -8,7 +8,7 @@ const Skeleton = ({ className }) => (
 );
 
 const SVGSkeleton = ({ className }) => (
-  <svg className={className + " animate-pulse rounded bg-gray-300"} />
+  <svg className={className + ' animate-pulse rounded bg-gray-300'} />
 );
 
 const ActivitySkeleton = () => (

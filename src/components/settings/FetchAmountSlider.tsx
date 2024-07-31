@@ -1,42 +1,42 @@
-"use client";
+'use client';
 
-import { useState } from "react";
-import Link from "next/link";
-import { Button } from "@/components/ui/button";
+import { useState } from 'react';
+import Link from 'next/link';
+import { Button } from '@/components/ui/button';
 import {
   Card,
   CardHeader,
   CardTitle,
   CardDescription,
   CardContent,
-} from "@/components/ui/card";
-import { Slider } from "@/components/ui/slider";
+} from '@/components/ui/card';
+import { Slider } from '@/components/ui/slider';
 import {
   Select,
   SelectTrigger,
   SelectValue,
   SelectContent,
   SelectItem,
-} from "@/components/ui/select";
-import { Input } from "@/components/ui/input";
+} from '@/components/ui/select';
+import { Input } from '@/components/ui/input';
 import {
   TooltipProvider,
   Tooltip,
   TooltipTrigger,
   TooltipContent,
-} from "@/components/ui/tooltip";
+} from '@/components/ui/tooltip';
 
 export default function Component() {
   const [animationSpeed, setAnimationSpeed] = useState(1);
   const [activityListAmount, setActivityListAmount] = useState(10);
-  const [font, setFont] = useState("Inter");
-  const [codeBlockTheme, setCodeBlockTheme] = useState("github-dark");
-  const [githubUsername, setGithubUsername] = useState("");
+  const [font, setFont] = useState('Inter');
+  const [codeBlockTheme, setCodeBlockTheme] = useState('github-dark');
+  const [githubUsername, setGithubUsername] = useState('');
   const [githubRepository1, setGithubRepository1] = useState(
-    "remcostoeten/all-in-one-dashboard",
+    'remcostoeten/all-in-one-dashboard',
   );
   const [githubRepository2, setGithubRepository2] = useState(
-    "remcostoeten/all-in-one-dashboard",
+    'remcostoeten/all-in-one-dashboard',
   );
   const [stopActivityAnimation, setStopActivityAnimation] = useState(false);
   const handleAnimationSpeedChange = (value) => {

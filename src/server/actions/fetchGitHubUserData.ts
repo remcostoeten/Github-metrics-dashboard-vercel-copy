@@ -1,6 +1,6 @@
-"use server";
+'use server';
 
-import { revalidatePath } from "next/cache";
+import { revalidatePath } from 'next/cache';
 
 export interface GitHubUserData {
   login: string;
@@ -24,7 +24,7 @@ export async function fetchGitHubUserData(
     const response = await fetch(`https://api.github.com/users/${username}`, {
       headers: {
         Authorization: `token ${githubToken}`,
-        Accept: "application/vnd.github.v3+json",
+        Accept: 'application/vnd.github.v3+json',
       },
       next: { revalidate: 3600 }, // Revalidate every hour
     });
@@ -39,11 +39,11 @@ export async function fetchGitHubUserData(
 
     const data: GitHubUserData = await response.json();
 
-    revalidatePath("/"); // Adjust this path as needed
+    revalidatePath('/'); // Adjust this path as needed
 
     return data;
   } catch (error) {
-    console.error("Error fetching GitHub user data:", error);
+    console.error('Error fetching GitHub user data:', error);
     return null;
   }
 }

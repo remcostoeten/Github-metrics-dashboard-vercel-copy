@@ -1,27 +1,27 @@
-"use client";
+'use client';
 
-import { useState } from "react";
-import { AnimatePresence, MotionConfig, motion } from "framer-motion";
-import useMeasure from "react-use-measure";
-import { usePathname, useRouter } from "next/navigation";
-import { NavigationProps, Tab } from "@/types";
-import { navigationItems } from "@/core/config/site-config";
-import { cn } from "@/core/helpers/utils";
+import { useState } from 'react';
+import { AnimatePresence, MotionConfig, motion } from 'framer-motion';
+import useMeasure from 'react-use-measure';
+import { usePathname, useRouter } from 'next/navigation';
+import { NavigationProps, Tab } from '@/types';
+import { navigationItems } from '@/core/config/site-config';
+import { cn } from '@/core/helpers/utils';
 
 const Navigation = ({ className, rounded }: NavigationProps) => {
   const pathname = usePathname();
   const router = useRouter();
 
   const isActive = (path: string) => {
-    return path === "/"
-      ? pathname === "/" || pathname === ""
+    return path === '/'
+      ? pathname === '/' || pathname === ''
       : pathname === path;
   };
 
   const tabs: Tab[] = navigationItems.map((item) => ({
     ...item,
     isActive: isActive(item.path),
-    "aria-current": isActive(item.path) ? "page" : undefined,
+    'aria-current': isActive(item.path) ? 'page' : undefined,
     content: null,
   }));
 
@@ -50,17 +50,17 @@ const Navigation = ({ className, rounded }: NavigationProps) => {
     initial: (direction: number) => ({
       x: 300 * direction,
       opacity: 0,
-      filter: "blur(4px)",
+      filter: 'blur(4px)',
     }),
     active: {
       x: 0,
       opacity: 1,
-      filter: "blur(0px)",
+      filter: 'blur(0px)',
     },
     exit: (direction: number) => ({
       x: -300 * direction,
       opacity: 0,
-      filter: "blur(4px)",
+      filter: 'blur(4px)',
     }),
   };
 
@@ -71,7 +71,7 @@ const Navigation = ({ className, rounded }: NavigationProps) => {
     >
       <div
         className={cn(
-          "flex space-x-1 border border-none rounded-full cursor-pointer px-[3px] py-[3.2px] shadow-inner-shadow",
+          'flex space-x-1 border border-none rounded-full cursor-pointer px-[3px] py-[3.2px] shadow-inner-shadow',
           className,
           rounded,
         )}
@@ -81,27 +81,27 @@ const Navigation = ({ className, rounded }: NavigationProps) => {
             key={tab.id}
             onClick={() => handleTabClick(tab.id)}
             className={cn(
-              "relative h-[5px] bottom-0 px-3.5 py-1.5 text-xs sm:text-sm font-medium text-neutral-200 transition focus-visible:outline-1 focus-visible:ring-1 focus-visible:outline-none flex gap-2 items-center",
+              'relative h-[5px] bottom-0 px-3.5 py-1.5 text-xs sm:text-sm font-medium text-neutral-200 transition focus-visible:outline-1 focus-visible:ring-1 focus-visible:outline-none flex gap-2 items-center',
               tab.isActive
-                ? "text-white"
-                : "hover:text-neutral-300/60 text-neutral-200/80",
+                ? 'text-white'
+                : 'hover:text-neutral-300/60 text-neutral-200/80',
               rounded,
             )}
-            style={{ WebkitTapHighlightColor: "transparent" }}
+            style={{ WebkitTapHighlightColor: 'transparent' }}
           >
             {tab.isActive && (
               <motion.span
                 layoutId="bubble"
                 className="absolute inset-0 !bottom-0 top-6 z-10 bg-neutral-700 mix-blend-difference shadow-inner-shadow border border-white/10"
                 style={rounded ? { borderRadius: 9 } : { borderRadius: 9999 }}
-                transition={{ type: "spring", bounce: 0.19, duration: 0.4 }}
+                transition={{ type: 'spring', bounce: 0.19, duration: 0.4 }}
               />
             )}
             {tab.label}
           </button>
         ))}
       </div>
-      <MotionConfig transition={{ duration: 0.4, type: "spring", bounce: 0.2 }}>
+      <MotionConfig transition={{ duration: 0.4, type: 'spring', bounce: 0.2 }}>
         <motion.div
           className="relative mx-auto w-full h-full overflow-hidden"
           initial={false}

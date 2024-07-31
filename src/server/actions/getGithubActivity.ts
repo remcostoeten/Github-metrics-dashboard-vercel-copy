@@ -1,9 +1,9 @@
-"use server";
+'use server';
 
-import { RepoData } from "@/types";
-import fs from "fs";
-import path from "path";
-import { siteConfig, siteConfiguration } from "@/core/config/site-config";
+import { RepoData } from '@/types';
+import fs from 'fs';
+import path from 'path';
+import { siteConfig, siteConfiguration } from '@/core/config/site-config';
 
 let logBuffer: any[] = [];
 const logInterval = 30 * 60 * 1000; // 30 minutes in milliseconds
@@ -38,7 +38,7 @@ export async function fetchGitHubActivities(
 ): Promise<RepoData[]> {
   const githubToken = process.env.GITHUB_TOKEN;
   const username = siteConfig.githubUsername;
-  console.log("Fetching GitHub activities...");
+  console.log('Fetching GitHub activities...');
 
   try {
     const response = await fetch(
@@ -46,7 +46,7 @@ export async function fetchGitHubActivities(
       {
         headers: {
           Authorization: `token ${githubToken}`,
-          Accept: "application/vnd.github.v3+json",
+          Accept: 'application/vnd.github.v3+json',
         },
         next: { revalidate: 10 }, // Revalidate every 10 seconds
       },
@@ -57,8 +57,8 @@ export async function fetchGitHubActivities(
     }
 
     const events = await response.json();
-    console.log("GitHub events data:", events);
-    writeLogsToJson(events, "github_events.json");
+    console.log('GitHub events data:', events);
+    writeLogsToJson(events, 'github_events.json');
 
     const activities: RepoData[] = events
       .slice(0, fetchAmount)
@@ -72,49 +72,49 @@ export async function fetchGitHubActivities(
         payload: event.payload,
       }));
 
-    console.log("Parsed activities:", activities);
-    writeLogsToJson(activities, "parsed_activities.json");
+    console.log('Parsed activities:', activities);
+    writeLogsToJson(activities, 'parsed_activities.json');
     return activities;
   } catch (error) {
-    console.error("Error fetching GitHub activities:", error);
-    writeLogsToJson({ error: error.message }, "error_log.json");
-    throw new Error("Failed to fetch GitHub activities");
+    console.error('Error fetching GitHub activities:', error);
+    writeLogsToJson({ error: error.message }, 'error_log.json');
+    throw new Error('Failed to fetch GitHub activities');
   }
 }
 
 function getEventContent(event: any): string {
   switch (event.type) {
-    case "PushEvent":
+    case 'PushEvent':
       return `Pushed to ${event.repo.name}`;
-    case "CreateEvent":
-      return `Created ${event.payload.ref_type} ${event.payload.ref || "master"} in ${event.repo.name}`;
-    case "ForkEvent":
+    case 'CreateEvent':
+      return `Created ${event.payload.ref_type} ${event.payload.ref || 'master'} in ${event.repo.name}`;
+    case 'ForkEvent':
       return `Forked ${event.repo.name} to ${event.payload.forkee.full_name}`;
-    case "WatchEvent":
+    case 'WatchEvent':
       return `Started watching ${event.repo.name}`;
-    case "IssuesEvent":
+    case 'IssuesEvent':
       return `${event.payload.action} issue #${event.payload.issue.number} in ${event.repo.name}`;
-    case "IssueCommentEvent":
+    case 'IssueCommentEvent':
       return `Commented on issue #${event.payload.issue.number} in ${event.repo.name}`;
-    case "PullRequestEvent":
+    case 'PullRequestEvent':
       return `${event.payload.action} pull request #${event.payload.pull_request.number} in ${event.repo.name}`;
-    case "PullRequestReviewEvent":
+    case 'PullRequestReviewEvent':
       return `Reviewed pull request #${event.payload.pull_request.number} in ${event.repo.name}`;
-    case "PullRequestReviewCommentEvent":
+    case 'PullRequestReviewCommentEvent':
       return `Commented on pull request #${event.payload.pull_request.number} in ${event.repo.name}`;
-    case "DeleteEvent":
+    case 'DeleteEvent':
       return `Deleted ${event.payload.ref_type} ${event.payload.ref} in ${event.repo.name}`;
-    case "GollumEvent":
+    case 'GollumEvent':
       return `Updated the wiki in ${event.repo.name}`;
-    case "PublicEvent":
+    case 'PublicEvent':
       return `Made ${event.repo.name} public`;
-    case "ReleaseEvent":
+    case 'ReleaseEvent':
       return `Released ${event.payload.release.tag_name} in ${event.repo.name}`;
-    case "MemberEvent":
+    case 'MemberEvent':
       return `Added ${event.payload.member.login} as a collaborator to ${event.repo.name}`;
-    case "CommitCommentEvent":
+    case 'CommitCommentEvent':
       return `Commented on a commit in ${event.repo.name}`;
-    case "SponsorshipEvent":
+    case 'SponsorshipEvent':
       return `${event.payload.action} sponsorship for ${event.repo.name}`;
     default:
       return `Performed an action on ${event.repo.name}`;

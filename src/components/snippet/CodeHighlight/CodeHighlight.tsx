@@ -1,7 +1,7 @@
-import React from "react";
-import FileHeader from "./FileHeader";
-import CodeLine from "./CodeLine";
-import CodeContent from "./CodeContent";
+import React from 'react';
+import FileHeader from './FileHeader';
+import CodeLine from './CodeLine';
+import CodeContent from './CodeContent';
 
 interface CodeHighlightProps {
   title: string;

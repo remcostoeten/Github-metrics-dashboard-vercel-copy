@@ -1,8 +1,8 @@
-"use client";
-import React, { ReactElement, useEffect, useMemo, useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
-import { useAnimationSpeedStore } from "@/core/store/useAnimationSpeedStore";
-import { useAnimationControlStore } from "@/core/store/useAnimationControlStore";
+'use client';
+import React, { ReactElement, useEffect, useMemo, useState } from 'react';
+import { AnimatePresence, motion } from 'framer-motion';
+import { useAnimationSpeedStore } from '@/core/store/useAnimationSpeedStore';
+import { useAnimationControlStore } from '@/core/store/useAnimationControlStore';
 
 export interface AnimatedListProps {
   className?: string;
@@ -80,7 +80,7 @@ export const AnimatedList = React.memo(
   },
 );
 
-AnimatedList.displayName = "AnimatedList";
+AnimatedList.displayName = 'AnimatedList';
 
 export function AnimatedListItem({ children }: { children: React.ReactNode }) {
   const animationSpeed = useAnimationSpeedStore(
@@ -91,7 +91,7 @@ export function AnimatedListItem({ children }: { children: React.ReactNode }) {
     animate: { scale: 1, opacity: 1, originY: 0 },
     exit: { scale: 0, opacity: 0 },
     transition: {
-      type: "spring",
+      type: 'spring',
       stiffness: 350,
       damping: 40,
       duration: animationSpeed / 1000,

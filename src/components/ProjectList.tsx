@@ -1,10 +1,10 @@
-'use client'
+'use client';
 
 import React, { useState } from 'react';
-import Link from "next/link";
-import ProjectCard from "./ProjectCard";
-import HoverCard from "./effects/hover-card";
+import Link from 'next/link';
+import HoverCard from './effects/hover-card';
 import { useRepoStore } from '@/core/store/repoStore';
+import ProjectCard from './ProjectCard';
 
 export default function ProjectList() {
   const [inputRepo, setInputRepo] = useState('');
@@ -28,15 +28,20 @@ export default function ProjectList() {
           placeholder="Enter GitHub repo (e.g., username/repo)"
           className="p-2 border rounded"
         />
-        <button type="submit" className="ml-2 p-2 bg-blue-500 text-white rounded">Add Repo</button>
+        <button
+          type="submit"
+          className="ml-2 p-2 bg-blue-500 text-white rounded"
+        >
+          Add Repo
+        </button>
       </form>
-      
+
       {repos.map((repo, index) => (
         <HoverCard key={index}>
           <ProjectCard repoName={repo} />
         </HoverCard>
       ))}
-      
+
       <Link
         className="mt-9 text-sm text-blue-500 max-md:max-w-full"
         target="_blank"

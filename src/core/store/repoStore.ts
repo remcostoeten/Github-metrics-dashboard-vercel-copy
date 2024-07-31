@@ -11,6 +11,7 @@ interface RepoStore {
 export const useRepoStore = create<RepoStore>((set) => ({
   repos: configRepos,
   addRepo: (repo) => set((state) => ({ repos: [...state.repos, repo] })),
-  removeRepo: (repo) => set((state) => ({ repos: state.repos.filter(r => r !== repo) })),
+  removeRepo: (repo) =>
+    set((state) => ({ repos: state.repos.filter((r) => r !== repo) })),
   replaceRepos: (newRepos) => set({ repos: newRepos }),
 }));

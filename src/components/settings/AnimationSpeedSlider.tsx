@@ -1,7 +1,7 @@
-"use client";
+'use client';
 
-import React, { useState, useEffect } from "react";
-import { useAnimationSpeedStore } from "@/core/store/useAnimationSpeedStore";
+import React, { useState, useEffect } from 'react';
+import { useAnimationSpeedStore } from '@/core/store/useAnimationSpeedStore';
 
 export function AnimationSpeedSlider() {
   const animationSpeed = useAnimationSpeedStore(
@@ -18,7 +18,7 @@ export function AnimationSpeedSlider() {
 
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
-    console.log("Animation speed updated to:", inputValue);
+    console.log('Animation speed updated to:', inputValue);
     setAnimationSpeed(inputValue);
   };
 

@@ -1,9 +1,9 @@
-"use client";
+'use client';
 
-import React, { useState } from "react";
-import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
-import * as prismThemes from "react-syntax-highlighter/dist/esm/styles/prism";
-import { toast } from "sonner";
+import React, { useState } from 'react';
+import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
+import * as prismThemes from 'react-syntax-highlighter/dist/esm/styles/prism';
+import { toast } from 'sonner';
 import {
   Dialog,
   DialogTrigger,
@@ -12,7 +12,7 @@ import {
   DialogTitle,
   DialogDescription,
   Button,
-} from "@/components/ui";
+} from '@/components/ui';
 
 interface CodeContentProps {
   children: React.ReactNode;
@@ -29,11 +29,11 @@ const themes = Object.keys(prismThemes).reduce(
 
 const CodeContent: React.FC<CodeContentProps> = ({ children }) => {
   const [currentTheme, setCurrentTheme] =
-    useState<keyof typeof themes>("vscDarkPlus");
+    useState<keyof typeof themes>('vscDarkPlus');
   const [isDialogOpen, setIsDialogOpen] = useState(false);
-  const [inputText, setInputText] = useState("");
+  const [inputText, setInputText] = useState('');
   const [codeString, setCodeString] = useState(
-    React.Children.toArray(children).join("\n"),
+    React.Children.toArray(children).join('\n'),
   );
 
   const toggleTheme = () => {
