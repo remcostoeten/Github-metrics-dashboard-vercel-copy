@@ -10,6 +10,10 @@ export async function getRepoData(repoName: string): Promise<ProjectData> {
     githubToken ? "Token is set" : "Token is not set",
   );
 
+  if (!repoName.includes('/')) {
+    throw new Error('Invalid repository name. Please use the format "username/repo".');
+  }
+
   const repoResponse = await fetch(`https://api.github.com/repos/${repoName}`, {
     headers: {
       Authorization: `token ${githubToken}`,

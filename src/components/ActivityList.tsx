@@ -75,7 +75,7 @@ const ActivityList: React.FC = () => {
       if (!document.hidden && worker) {
         worker.postMessage({ type: "setInterval", interval: 60000 });
       } else if (worker) {
-        worker.postMessage({ type: "setInterval", interval: 300000 }); // 5 minutes when tab is not visible
+        worker.postMessage({ type: "setInterval", interval: 300000 }); 
       }
     };
     document.addEventListener("visibilitychange", handleVisibilityChange);

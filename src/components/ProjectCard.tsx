@@ -14,12 +14,14 @@ import Link from "next/link";
 import { getRepoData } from "@/server/actions/getRepoData";
 import { Tooltip, TooltipContent, TooltipTrigger } from "./ui/tooltip";
 import { useIncrementingTime } from "@/core/hooks/useIncrementingTime";
+import { useRepoStore } from "@/core/store/repoStore";
 
 export default function ProjectCard({ repoName }: ProjectCardProps) {
   const [projectData, setProjectData] = React.useState<ProjectData | null>(
     null,
   );
   const [isPending, startTransition] = React.useTransition();
+  const { removeRepo } = useRepoStore();
 
   const fetchData = React.useCallback(async () => {
     startTransition(async () => {
@@ -57,15 +59,19 @@ export default function ProjectCard({ repoName }: ProjectCardProps) {
           productionTime={timeSinceDeployment}
           latestTime={timeSinceLastCommit}
         />
-        <CardFooter repoName={projectData.full_name} />
+        <CardFooter 
+          repoName={projectData.full_name} 
+          onRemove={() => removeRepo(repoName)}
+        />
       </div>
       <motion.div className="pointer-events-none absolute -inset-px rounded-md opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
     </div>
   );
 }
 
-const CardHeader: React.FC<{ title: string; href: string }> = ({
+const CardHeader: React.FC<{onRemove, title: string; href: string }> = ({
   href,
+  onRemove,
   title,
 }) => (
   <Link
@@ -76,13 +82,12 @@ const CardHeader: React.FC<{ title: string; href: string }> = ({
     <h2 className="text-2xl font-semibold tracking-tight text-white">
       {title}
     </h2>
-    <Button
-      variant="gooeyLeft"
-      type="button"
-      className="text-[#cecece] text-sm leading-8 bg-black cursor-pointer font-normal h-8 min-w-min  text-center capitalize whitespace-nowrap w-[66.925px] px-[18.4px] rounded border-[0.8px] border-solid border-zinc-800"
+    <button
+      onClick={onRemove}
+      className="text-red-500 hover:text-red-700"
     >
-      visit
-    </Button>
+      Remove
+    </button>
   </Link>
 );
 
@@ -150,10 +155,22 @@ const CommitInfo: React.FC<{
   </div>
 );
 
-const CardFooter: React.FC<{ repoName: string }> = ({ repoName }) => (
-  <div className="flex gap-2.5 px-5 py-5 text-sm font-medium text-white border-t border-zinc-800">
-    <GithubLogo />
-    <div>{repoName}</div>
+const CardFooter: React.FC<{ repoName: string; onRemove: () => void }> = 
+  ({ repoName, onRemove }) => (
+  <div className="flex justify-between items-center gap-2.5 px-5 py-5 text-sm font-medium text-white border-t border-zinc-800">
+    <div className="flex items-center gap-2.5">
+      <GithubLogo />
+      <div>{repoName}</div>
+    </div>
+ 
+
+    <Button
+      variant="gooeyLeft"
+      type="button"
+      className="text-white text-sm leading-8 bg-black cursor-pointer font-normal min-w-min  text-center  whitespace-nowrap py-4 px-8 rounded border-[0.8px] border-solid border-zinc-800"
+    >
+      visit
+    </Button>
   </div>
 );
 
@@ -164,6 +181,7 @@ function Pill({ children }) {
     </span>
   );
 }
+
 
 function GithubLogo() {
   return (

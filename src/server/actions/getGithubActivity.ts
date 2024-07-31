@@ -3,15 +3,19 @@
 import { RepoData } from "@/types";
 import fs from "fs";
 import path from "path";
-import { siteConfig } from "@/core/config/site-config";
+import { siteConfig, siteConfiguration } from "@/core/config/site-config";
 
 let logBuffer: any[] = [];
 const logInterval = 30 * 60 * 1000; // 30 minutes in milliseconds
 
 function writeLogsToJson(data: any, filename: string) {
+  if (!siteConfiguration.enableLogging) {
+    return; // Exit if logging is disabled
+  }
+
   logBuffer.push(data);
 
-  const logDir = path.join(process.cwd(), "logs");
+  const logDir = path.join(process.cwd(), siteConfiguration.logDirectory);
   if (!fs.existsSync(logDir)) {
     fs.mkdirSync(logDir);
   }
