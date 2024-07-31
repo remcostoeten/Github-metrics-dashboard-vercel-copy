@@ -1,117 +1,145 @@
 [
   {
-    "id": "40552684647",
-    "imageUrl": "https://avatars.githubusercontent.com/u/57683378?",
-    "type": "CreateEvent",
-    "repoName": "remcostoeten/Test-api",
-    "content": "Created branch main in remcostoeten/Test-api",
-    "timestamp": "2024-07-29T14:00:37Z",
-    "payload": {
-      "ref": "main",
-      "ref_type": "branch",
-      "master_branch": "main",
-      "description": "test api",
-      "pusher_type": "user"
-    }
-  },
-  {
-    "id": "40552682421",
-    "imageUrl": "https://avatars.githubusercontent.com/u/57683378?",
-    "type": "CreateEvent",
-    "repoName": "remcostoeten/Test-api",
-    "content": "Created repository master in remcostoeten/Test-api",
-    "timestamp": "2024-07-29T14:00:34Z",
-    "payload": {
-      "ref": null,
-      "ref_type": "repository",
-      "master_branch": "master",
-      "description": "test api",
-      "pusher_type": "user"
-    }
-  },
-  {
-    "id": "40549339113",
+    "id": "40570411973",
     "imageUrl": "https://avatars.githubusercontent.com/u/57683378?",
     "type": "PushEvent",
     "repoName": "remcostoeten/nextjs-github-metrics-vercel-style",
     "content": "Pushed to remcostoeten/nextjs-github-metrics-vercel-style",
-    "timestamp": "2024-07-29T12:30:09Z",
+    "timestamp": "2024-07-30T02:02:54Z",
     "payload": {
       "repository_id": 834993883,
-      "push_id": 19526541728,
+      "push_id": 19536811283,
       "size": 1,
       "distinct_size": 1,
-      "ref": "refs/heads/master",
-      "head": "025f23d425a75e40d1ba0ec5aa65c5d5db5311e6",
-      "before": "6759569605dfcf538788deceb938de6fc369790f",
+      "ref": "refs/heads/feature/state",
+      "head": "e46704e1674f9ac13da0981fe79a46b6c00fc1ea",
+      "before": "95bdd972f576af18d49ede60cf764854ced900f2",
       "commits": [
         {
-          "sha": "025f23d425a75e40d1ba0ec5aa65c5d5db5311e6",
+          "sha": "e46704e1674f9ac13da0981fe79a46b6c00fc1ea",
           "author": {
             "email": "remcostoeten@hotmail.com",
             "name": "Remco Stoeten"
           },
-          "message": "feat: add auto update of minutes w/o refresh",
+          "message": "WiP",
           "distinct": true,
-          "url": "https://api.github.com/repos/remcostoeten/nextjs-github-metrics-vercel-style/commits/025f23d425a75e40d1ba0ec5aa65c5d5db5311e6"
+          "url": "https://api.github.com/repos/remcostoeten/nextjs-github-metrics-vercel-style/commits/e46704e1674f9ac13da0981fe79a46b6c00fc1ea"
         }
       ]
     }
   },
   {
-    "id": "40548438714",
+    "id": "40570080783",
     "imageUrl": "https://avatars.githubusercontent.com/u/57683378?",
     "type": "PushEvent",
     "repoName": "remcostoeten/nextjs-github-metrics-vercel-style",
     "content": "Pushed to remcostoeten/nextjs-github-metrics-vercel-style",
-    "timestamp": "2024-07-29T12:03:34Z",
+    "timestamp": "2024-07-30T01:41:44Z",
     "payload": {
       "repository_id": 834993883,
-      "push_id": 19526095239,
+      "push_id": 19536635228,
       "size": 1,
       "distinct_size": 1,
-      "ref": "refs/heads/master",
-      "head": "6759569605dfcf538788deceb938de6fc369790f",
-      "before": "382cab1056e8e4b4d3171ad07551af7acb820838",
+      "ref": "refs/heads/feature/state",
+      "head": "95bdd972f576af18d49ede60cf764854ced900f2",
+      "before": "7160017f049ecc8e10117ea173be326ca0c7548f",
       "commits": [
         {
-          "sha": "6759569605dfcf538788deceb938de6fc369790f",
+          "sha": "95bdd972f576af18d49ede60cf764854ced900f2",
           "author": {
             "email": "remcostoeten@hotmail.com",
             "name": "Remco Stoeten"
           },
-          "message": "update",
+          "message": "A lotof ui work and start of sidepanel",
           "distinct": true,
-          "url": "https://api.github.com/repos/remcostoeten/nextjs-github-metrics-vercel-style/commits/6759569605dfcf538788deceb938de6fc369790f"
+          "url": "https://api.github.com/repos/remcostoeten/nextjs-github-metrics-vercel-style/commits/95bdd972f576af18d49ede60cf764854ced900f2"
         }
       ]
     }
   },
   {
-    "id": "40548312170",
+    "id": "40566152758",
     "imageUrl": "https://avatars.githubusercontent.com/u/57683378?",
     "type": "PushEvent",
     "repoName": "remcostoeten/nextjs-github-metrics-vercel-style",
     "content": "Pushed to remcostoeten/nextjs-github-metrics-vercel-style",
-    "timestamp": "2024-07-29T11:59:37Z",
+    "timestamp": "2024-07-29T21:41:17Z",
     "payload": {
       "repository_id": 834993883,
-      "push_id": 19526031789,
+      "push_id": 19534601902,
       "size": 1,
       "distinct_size": 1,
-      "ref": "refs/heads/master",
-      "head": "382cab1056e8e4b4d3171ad07551af7acb820838",
-      "before": "188860b64b6e2b764a71c410a31fc5ea4842585c",
+      "ref": "refs/heads/feature/state",
+      "head": "7160017f049ecc8e10117ea173be326ca0c7548f",
+      "before": "14bfee57eb1afbd270bddc52c5ad082bcf8e04fc",
       "commits": [
         {
-          "sha": "382cab1056e8e4b4d3171ad07551af7acb820838",
+          "sha": "7160017f049ecc8e10117ea173be326ca0c7548f",
           "author": {
             "email": "remcostoeten@hotmail.com",
             "name": "Remco Stoeten"
           },
-          "message": "fix:",
+          "message": "logic: stop animation after cyclus and add card hover effect",
           "distinct": true,
-          "url": "https://api.github.com/repos/remcostoeten/nextjs-github-metrics-vercel-style/commits/382cab1056e8e4b4d3171ad07551af7acb820838"
+          "url": "https://api.github.com/repos/remcostoeten/nextjs-github-metrics-vercel-style/commits/7160017f049ecc8e10117ea173be326ca0c7548f"
+        }
+      ]
+    }
+  },
+  {
+    "id": "40562650249",
+    "imageUrl": "https://avatars.githubusercontent.com/u/57683378?",
+    "type": "PushEvent",
+    "repoName": "remcostoeten/nextjs-github-metrics-vercel-style",
+    "content": "Pushed to remcostoeten/nextjs-github-metrics-vercel-style",
+    "timestamp": "2024-07-29T19:20:47Z",
+    "payload": {
+      "repository_id": 834993883,
+      "push_id": 19532902103,
+      "size": 1,
+      "distinct_size": 1,
+      "ref": "refs/heads/feature/state",
+      "head": "14bfee57eb1afbd270bddc52c5ad082bcf8e04fc",
+      "before": "5e084e94f9eb728e1f90f91004f0c6d544d28e1e",
+      "commits": [
+        {
+          "sha": "14bfee57eb1afbd270bddc52c5ad082bcf8e04fc",
+          "author": {
+            "email": "remcostoeten@hotmail.com",
+            "name": "Remco Stoeten"
+          },
+          "message": "feat: zustand store for items amount",
+          "distinct": true,
+          "url": "https://api.github.com/repos/remcostoeten/nextjs-github-metrics-vercel-style/commits/14bfee57eb1afbd270bddc52c5ad082bcf8e04fc"
+        }
+      ]
+    }
+  },
+  {
+    "id": "40561895412",
+    "imageUrl": "https://avatars.githubusercontent.com/u/57683378?",
+    "type": "PushEvent",
+    "repoName": "remcostoeten/nextjs-github-metrics-vercel-style",
+    "content": "Pushed to remcostoeten/nextjs-github-metrics-vercel-style",
+    "timestamp": "2024-07-29T18:52:23Z",
+    "payload": {
+      "repository_id": 834993883,
+      "push_id": 19532536185,
+      "size": 1,
+      "distinct_size": 1,
+      "ref": "refs/heads/feature/state",
+      "head": "5e084e94f9eb728e1f90f91004f0c6d544d28e1e",
+      "before": "bc0fe1de0bf2d73015be23397b91399ef640869d",
+      "commits": [
+        {
+          "sha": "5e084e94f9eb728e1f90f91004f0c6d544d28e1e",
+          "author": {
+            "email": "remcostoeten@hotmail.com",
+            "name": "Remco Stoeten"
+          },
+          "message": "add slider and zustand",
+          "distinct": true,
+          "url": "https://api.github.com/repos/remcostoeten/nextjs-github-metrics-vercel-style/commits/5e084e94f9eb728e1f90f91004f0c6d544d28e1e"
         }
       ]
     }

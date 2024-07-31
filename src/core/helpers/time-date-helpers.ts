@@ -15,18 +15,22 @@ export function formatTimeAgo(timestamp: string) {
 }
 
 export function getTimeSince(date: Date): string {
-  const seconds = Math.floor((new Date().getTime() - date.getTime()) / 1000);
-  let interval = seconds / 31536000;
-  if (interval > 1) return Math.floor(interval) + "y ";
-  interval = seconds / 2592000;
-  if (interval > 1) return Math.floor(interval) + "mo ";
-  interval = seconds / 86400;
-  if (interval > 1) return Math.floor(interval) + "d ";
-  interval = seconds / 3600;
-  if (interval > 1) return Math.floor(interval) + "h ";
-  interval = seconds / 60;
-  if (interval > 1) return Math.floor(interval) + "m ";
-  return Math.floor(seconds) + "s ";
+  const now = new Date();
+  const secondsPast = (now.getTime() - date?.getTime()) / 1000;
+
+  if (secondsPast < 60) {
+    return `${Math.round(secondsPast)}s ago`;
+  }
+  if (secondsPast < 3600) {
+    return `${Math.round(secondsPast / 60)}m ago`;
+  }
+  if (secondsPast <= 86400) {
+    return `${Math.round(secondsPast / 3600)}h ago`;
+  }
+  if (secondsPast > 86400) {
+    const days = Math.round(secondsPast / 86400);
+    return `${days}d ago`;
+  }
 }
 
 export function getRelativeTime(timestamp: number): string {

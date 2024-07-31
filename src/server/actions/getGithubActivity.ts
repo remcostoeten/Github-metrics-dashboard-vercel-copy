@@ -3,21 +3,37 @@
 import { RepoData } from "@/types";
 import fs from "fs";
 import path from "path";
+import { siteConfig } from "@/core/config/site-config";
 
-// Function to write logs to a JSON file
+let logBuffer: any[] = [];
+const logInterval = 30 * 60 * 1000; // 30 minutes in milliseconds
+
 function writeLogsToJson(data: any, filename: string) {
+  logBuffer.push(data);
+
   const logDir = path.join(process.cwd(), "logs");
   if (!fs.existsSync(logDir)) {
     fs.mkdirSync(logDir);
   }
-  const filePath = path.join(logDir, filename);
-  fs.writeFileSync(filePath, JSON.stringify(data, null, 2));
-  console.log(`Logs written to ${filePath}`);
+
+  const writeLogs = () => {
+    if (logBuffer.length > 0) {
+      const filePath = path.join(logDir, filename);
+      fs.writeFileSync(filePath, JSON.stringify(logBuffer, null, 2));
+      console.log(`Logs written to ${filePath}`);
+      logBuffer = []; // Clear the buffer after writing
+    }
+  };
+
+  // Set up the interval to write logs every 30 minutes
+  setInterval(writeLogs, logInterval);
 }
 
-export async function fetchGitHubActivities(): Promise<RepoData[]> {
+export async function fetchGitHubActivities(
+  fetchAmount: number,
+): Promise<RepoData[]> {
   const githubToken = process.env.GITHUB_TOKEN;
-  const username = "remcostoeten"; // Your GitHub username
+  const username = siteConfig.githubUsername;
   console.log("Fetching GitHub activities...");
 
   try {
@@ -40,19 +56,20 @@ export async function fetchGitHubActivities(): Promise<RepoData[]> {
     console.log("GitHub events data:", events);
     writeLogsToJson(events, "github_events.json");
 
-    const activities: RepoData[] = events.slice(0, 5).map((event: any) => ({
-      id: event.id,
-      imageUrl: event.actor.avatar_url,
-      type: event.type,
-      repoName: event.repo.name,
-      content: getEventContent(event),
-      timestamp: event.created_at, // Return the ISO timestamp
-      payload: event.payload,
-    }));
+    const activities: RepoData[] = events
+      .slice(0, fetchAmount)
+      .map((event: any) => ({
+        id: event.id,
+        imageUrl: event.actor.avatar_url,
+        type: event.type,
+        repoName: event.repo.name,
+        content: getEventContent(event),
+        timestamp: event.created_at,
+        payload: event.payload,
+      }));
 
     console.log("Parsed activities:", activities);
     writeLogsToJson(activities, "parsed_activities.json");
-
     return activities;
   } catch (error) {
     console.error("Error fetching GitHub activities:", error);

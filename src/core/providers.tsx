@@ -4,6 +4,10 @@ import FontSwitcher from "@/components/FontToggle";
 import { ReactNode, useState, useEffect } from "react";
 import { Toaster } from "sonner";
 import { Noto_Sans_JP } from "next/font/google";
+import { AnimationControlButton } from "@/components/settings/AnimationControlButton";
+import { AnimationSpeedSlider } from "@/components/settings/AnimationSpeedSlider";
+import FetchAmountSlider from "@/components/settings/FetchAmountSlider";
+import { TooltipProvider } from "@/components/ui/tooltip";
 
 const noto = Noto_Sans_JP({ subsets: ["latin"] });
 
@@ -22,10 +26,16 @@ export default function Providers({ children }: ProviderProps) {
     <>
       <html className={fontClass} lang="en">
         <body>
-          {children}
-          <Toaster />
+          <TooltipProvider>
+            {children}
+            <Toaster />
+
+            {/* <FetchAmountSlider />
+          <AnimationControlButton />
+          <AnimationSpeedSlider/>
           <FontSwitcher onFontChange={handleFontChange} />{" "}
-          {/* Pass the callback */}
+          Pass the callback */}
+          </TooltipProvider>
         </body>
       </html>
     </>

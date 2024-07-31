@@ -25,13 +25,6 @@ export interface GitHubEvent {
   payload?: any;
 }
 
-export interface CardBodyProps {
-  productionUrl: string;
-  latestUrl: string;
-  productionTime: string;
-  latestTime: string;
-}
-
 export interface UrlInfoProps {
   url: string;
   label: string;
@@ -52,21 +45,54 @@ export interface NavigationProps {
 }
 
 export interface ProjectData {
-  name: string;
-  html_url: string;
-  pushed_at: string;
-  updated_at: string;
   full_name: string;
-  productionUrl: string;
-  latestUrl: string;
+  name: string;
   url: string;
-  lastDeployedAt: string;
+  productionUrl: string;
+  latestCommit: {
+    message: string;
+    date: string;
+    author: string;
+    branch: string;
+  };
+  pushed_at: string;
 }
 
 export interface ProjectCardProps {
   repoName: string;
-  url: string;
 }
+
+export interface CardBodyProps {
+  productionUrl: string;
+  latestCommit: ProjectData["latestCommit"];
+  productionTime: string;
+  latestTime: string;
+}
+
+export interface UrlInfoProps {
+  url: string;
+  label: string;
+  time: string;
+}
+
+export interface ProjectData {
+  full_name: string;
+  name: string;
+  url: string;
+  productionUrl: string;
+  latestCommit: {
+    message: string;
+    date: string;
+    author: string;
+    branch: string;
+  };
+  pushed_at: string;
+}
+
+export interface ProjectCardProps {
+  repoName: string;
+}
+
 export type Tab = {
   id: number;
   label: string;
@@ -79,12 +105,24 @@ export type LayoutProps = {
   children: ReactNode;
 };
 
-export interface RepoData {
-  id: string;
-  imageUrl: string;
-  type: string;
-  repoName: string;
-  content: string;
-  timestamp: string;
-  payload: any;
+export interface ProjectData {
+  full_name: string;
+  name: string;
+  url: string;
+  productionUrl: string;
+  latestCommit: {
+    message: string;
+    date: string;
+    author: string;
+    branch: string;
+  };
+  pushed_at: string;
 }
+
+export type HoverCardProps = {
+  children: React.ReactNode;
+  width?: string;
+  height?: string;
+  padding?: string;
+  className?: string;
+} & React.HTMLAttributes<HTMLDivElement>;

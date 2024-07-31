@@ -12,7 +12,6 @@ import {
   DialogTitle,
   DialogDescription,
   Button,
-  Input,
 } from "@/components/ui";
 
 interface CodeContentProps {
@@ -33,7 +32,9 @@ const CodeContent: React.FC<CodeContentProps> = ({ children }) => {
     useState<keyof typeof themes>("vscDarkPlus");
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [inputText, setInputText] = useState("");
-  const codeString = React.Children.toArray(children).join("\n");
+  const [codeString, setCodeString] = useState(
+    React.Children.toArray(children).join("\n"),
+  );
 
   const toggleTheme = () => {
     const themeKeys = Object.keys(themes) as (keyof typeof themes)[];
@@ -49,33 +50,31 @@ const CodeContent: React.FC<CodeContentProps> = ({ children }) => {
 
   const handleDialogClose = () => {
     setIsDialogOpen(false);
+    setCodeString(inputText);
     toast(`Input text: ${inputText}`);
   };
 
   return (
     <>
-      <button
+      <Button
+        variant="shine"
         onClick={toggleTheme}
-        className="mb-4 p-2 bg-gray-200 rounded fixed top-4 left-4"
+        className="mb-4 p-2 rounded fixed top-4 left-4"
       >
         Toggle Theme
-      </button>
+      </Button>
       <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
-        <DialogTrigger asChild>
-          <button className="mb-4 p-2 bg-gray-200 rounded fixed top-4 left-24">
-            Open Dialog
-          </button>
-        </DialogTrigger>
         <DialogContent>
           <DialogHeader>
             <DialogTitle>Input Text</DialogTitle>
             <DialogDescription>Please enter your text below.</DialogDescription>
           </DialogHeader>
-          <Input
+          <textarea
             type="text"
+            className="!bg-none mb-4 border-zinc-800"
             value={inputText}
+            // @ts-ignore
             onChange={handleInputChange}
-            className="mb-4"
           />
           <Button onClick={handleDialogClose}>Submit</Button>
         </DialogContent>
