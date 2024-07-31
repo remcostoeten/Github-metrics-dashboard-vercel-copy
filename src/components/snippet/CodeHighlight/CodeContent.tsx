@@ -71,9 +71,9 @@ const CodeContent: React.FC<CodeContentProps> = ({ children }) => {
           </DialogHeader>
           <textarea
             type="text"
-            c
             className="!bg-none mb-4 border-zinc-800"
             value={inputText}
+            // @ts-ignore
             onChange={handleInputChange}
           />
           <Button onClick={handleDialogClose}>Submit</Button>

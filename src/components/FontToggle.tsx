@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { GeistSans } from "geist/font/sans";
 import { Inter, Noto_Sans_JP } from "next/font/google";
 import { toast } from "sonner";
 
@@ -11,10 +10,10 @@ interface FontSwitcherProps {
 }
 
 const FontSwitcher: React.FC<FontSwitcherProps> = ({ onFontChange }) => {
-  const [currentFont, setCurrentFont] = useState("geist-sans");
+  const [currentFont, setCurrentFont] = useState("noto");
 
   const toggleFont = () => {
-    const fonts = ["geist-sans", "noto", "inter"];
+    const fonts = ["noto", "inter"];
     const currentIndex = fonts.indexOf(currentFont);
     const nextFont = fonts[(currentIndex + 1) % fonts.length];
     setCurrentFont(nextFont);
@@ -27,14 +26,12 @@ const FontSwitcher: React.FC<FontSwitcherProps> = ({ onFontChange }) => {
 
   const getFontClass = () => {
     switch (currentFont) {
-      case "geist-sans":
-        return GeistSans.variable;
       case "noto":
         return noto.className;
       case "inter":
         return inter.className;
       default:
-        return GeistSans.variable;
+        return noto.className;
     }
   };
 

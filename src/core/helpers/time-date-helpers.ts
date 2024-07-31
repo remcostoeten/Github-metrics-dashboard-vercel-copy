@@ -16,7 +16,7 @@ export function formatTimeAgo(timestamp: string) {
 
 export function getTimeSince(date: Date): string {
   const now = new Date();
-  const secondsPast = (now.getTime() - date.getTime()) / 1000;
+  const secondsPast = (now.getTime() - date?.getTime()) / 1000;
 
   if (secondsPast < 60) {
     return `${Math.round(secondsPast)}s ago`;

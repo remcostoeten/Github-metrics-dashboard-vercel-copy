@@ -84,6 +84,7 @@ export interface ProjectData {
     message: string;
     date: string;
     author: string;
+    branch: string;
   };
   pushed_at: string;
 }
@@ -113,6 +114,7 @@ export interface ProjectData {
     message: string;
     date: string;
     author: string;
+    branch: string;
   };
   pushed_at: string;
 }

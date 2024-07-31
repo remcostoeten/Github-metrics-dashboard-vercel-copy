@@ -29,7 +29,7 @@ import {
 export default function Component() {
   const [animationSpeed, setAnimationSpeed] = useState(1);
   const [activityListAmount, setActivityListAmount] = useState(10);
-  const [font, setFont] = useState("Geist Sans");
+  const [font, setFont] = useState("Inter");
   const [codeBlockTheme, setCodeBlockTheme] = useState("github-dark");
   const [githubUsername, setGithubUsername] = useState("");
   const [githubRepository1, setGithubRepository1] = useState(
@@ -186,8 +186,6 @@ export default function Component() {
                     <SelectValue placeholder="Select font" />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="Geist Mono">Geist Mono</SelectItem>
-                    <SelectItem value="Geist Sans">Geist Sans</SelectItem>
                     <SelectItem value="Inter">Inter</SelectItem>
                   </SelectContent>
                 </Select>
@@ -305,7 +303,7 @@ export default function Component() {
                     type="checkbox"
                     id="stop-activity-animation"
                     checked={stopActivityAnimation}
-                    onCheckedChange={handleStopActivityAnimationChange}
+                    onChange={handleStopActivityAnimationChange}
                   />
                   <label htmlFor="stop-activity-animation">
                     Stop Activity Animation

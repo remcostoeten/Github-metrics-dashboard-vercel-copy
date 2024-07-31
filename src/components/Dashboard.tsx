@@ -1,6 +1,5 @@
 import ProjectList from "./ProjectList";
 import ActivityList from "./ActivityList";
-import { AnimatedListDemo } from "./effects/AnimatedList";
 
 export default async function Dashboard() {
   return (

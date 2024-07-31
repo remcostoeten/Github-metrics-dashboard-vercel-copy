@@ -1,9 +1,5 @@
-import { Spinner } from "@geist-ui/core";
+import React from "react";
 
-export default function Loading() {
-  return (
-    <div className="grid place-items-center w-screen h-screen">
-      <Spinner />
-    </div>
-  );
+export default function loader() {
+  return <div>loader</div>;
 }
