@@ -1,0 +1,28 @@
+{
+  "prettier.jsxSingleQuote": true,
+  "prettier.semi": false,
+  "prettier.singleQuote": true,
+  "prettier.tabWidth": 4,
+  "prettier.useTabs": true,
+  "eslint.format.enable": true,
+  "eslint.ignoreUntitled": true,
+  "editor.autoClosingBrackets": "always",
+  "editor.autoClosingQuotes": "always",
+  "editor.autoIndent": "full",
+  "editor.formatOnType": false,
+  "vscode_custom_css.imports": [
+    "file:///home/remcostoeten/.vscode-insiders/extensions/brandonkirbyson.vscode-animations-2.0.3/dist/updateHandler.js"
+  ],
+  "explorer.confirmDragAndDrop": false,
+  "typescript.updateImportsOnFileMove.enabled": "always",
+  "git.confirmSync": false,
+  "createReactTSXComponent.stylesFormat": "CVA - Class Variance Authority",
+  "createReactTSXComponent.useArrowFunctionComponent": true,
+  "createReactTSXComponent.useExportDefault": true,
+  "security.workspace.trust.untrustedFiles": "open",
+  "workbench.editor.showTabs": "single",
+  "workbench.editor.editorActionsLocation": "titleBar",
+  "window.customTitleBarVisibility": "auto",
+  "editor.formatOnSave": true,
+  "eslint.codeActionsOnSave.rules": null
+}
