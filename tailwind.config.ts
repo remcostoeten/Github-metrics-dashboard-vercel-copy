@@ -20,6 +20,8 @@ const config = {
     extend: {
       colors: {
         border: "hsl(var(--border))",
+        dark: "#010001",
+        section: "rgb(11,10,11)",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
         background: "hsl(var(--background))",
@@ -76,9 +78,6 @@ const config = {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
         shine: "shine 8s ease-in-out infinite",
-      },
-      fontFamily: {
-        sans: ["var(--font-geist-sans)"],
       },
     },
   },

@@ -1,11 +1,11 @@
-import { Suspense } from 'react';
-import Link from 'next/link';
-import { ArrowRightIcon, GithubIcon } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import { Flex } from '@/components/atoms/Flexer';
-import { Avatar, AvatarFallback } from '@/components/ui/avatar';
-import { siteConfig } from '@/core/config/site-config';
-import { fetchGitHubUserData } from '@/server/actions/fetchGitHubUserData';
+import { Suspense } from "react";
+import Link from "next/link";
+import { ArrowRightIcon, GithubIcon } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Flex } from "@/components/atoms/Flexer";
+import { Avatar, AvatarFallback } from "@/components/ui/avatar";
+import { siteConfig } from "@/core/config/site-config";
+import { fetchGitHubUserData } from "@/server/actions/fetchGitHubUserData";
 
 interface GitHubUserData {
   name: string;
@@ -73,7 +73,7 @@ async function ProfileData() {
             <GithubIcon width={14} />
             <span>{userData.login}</span>
           </Link>
-          <UserStats 
+          <UserStats
             repos={userData.public_repos}
             followers={userData.followers}
             following={userData.following}
@@ -86,7 +86,11 @@ async function ProfileData() {
         Icon={ArrowRightIcon}
         iconPlacement="right"
       >
-        <Link href={userData.html_url} target="_blank" rel="noopener noreferrer">
+        <Link
+          href={userData.html_url}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           Go to profile
         </Link>
       </Button>

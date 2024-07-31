@@ -96,7 +96,7 @@ const ActivityList: React.FC = () => {
       <h2 className="font-medium text-sm mb-6">Recent Activity</h2>
       <AnimatedList>
         {activities.map((activity, index) => (
-          <ActivityItem key={index} activity={activity} />
+          <ActivityItem key={index++} activity={activity} />
         ))}
       </AnimatedList>
     </section>

@@ -19,3 +19,5 @@ export const navigationItems = [
   { id: 3, label: "Geist showcase", path: "/geist" },
   { id: 4, label: "UI settings", path: "/settings" },
 ];
+
+export const githubToken = process.env.GITHUB_TOKEN;
