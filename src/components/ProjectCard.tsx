@@ -1,7 +1,6 @@
-// components/ProjectCard.tsx
 "use client";
 
-import React from "react";
+import React, { useEffect, useTransition } from "react";
 import { motion } from "framer-motion";
 import {
   ProjectCardProps,
@@ -12,55 +11,58 @@ import {
 import { LoadingSkeleton } from "./effects/skeleton";
 import { Button } from "./ui/button";
 import Link from "next/link";
-import { getTimeSince } from "@/core/helpers/time-date-helpers";
-import { useOptimistic, useTransition } from "react";
 import { getRepoData } from "@/server/actions/getRepoData";
 import { Tooltip, TooltipContent, TooltipTrigger } from "./ui/tooltip";
+import { useIncrementingTime } from "@/core/hooks/useIncrementingTime";
 
-const ProjectCard: React.FC<ProjectCardProps> = ({ repoName }) => {
+export default function ProjectCard({ repoName }: ProjectCardProps) {
   const [projectData, setProjectData] = React.useState<ProjectData | null>(
     null,
   );
-  const [isPending, startTransition] = useTransition();
-  const [optimisticData, setOptimisticData] = useOptimistic<ProjectData | null>(
-    projectData,
-  );
+  const [isPending, startTransition] = React.useTransition();
 
-  React.useEffect(() => {
+  const fetchData = React.useCallback(async () => {
     startTransition(async () => {
       try {
         const data = await getRepoData(repoName);
         setProjectData(data);
-        setOptimisticData(data);
       } catch (error) {
         console.error("Error fetching repo data:", error);
       }
     });
-  }, [repoName, setOptimisticData]);
+  }, [repoName]);
 
-  if (!optimisticData) return <LoadingSkeleton />;
+  useEffect(() => {
+    fetchData();
 
-  const timeSinceLastCommit = getTimeSince(
-    new Date(optimisticData.latestCommit.date),
+    const pollInterval = setInterval(fetchData, 30000);
+
+    return () => clearInterval(pollInterval);
+  }, [fetchData]);
+
+  const timeSinceLastCommit = useIncrementingTime(
+    projectData?.latestCommit.date,
   );
-  const timeSinceDeployment = getTimeSince(new Date(optimisticData.pushed_at));
+  const timeSinceDeployment = useIncrementingTime(projectData?.pushed_at);
+
+  if (!projectData) return <LoadingSkeleton />;
 
   return (
-    <div className="relative flex flex-col bg-black rounded-md shadow-lg border border-zinc-800  group">
+    <div className="relative flex flex-col bg-black rounded-md shadow-lg border border-zinc-800 group">
       <div className="relative z-10">
-        <CardHeader href={optimisticData.url} title={optimisticData.name} />
+        <CardHeader href={projectData.url} title={projectData.name} />
         <CardBody
-          productionUrl={optimisticData.productionUrl}
-          latestCommit={optimisticData.latestCommit}
+          productionUrl={projectData.productionUrl}
+          latestCommit={projectData.latestCommit}
           productionTime={timeSinceDeployment}
           latestTime={timeSinceLastCommit}
         />
-        <CardFooter repoName={optimisticData.full_name} />
+        <CardFooter repoName={projectData.full_name} />
       </div>
       <motion.div className="pointer-events-none absolute -inset-px rounded-md opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
     </div>
   );
-};
+}
 
 const CardHeader: React.FC<{ title: string; href: string }> = ({
   href,
@@ -155,7 +157,13 @@ const CardFooter: React.FC<{ repoName: string }> = ({ repoName }) => (
   </div>
 );
 
-export default ProjectCard;
+function Pill({ children }) {
+  return (
+    <span className="inline-flex items-center gap-x py-.5 px-2 text-[10px] rounded-full  font-normal border border-[#333] text-white glass">
+      {children}
+    </span>
+  );
+}
 
 function GithubLogo() {
   return (
@@ -187,13 +195,5 @@ function GithubLogo() {
         </clipPath>
       </defs>
     </svg>
-  );
-}
-
-function Pill({ children }) {
-  return (
-    <span className="inline-flex items-center gap-x py-.5 px-2 text-[10px] rounded-full  font-normal border border-[#333] text-white glass">
-      {children}
-    </span>
   );
 }
