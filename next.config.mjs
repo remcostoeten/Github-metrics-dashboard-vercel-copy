@@ -4,8 +4,8 @@ const nextConfig = {
     reactCompiler: true,
   },
   images: {
-    loader: 'custom',
-    loaderFile: './src/components/effects/full-size-skeleton-loader.tsx',
+    loader: "custom",
+    loaderFile: "./src/components/effects/full-size-skeleton-loader.tsx",
   },
 };
 

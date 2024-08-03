@@ -1,5 +1,5 @@
-import ProjectList from './ProjectList';
-import ActivityList from './ActivityList';
+import ProjectList from "./ProjectList";
+import ActivityList from "./ActivityList";
 
 export default async function Dashboard() {
   return (

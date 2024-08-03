@@ -1,20 +1,20 @@
-'use client';
+"use client";
 
-import React, { useState } from 'react';
-import Link from 'next/link';
-import HoverCard from './effects/hover-card';
-import { useRepoStore } from '@/core/store/repoStore';
-import ProjectCard from './ProjectCard';
+import React, { useState } from "react";
+import Link from "next/link";
+import HoverCard from "./effects/hover-card";
+import { useRepoStore } from "@/core/store/repoStore";
+import ProjectCard from "./features/ProjectCard/ProjectCard";
 
 export default function ProjectList() {
-  const [inputRepo, setInputRepo] = useState('');
+  const [inputRepo, setInputRepo] = useState("");
   const { repos, addRepo } = useRepoStore();
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (inputRepo && !repos.includes(inputRepo)) {
       addRepo(inputRepo);
-      setInputRepo('');
+      setInputRepo("");
     }
   };
 

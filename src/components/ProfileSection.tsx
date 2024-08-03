@@ -1,11 +1,11 @@
-import { Suspense } from 'react';
-import Link from 'next/link';
-import { ArrowRightIcon, GithubIcon } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import { Flex } from '@/components/atoms/Flexer';
-import { Avatar, AvatarFallback } from '@/components/ui/avatar';
-import { siteConfig } from '@/core/config/site-config';
-import { fetchGitHubUserData } from '@/server/actions/fetchGitHubUserData';
+import { Suspense } from "react";
+import Link from "next/link";
+import { ArrowRightIcon, GithubIcon } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Flex } from "@/components/atoms/Flexer";
+import { Avatar, AvatarFallback } from "@/components/ui/avatar";
+import { siteConfig } from "@/core/config/site-config";
+import { fetchGitHubUserData } from "@/server/actions/fetchGitHubUserData";
 
 interface GitHubUserData {
   name: string;
@@ -27,7 +27,7 @@ function UserStats({ repos, followers, following }: UserStatsProps) {
   return (
     <div className="flex gap-4 mt-2 items-center justify-center">
       <div className="text-white">
-        <span className="font-semibold">{repos}</span>{' '}
+        <span className="font-semibold">{repos}</span>{" "}
         <span className="font-regular">repos</span>
       </div>
       <div className="text-white">
@@ -64,7 +64,7 @@ async function ProfileData() {
             </h1>
           </div>
           <p className="text-xs font-medium tracking-normal uppercase text-zinc-500">
-            {userData.bio || 'Git Integrations'}
+            {userData.bio || "Git Integrations"}
           </p>
           <Link
             href={siteConfig.githubUrl}

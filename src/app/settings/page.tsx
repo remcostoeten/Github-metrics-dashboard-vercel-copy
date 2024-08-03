@@ -1,35 +1,35 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
-import Link from 'next/link';
-import { Button } from '@/components/ui/button';
+import { useState } from "react";
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
 import {
   Card,
   CardHeader,
   CardTitle,
   CardDescription,
   CardContent,
-} from '@/components/ui/card';
-import { Slider } from '@/components/ui/slider';
+} from "@/components/ui/card";
+import { Slider } from "@/components/ui/slider";
 import {
   Select,
   SelectTrigger,
   SelectValue,
   SelectContent,
   SelectItem,
-} from '@/components/ui/select';
-import { Input } from '@/components/ui/input';
+} from "@/components/ui/select";
+import { Input } from "@/components/ui/input";
 import {
   TooltipProvider,
   Tooltip,
   TooltipTrigger,
   TooltipContent,
-} from '@/components/ui/tooltip';
-import { Switch } from '@/components/ui/switch';
-import { Label } from '@/components/ui/label';
-import { useAnimationSpeedStore } from '@/core/store/useAnimationSpeedStore';
-import { useAnimationControlStore } from '@/core/store/useAnimationControlStore';
-import { useGitHubStore } from '@/core/store/useGithubStore';
+} from "@/components/ui/tooltip";
+import { Switch } from "@/components/ui/switch";
+import { Label } from "@/components/ui/label";
+import { useAnimationSpeedStore } from "@/core/store/useAnimationSpeedStore";
+import { useAnimationControlStore } from "@/core/store/useAnimationControlStore";
+import { useGitHubStore } from "@/core/store/useGithubStore";
 
 export default function Component() {
   const { animationSpeed, setAnimationSpeed } = useAnimationSpeedStore();
@@ -37,14 +37,14 @@ export default function Component() {
   const { fetchAmount, setFetchAmount } = useGitHubStore();
 
   const [activityListAmount, setActivityListAmount] = useState(5);
-  const [font, setFont] = useState('Geist Sans');
-  const [codeBlockTheme, setCodeBlockTheme] = useState('duotoneDark');
-  const [githubUsername, setGithubUsername] = useState('');
+  const [font, setFont] = useState("Geist Sans");
+  const [codeBlockTheme, setCodeBlockTheme] = useState("duotoneDark");
+  const [githubUsername, setGithubUsername] = useState("");
   const [githubRepository1, setGithubRepository1] = useState(
-    'remcostoeten/all-in-one-dashboard',
+    "remcostoeten/all-in-one-dashboard",
   );
   const [githubRepository2, setGithubRepository2] = useState(
-    'remcostoeten/all-in-one-dashboard',
+    "remcostoeten/all-in-one-dashboard",
   );
 
   const handleAnimationSpeedChange = (value) => {

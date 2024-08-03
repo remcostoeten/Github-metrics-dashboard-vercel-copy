@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import { ReactNode } from "react";
 
 export interface Activity {
   imageUrl: string;
@@ -64,7 +64,7 @@ export interface ProjectCardProps {
 
 export interface CardBodyProps {
   productionUrl: string;
-  latestCommit: ProjectData['latestCommit'];
+  latestCommit: ProjectData["latestCommit"];
   productionTime: string;
   latestTime: string;
 }

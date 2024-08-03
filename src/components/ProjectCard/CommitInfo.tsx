@@ -1,10 +1,10 @@
-import React from 'react';
-import { ProjectData } from '@/types';
-import { Tooltip, TooltipContent, TooltipTrigger } from '../ui/tooltip';
-import Pill from './Pill';
+import React from "react";
+import { ProjectData } from "@/types";
+import { Tooltip, TooltipContent, TooltipTrigger } from "../ui/tooltip";
+import Pill from "./Pill";
 
 interface CommitInfoProps {
-  commit: ProjectData['latestCommit'];
+  commit: ProjectData["latestCommit"];
   time: string;
 }
 
@@ -23,7 +23,7 @@ const CommitInfo: React.FC<CommitInfoProps> = ({ commit, time }) => (
             side="top"
             align="center"
           >
-            {' '}
+            {" "}
             The git branch for this commit
           </TooltipContent>
         </Tooltip>

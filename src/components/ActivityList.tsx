@@ -1,14 +1,14 @@
-'use client';
-import React, { useState, useEffect } from 'react';
-import { Avatar, AvatarImage } from './ui/avatar';
-import { AvatarFallback } from '@radix-ui/react-avatar';
-import { Activity } from '@/types';
-import { fetchGitHubActivities } from '@/server/actions/getGithubActivity';
-import { ActivitySkeleton } from './effects/skeleton';
-import { formatTimeAgo } from '@/core/helpers/time-date-helpers';
-import { AnimatedList } from '@/components/effects/animated-list';
-import { cn } from '@/core/helpers/utils';
-import { useGitHubStore } from '@/core/store/useGithubStore';
+"use client";
+import React, { useState, useEffect } from "react";
+import { Avatar, AvatarImage } from "./ui/avatar";
+import { AvatarFallback } from "@radix-ui/react-avatar";
+import { Activity } from "@/types";
+import { fetchGitHubActivities } from "@/server/actions/getGithubActivity";
+import { ActivitySkeleton } from "./effects/skeleton";
+import { formatTimeAgo } from "@/core/helpers/time-date-helpers";
+import { AnimatedList } from "@/components/effects/animated-list";
+import { cn } from "@/core/helpers/utils";
+import { useGitHubStore } from "@/core/store/useGithubStore";
 
 const workerCode = `
   let pollInterval = 60000; // 60 seconds
@@ -41,7 +41,7 @@ const ActivityList: React.FC = () => {
         }));
         setActivities(activities);
       } catch (error) {
-        console.error('Error loading activities:', error);
+        console.error("Error loading activities:", error);
       } finally {
         setIsLoading(false);
       }
@@ -49,16 +49,16 @@ const ActivityList: React.FC = () => {
   };
 
   useEffect(() => {
-    if (typeof window !== 'undefined') {
-      const blob = new Blob([workerCode], { type: 'application/javascript' });
+    if (typeof window !== "undefined") {
+      const blob = new Blob([workerCode], { type: "application/javascript" });
       const newWorker = new Worker(URL.createObjectURL(blob));
       setWorker(newWorker);
       newWorker.onmessage = (e) => {
-        if (e.data === 'poll') {
+        if (e.data === "poll") {
           loadActivities();
         }
       };
-      newWorker.postMessage('start');
+      newWorker.postMessage("start");
       loadActivities();
     }
     return () => {
@@ -73,14 +73,14 @@ const ActivityList: React.FC = () => {
   useEffect(() => {
     const handleVisibilityChange = () => {
       if (!document.hidden && worker) {
-        worker.postMessage({ type: 'setInterval', interval: 60000 });
+        worker.postMessage({ type: "setInterval", interval: 60000 });
       } else if (worker) {
-        worker.postMessage({ type: 'setInterval', interval: 300000 });
+        worker.postMessage({ type: "setInterval", interval: 300000 });
       }
     };
-    document.addEventListener('visibilitychange', handleVisibilityChange);
+    document.addEventListener("visibilitychange", handleVisibilityChange);
     return () => {
-      document.removeEventListener('visibilitychange', handleVisibilityChange);
+      document.removeEventListener("visibilitychange", handleVisibilityChange);
     };
   }, [worker]);
 
@@ -107,8 +107,8 @@ const ActivityItem: React.FC<{ activity: Activity }> = ({ activity }) => {
   return (
     <figure
       className={cn(
-        'relative mx-auto min-h-fit w-full cursor-pointer overflow-hidden',
-        'transition-all duration-200 ease-in-out hover:scale-[103%] transform-gpu',
+        "relative mx-auto min-h-fit w-full cursor-pointer overflow-hidden",
+        "transition-all duration-200 ease-in-out hover:scale-[103%] transform-gpu",
       )}
     >
       <div className="flex gap-3 items-center py-3 tracking-normal bg-blend-normal">

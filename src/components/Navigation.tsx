@@ -1,14 +1,14 @@
-import React from 'react';
+import React from "react";
 
 const Navigation: React.FC = () => {
   const navItems = [
-    { label: 'Overview', active: true },
-    { label: 'Projects', active: false },
-    { label: 'Integrations', active: false },
-    { label: 'Activity', active: false },
-    { label: 'Domains', active: false },
-    { label: 'Usage', active: false },
-    { label: 'Settings', active: false },
+    { label: "Overview", active: true },
+    { label: "Projects", active: false },
+    { label: "Integrations", active: false },
+    { label: "Activity", active: false },
+    { label: "Domains", active: false },
+    { label: "Usage", active: false },
+    { label: "Settings", active: false },
   ];
 
   return (
@@ -18,7 +18,7 @@ const Navigation: React.FC = () => {
           <div
             key={index}
             className={`px-1 py-4 bg-blend-normal ${
-              item.active ? 'text-white' : ''
+              item.active ? "text-white" : ""
             }`}
           >
             {item.label}

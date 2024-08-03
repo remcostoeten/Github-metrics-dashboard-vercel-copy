@@ -1,5 +1,5 @@
-import CodeHighlight from '@/components/snippet/CodeHighlight/CodeHighlight';
-import React from 'react';
+import CodeHighlight from "@/components/snippet/CodeHighlight/CodeHighlight";
+import React from "react";
 
 export default function GeistPage() {
   return (

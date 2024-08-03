@@ -1,15 +1,15 @@
-'use client';
+"use client";
 
-import React, { useRef, useEffect } from 'react';
-import { RGBA_COLORS } from '@/core/helpers/constants';
-import { HoverCardProps } from '../../types';
+import React, { useRef, useEffect } from "react";
+import { RGBA_COLORS } from "@/core/helpers/constants";
+import { HoverCardProps } from "../../types";
 
 export default function HoverCard({
   children,
-  width = 'w-full',
-  height = 'auto',
+  width = "w-full",
+  height = "auto",
   padding,
-  className = '',
+  className = "",
   ...props
 }: HoverCardProps) {
   const cardRef = useRef<HTMLDivElement | null>(null);
@@ -23,16 +23,16 @@ export default function HoverCard({
     const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;
 
-    target.style.setProperty('--mouse-x', `${x}px`);
-    target.style.setProperty('--mouse-y', `${y}px`);
+    target.style.setProperty("--mouse-x", `${x}px`);
+    target.style.setProperty("--mouse-y", `${y}px`);
   };
 
   useEffect(() => {
     const card = cardRef.current;
     if (card) {
-      card.addEventListener('mousemove', handleOnMouseMove);
+      card.addEventListener("mousemove", handleOnMouseMove);
 
-      const style = document.createElement('style');
+      const style = document.createElement("style");
       style.innerHTML = `
         .card::before {
           background: radial-gradient(
@@ -60,7 +60,7 @@ export default function HoverCard({
       document.head.appendChild(style);
 
       return () => {
-        card.removeEventListener('mousemove', handleOnMouseMove);
+        card.removeEventListener("mousemove", handleOnMouseMove);
         document.head.removeChild(style);
       };
     }

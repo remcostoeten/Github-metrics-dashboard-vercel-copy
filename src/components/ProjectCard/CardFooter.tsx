@@ -1,6 +1,6 @@
-import React from 'react';
-import { Button } from '../ui/button';
-import { GithubLogo } from '../icons';
+import React from "react";
+import { Button } from "../ui/button";
+import { GithubLogo } from "../icons";
 
 interface CardFooterProps {
   repoName: string;
