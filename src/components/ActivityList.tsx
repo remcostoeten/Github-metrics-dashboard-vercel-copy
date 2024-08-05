@@ -75,7 +75,7 @@ const ActivityList: React.FC = () => {
       if (!document.hidden && worker) {
         worker.postMessage({ type: "setInterval", interval: 60000 });
       } else if (worker) {
-        worker.postMessage({ type: "setInterval", interval: 300000 }); // 5 minutes when tab is not visible
+        worker.postMessage({ type: "setInterval", interval: 300000 });
       }
     };
     document.addEventListener("visibilitychange", handleVisibilityChange);
@@ -91,7 +91,7 @@ const ActivityList: React.FC = () => {
   return (
     <section
       aria-label="Recent GitHub Activity"
-      className="relative pb-4 flex w-full flex-col overflow-hidden "
+      className="relative pb-4 flex w-full flex-col  "
     >
       <h2 className="font-medium text-sm mb-6">Recent Activity</h2>
       <AnimatedList>
@@ -107,11 +107,11 @@ const ActivityItem: React.FC<{ activity: Activity }> = ({ activity }) => {
   return (
     <figure
       className={cn(
-        "relative mx-auto min-h-fit w-full cursor-pointer overflow-hidden",
+        "relative mx-auto min-h-fit w-full cursor-pointer ",
         "transition-all duration-200 ease-in-out hover:scale-[103%] transform-gpu",
       )}
     >
-      <div className="flex gap-3 items-center py-3 tracking-normal bg-blend-normal">
+      <div className="flex gap-3 items-center pt-3 pb-6 tracking-normal bg-blend-normal border-b border-zinc-800">
         <Avatar>
           <AvatarImage src={activity.imageUrl} />
           <AvatarFallback>CN</AvatarFallback>

@@ -25,7 +25,7 @@ function writeLogsToJson(data: any, filename: string) {
       const filePath = path.join(logDir, filename);
       fs.writeFileSync(filePath, JSON.stringify(logBuffer, null, 2));
       console.log(`Logs written to ${filePath}`);
-      logBuffer = []; // Clear the buffer after writing
+      logBuffer = []; // Clear the buffefr after writing
     }
   };
 
