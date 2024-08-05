@@ -75,7 +75,7 @@ export default function HoverCard({
   return (
     <div
       ref={cardRef}
-      className={`card cursor-pointer    relative ${className}`}
+      className={`card    relative ${className}`}
       style={style}
       {...props}
     >

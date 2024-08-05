@@ -5,6 +5,7 @@ import { ProjectData } from "@/types";
 export const useProjectData = (repoName: string) => {
   const [projectData, setProjectData] = useState<ProjectData | null>(null);
   const [isPending, startTransition] = useTransition();
+  const [isRemoving, setIsRemoving] = useState(false);
 
   const fetchData = useCallback(async () => {
     startTransition(async () => {
@@ -23,5 +24,20 @@ export const useProjectData = (repoName: string) => {
     return () => clearInterval(pollInterval);
   }, [fetchData]);
 
-  return { projectData, isPending };
+  const removeRepo = useCallback(async (repoNameToRemove: string) => {
+    setIsRemoving(true);
+    try {
+      // Implement the actual removal logic here
+      // For example, you might call an API to remove the repo
+      // await removeRepoFromAPI(repoNameToRemove);
+
+      // After successful removal, you might want to clear the project data
+      setProjectData(null);
+    } catch (error) {
+      console.error("Error removing repo:", error);
+      setIsRemoving(false);
+    }
+  }, []);
+
+  return { projectData, isPending, isRemoving, removeRepo };
 };

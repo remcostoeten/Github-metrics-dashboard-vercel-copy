@@ -111,7 +111,7 @@ const ActivityItem: React.FC<{ activity: Activity }> = ({ activity }) => {
         "transition-all duration-200 ease-in-out hover:scale-[103%] transform-gpu",
       )}
     >
-      <div className="flex gap-3 items-center py-3 tracking-normal bg-blend-normal">
+      <div className="flex gap-3 items-center pt-3 pb-6 tracking-normal bg-blend-normal border-b border-zinc-800">
         <Avatar>
           <AvatarImage src={activity.imageUrl} />
           <AvatarFallback>CN</AvatarFallback>
