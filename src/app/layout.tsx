@@ -3,7 +3,7 @@ import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import { LayoutProps } from "@/types";
 import Providers from "@/core/providers";
-import "./globals.css";
+import "../styles/app.scss";
 import FontSwitcher from "@/components/FontToggle";
 
 const Layout: React.FC<LayoutProps> = ({ children }) => {
