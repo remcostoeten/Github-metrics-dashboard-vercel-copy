@@ -50,12 +50,12 @@ export default function ProjectList() {
               value={inputRepo}
               onChange={(e) => setInputRepo(e.target.value)}
               placeholder="Enter GitHub repo (e.g., username/repo)"
-              className="rounded-r-none"
+              className="rounded-r-none vercel-card"
             />
             <Button
               variant="gooeyLeft"
               type="button"
-              className="text-white h-[65px] -translate-x-2 rounded-tl-none rounded-bl-none border-l-0 text-sm leading-8 bg-black cursor-pointer font-normal min-w-min text-center whitespace-nowrap py-4 px-8 rounded-l-none border-[0.8px] border-solid border-zinc-800"
+              className="text-white h-[65px] translate-x-[5px] rounded-tl-none rounded-bl-none border-l-0 text-sm leading-8 bg-black cursor-pointer font-normal min-w-min text-center whitespace-nowrap py-4 px-8 rounded-l-none border-[0.8px] border-solid border-zinc-800"
             >
               Add repo
             </Button>
