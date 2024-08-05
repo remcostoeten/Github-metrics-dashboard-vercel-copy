@@ -1,13 +1,17 @@
-import React from 'react';
-import { Tooltip, TooltipTrigger, TooltipContent } from '@/components/ui/tooltip';
-import Pill from './Pill';
+import React from "react";
+import {
+  Tooltip,
+  TooltipTrigger,
+  TooltipContent,
+} from "@/components/ui/tooltip";
+import Pill from "./Pill";
 
 type ProjectData = {
   latestCommit: {
     message: string;
     branch: string;
-  }
-}
+  };
+};
 
 interface CommitInfoProps {
   commit: ProjectData["latestCommit"];
@@ -31,7 +35,7 @@ function CommitInfo({ commit, time }: CommitInfoProps) {
           <TooltipTrigger>
             <span>{truncateMessage(commit.message, MAX_CHAR_LIMIT)}</span>
           </TooltipTrigger>
-          <TooltipContent 
+          <TooltipContent
             className="bg-black border-[#333]"
             side="top"
             align="center"
@@ -55,6 +59,6 @@ function CommitInfo({ commit, time }: CommitInfoProps) {
       <time className="text-xs text-stone-500">{time}</time>
     </div>
   );
-};
+}
 
 export default CommitInfo;

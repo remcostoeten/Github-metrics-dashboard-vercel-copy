@@ -10,11 +10,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
     return (
       <input
         type={type}
-        className={cn(
-          "border-[#333333] vercel-card ",
-          className,
-        )}
-
+        className={cn("border-[#333333] vercel-card ", className)}
         ref={ref}
         {...props}
       />

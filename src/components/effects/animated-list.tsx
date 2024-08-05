@@ -3,7 +3,7 @@ import React, { ReactElement, useEffect, useMemo, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { useAnimationSpeedStore } from "@/core/store/useAnimationSpeedStore";
 import { useAnimationControlStore } from "@/core/store/useAnimationControlStore";
-import { Button } from '@nextui-org/react';
+import { Button } from "@nextui-org/react";
 
 export interface AnimatedListProps {
   className?: string;
@@ -74,10 +74,9 @@ export const AnimatedList = React.memo(
           ))}
         </AnimatePresence>
         {isAnimationComplete && (
-          <Button
-          
-            className='my-4'
-            onClick={resetAnimation}>Reset Animation</Button>
+          <Button className="my-4" onClick={resetAnimation}>
+            Reset Animation
+          </Button>
         )}
       </div>
     );

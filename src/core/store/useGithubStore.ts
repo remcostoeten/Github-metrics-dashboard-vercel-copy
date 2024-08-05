@@ -16,7 +16,7 @@ export const useGitHubStore = create(
       },
     }),
     {
-      name: "github-storage", // unique name for localStorage
+      name: "github-storage",
     },
   ),
 );

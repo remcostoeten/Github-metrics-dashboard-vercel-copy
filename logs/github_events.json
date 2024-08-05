@@ -1809,11 +1809,7 @@
               "allow_forking": true,
               "is_template": false,
               "web_commit_signoff_required": false,
-              "topics": [
-                "analyt",
-                "nextjs",
-                "react19"
-              ],
+              "topics": ["analyt", "nextjs", "react19"],
               "visibility": "public",
               "forks": 0,
               "open_issues": 0,
@@ -1938,11 +1934,7 @@
               "allow_forking": true,
               "is_template": false,
               "web_commit_signoff_required": false,
-              "topics": [
-                "analyt",
-                "nextjs",
-                "react19"
-              ],
+              "topics": ["analyt", "nextjs", "react19"],
               "visibility": "public",
               "forks": 0,
               "open_issues": 0,
@@ -2201,11 +2193,7 @@
               "allow_forking": true,
               "is_template": false,
               "web_commit_signoff_required": false,
-              "topics": [
-                "analyt",
-                "nextjs",
-                "react19"
-              ],
+              "topics": ["analyt", "nextjs", "react19"],
               "visibility": "public",
               "forks": 0,
               "open_issues": 1,
@@ -2330,11 +2318,7 @@
               "allow_forking": true,
               "is_template": false,
               "web_commit_signoff_required": false,
-              "topics": [
-                "analyt",
-                "nextjs",
-                "react19"
-              ],
+              "topics": ["analyt", "nextjs", "react19"],
               "visibility": "public",
               "forks": 0,
               "open_issues": 1,
@@ -4604,11 +4588,7 @@
               "allow_forking": true,
               "is_template": false,
               "web_commit_signoff_required": false,
-              "topics": [
-                "analyt",
-                "nextjs",
-                "react19"
-              ],
+              "topics": ["analyt", "nextjs", "react19"],
               "visibility": "public",
               "forks": 0,
               "open_issues": 0,
@@ -4733,11 +4713,7 @@
               "allow_forking": true,
               "is_template": false,
               "web_commit_signoff_required": false,
-              "topics": [
-                "analyt",
-                "nextjs",
-                "react19"
-              ],
+              "topics": ["analyt", "nextjs", "react19"],
               "visibility": "public",
               "forks": 0,
               "open_issues": 0,
@@ -4996,11 +4972,7 @@
               "allow_forking": true,
               "is_template": false,
               "web_commit_signoff_required": false,
-              "topics": [
-                "analyt",
-                "nextjs",
-                "react19"
-              ],
+              "topics": ["analyt", "nextjs", "react19"],
               "visibility": "public",
               "forks": 0,
               "open_issues": 1,
@@ -5125,11 +5097,7 @@
               "allow_forking": true,
               "is_template": false,
               "web_commit_signoff_required": false,
-              "topics": [
-                "analyt",
-                "nextjs",
-                "react19"
-              ],
+              "topics": ["analyt", "nextjs", "react19"],
               "visibility": "public",
               "forks": 0,
               "open_issues": 1,
@@ -7399,11 +7367,7 @@
               "allow_forking": true,
               "is_template": false,
               "web_commit_signoff_required": false,
-              "topics": [
-                "analyt",
-                "nextjs",
-                "react19"
-              ],
+              "topics": ["analyt", "nextjs", "react19"],
               "visibility": "public",
               "forks": 0,
               "open_issues": 0,
@@ -7528,11 +7492,7 @@
               "allow_forking": true,
               "is_template": false,
               "web_commit_signoff_required": false,
-              "topics": [
-                "analyt",
-                "nextjs",
-                "react19"
-              ],
+              "topics": ["analyt", "nextjs", "react19"],
               "visibility": "public",
               "forks": 0,
               "open_issues": 0,
@@ -7791,11 +7751,7 @@
               "allow_forking": true,
               "is_template": false,
               "web_commit_signoff_required": false,
-              "topics": [
-                "analyt",
-                "nextjs",
-                "react19"
-              ],
+              "topics": ["analyt", "nextjs", "react19"],
               "visibility": "public",
               "forks": 0,
               "open_issues": 1,
@@ -7920,11 +7876,7 @@
               "allow_forking": true,
               "is_template": false,
               "web_commit_signoff_required": false,
-              "topics": [
-                "analyt",
-                "nextjs",
-                "react19"
-              ],
+              "topics": ["analyt", "nextjs", "react19"],
               "visibility": "public",
               "forks": 0,
               "open_issues": 1,

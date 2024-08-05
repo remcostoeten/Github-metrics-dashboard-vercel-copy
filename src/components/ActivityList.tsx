@@ -91,7 +91,7 @@ const ActivityList: React.FC = () => {
   return (
     <section
       aria-label="Recent GitHub Activity"
-      className="relative pb-4 flex w-full flex-col overflow-hidden "
+      className="relative pb-4 flex w-full flex-col  "
     >
       <h2 className="font-medium text-sm mb-6">Recent Activity</h2>
       <AnimatedList>
@@ -107,7 +107,7 @@ const ActivityItem: React.FC<{ activity: Activity }> = ({ activity }) => {
   return (
     <figure
       className={cn(
-        "relative mx-auto min-h-fit w-full cursor-pointer overflow-hidden",
+        "relative mx-auto min-h-fit w-full cursor-pointer ",
         "transition-all duration-200 ease-in-out hover:scale-[103%] transform-gpu",
       )}
     >

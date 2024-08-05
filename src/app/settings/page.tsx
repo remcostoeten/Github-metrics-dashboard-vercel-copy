@@ -106,7 +106,6 @@ export default function Component() {
             />
           </CardContent>
         </Card>
-        {/* Other cards remain unchanged */}
         <Card>
           <CardHeader>
             <CardTitle>Activity Animation</CardTitle>

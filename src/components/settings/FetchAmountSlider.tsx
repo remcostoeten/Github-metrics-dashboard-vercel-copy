@@ -1,13 +1,17 @@
-import React from 'react';
-import { Tooltip, TooltipTrigger, TooltipContent } from '@/components/ui/tooltip';
-import Pill from '../features/ProjectCard/Pill';
+import React from "react";
+import {
+  Tooltip,
+  TooltipTrigger,
+  TooltipContent,
+} from "@/components/ui/tooltip";
+import Pill from "../features/ProjectCard/Pill";
 
 type ProjectData = {
   latestCommit: {
     message: string;
     branch: string;
-  }
-}
+  };
+};
 
 interface CommitInfoProps {
   commit: ProjectData["latestCommit"];
